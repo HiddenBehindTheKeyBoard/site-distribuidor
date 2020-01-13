@@ -42,7 +42,9 @@ export class DigitacaoSubFormularioComponent implements OnInit {
     private formBuilder:FormBuilder,
     private digitacaoModalService:DigitacaoModalService
   ) {
-    console.log(this.titulo);
+    setTimeout(()=>{
+      console.log(this.devedor);
+    },100) 
   }
 
   ngOnInit() {

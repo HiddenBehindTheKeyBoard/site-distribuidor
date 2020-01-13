@@ -575,17 +575,27 @@ private email: any;
 
       await this.devedorService.buscaDevedorDocumentoEmpresa(devedorId.numeroDocumento, this.idEmpresa).then(async (data) => {
         if (data.size > 0 && data !== undefined) {
-          const idDevedor = data.docs[0].id;
 
+          const idDevedor = data.docs[0].id;
           this.devedor = data.docs[0].data();
           await this.devedorService.buscarEnderecoDevedor(idDevedor).then(data => {
+            
+            // Encontrou mais de um endereço abre o modal para escolher um deles
             if (data.size > 1) {
               for (let i = 0; i < data.size; i++) {
-                this.enderecos.push(data.docs[i].data());
+                let enderecoEncontrado = data.docs[0].data();
+                const endereco: Endereco = enderecoEncontrado;
+                endereco.estado = enderecoEncontrado.uf;
+                endereco.cidade = enderecoEncontrado.localidade;
+                endereco.endereco = enderecoEncontrado.logradouro;
+
+                console.log(data.docs[i].data());
+                this.enderecos.push(endereco);
               }
               this.abrirModal();
               console.log(this.enderecos);
-            } else {
+            } else { // encontrou apenas um endereco passa o endereço para o endereço
+
               let enderecoEncontrado = data.docs[0].data();
               const endereco: Endereco = enderecoEncontrado;
               endereco.estado = enderecoEncontrado.uf;
@@ -623,9 +633,6 @@ private email: any;
   }
 
   abrirModal() {
-    
-    this.copiaPDevedor();
-
     const initialState = {
       devedor: this.devedor,
       enderecos: this.enderecos,
@@ -988,10 +995,6 @@ private email: any;
 
       if (data.titulo.representante)
         this.representante = data.titulo.representante;
-    });
-  
+    });  
   }
-
-
-
 } 
