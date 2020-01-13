@@ -1,0 +1,218 @@
+<div class="form-container">
+    <form [formGroup]="fGroupEmpresa">
+      <fieldset>
+        <legend>Informações do Cadastro</legend>
+          <div class="form-row">
+            <div class="form-group col-md-2">
+              <label for="inputDocument">Documento</label>
+              <input type="tel" formControlName="documento" [attr.disabled]="true" class="form-control" id="inputDocument" placeholder="" maxlength="18"
+              [ngClass]="{ 'is-invalid': submitted && fEmpresa.documento.errors }">
+              <div *ngIf="submitted && fEmpresa.documento.errors" class="invalid-feedback">
+                <small *ngIf="fEmpresa.documento.errors.required">Documento é obrigatório</small>
+                <small *ngIf="fEmpresa.documento.errors.minlength">Digite um documento válido</small>
+              </div>
+            </div>
+            <div class="form-group col-md-5">
+              <label for="inputName">Nome / Razão Social</label>
+              <input type="text" formControlName="nome" class="form-control" id="inputName1" placeholder="" maxlength="50"
+              [ngClass]="{ 'is-invalid': submitted && fEmpresa.nome.errors }" >
+              <div *ngIf="submitted && fEmpresa.nome.errors" class="invalid-feedback">
+                <small *ngIf="fEmpresa.nome.errors.required">Nome é obrigatório</small>
+                <small *ngIf="fEmpresa.nome.errors.minlength">Nome deve ter no mínimo 3 caracteres</small>
+              </div>
+            </div>
+            <div *ngIf="empresa.tipo == 'CPF'" class="form-group col-md-2">
+              <label for="inputRg">RG (Pessoa Física)</label>
+              <input formControlName="rg" class="form-control" id="inputRg" placeholder="" maxlength="14">
+            </div>
+            <div *ngIf="empresa.tipo == 'CPF'" class="form-group col-md-1">
+              <label for="inputEmissor">Emissor/UF</label>
+              <input type="text" formControlName="emissor" maxlength="10" class="form-control" id="inputEmissor" placeholder="">
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputTelefone">Telefone</label>
+              <input type="tel" maxlength="15" formControlName="telefone" class="form-control" id="inputTelefone">
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="inputCep">CEP</label>
+              <input type="tel" [textMask]="{mask: cep}" formControlName="cep" class="form-control" id="inputCep"
+              [ngClass]="{ 'is-invalid': submitted && fEmpresa.cep.errors }">
+              <div *ngIf="submitted && fEmpresa.cep.errors" class="invalid-feedback">
+                <small *ngIf="fEmpresa.cep.errors.required">CEP é obrigatório</small>
+                <small *ngIf="fEmpresa.cep.errors.minlength">Digite um CEP válido</small>
+              </div>
+            </div>
+            <div class="form-group col-md-2 btn-cep">
+              <button (click)="buscarCEP()" class="btn btn-primary btn-cep-search" popover="Localizar Endereço"
+              triggers="mouseenter:mouseleave">Buscar</button>
+            </div>
+            <div class="form-group col-md-5">
+              <label for="inputAddress">Endereço</label>
+              <input type="text" formControlName="endereco" class="form-control" id="inputAdress" placeholder="Rua dos bobos" maxlength="50"
+              [ngClass]="{ 'is-invalid': submitted && fEmpresa.endereco.errors }">
+              <div *ngIf="submitted && fEmpresa.endereco.errors" class="invalid-feedback">
+                <small *ngIf="fEmpresa.endereco.errors.required">Endereço é obrigatório</small>
+                <small *ngIf="fEmpresa.endereco.errors.minlength">Endereço deve ter no mínimo 3 caracteres</small>
+              </div>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputNumber2">Número</label>
+              <input type="text" formControlName="numero" class="form-control" id="inputNumber2" placeholder="" maxlength="10"
+              [ngClass]="{ 'is-invalid': submitted && fEmpresa.numero.errors }">
+              <div *ngIf="submitted && fEmpresa.numero.errors" class="invalid-feedback">
+                <small *ngIf="fEmpresa.numero.errors.required">Número é obrigatório</small>
+              </div>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputAddress2">Bairro</label>
+              <input type="text" formControlName="bairro" class="form-control" id="inputAdress2" placeholder="" maxlength="50"
+              [ngClass]="{ 'is-invalid': submitted && fEmpresa.bairro.errors }">
+              <div *ngIf="submitted && fEmpresa.bairro.errors" class="invalid-feedback">
+                <small *ngIf="fEmpresa.bairro.errors.required">Bairro é obrigatório</small>
+                <small *ngIf="fEmpresa.bairro.errors.minlength">Bairro deve ter no mínimo 3 caracteres</small>
+              </div>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputCity">Cidade</label>
+              <input type="text" formControlName="cidade" class="form-control" id="inputCity" placeholder="" maxlength="50"
+              [ngClass]="{ 'is-invalid': submitted && fEmpresa.cidade.errors }">
+              <div *ngIf="submitted && fEmpresa.cidade.errors" class="invalid-feedback">
+                <small *ngIf="fEmpresa.cidade.errors.required">Cidade é obrigatório</small>
+                <small *ngIf="fEmpresa.cidade.errors.minlength">Cidade deve ter no mínimo 3 caracteres</small>
+              </div>
+            </div>
+            <div class="form-group col-md-1">
+              <label for="inputState">Estado</label>
+              <select  [ngClass]="{ 'is-invalid': submitted && fEmpresa.estado.errors }" formControlName="estado" id="inputCount" class="form-control">
+                <option value="null">UF</option>
+                <option *ngFor="let uf of estados" [(value)]="uf">{{uf}}</option>
+              </select>
+              <div *ngIf="submitted && fEmpresa.estado.errors" class="invalid-feedback">
+                <small *ngIf="fEmpresa.estado.errors.required">Estado é obrigatório</small>
+              </div>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputComplement">Complemento</label>
+              <input type="text" formControlName="complemento" class="form-control" id="inputComplement" placeholder="Apartamento, hotel, casa, etc."
+                maxlength="50">
+            </div>
+          </div>
+      </fieldset> <!-- FIM FORM1 -->
+    </form>
+  
+    <!-- FORM2 DADOS -->
+    <form *ngIf="empresa.tipo == 'CNPJ'" [formGroup]="fGroupEmpresaRepresentante">
+      <fieldset>
+        <legend>Dados do Representante Legal</legend>
+        <div class="form-row">
+          <div class="form-group col-md-5">
+            <label for="inputName2">Nome</label>
+            <input type="text" formControlName="nomeRepresentante" class="form-control" id="inputName2" placeholder="Nome" maxlength="60">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputCpf">CPF</label>
+            <input type="tel" [textMask]="{mask: cpf}" formControlName="cpfRepresentante" class="form-control" id="inputCpf" placeholder="">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputRg2">RG</label>
+            <input type="tel" [textMask]="{mask: rg}" formControlName="rg" class="lower-text" class="form-control" id="inputRg2" placeholder="" >
+          </div>
+          <div class="form-group col-md-1">
+            <label for="inputEmissor2">Emissor</label>
+            <input type="text" formControlName="emissorRepresentante" class="form-control" id="inputEmissor2" maxlength="50">
+          </div>
+        </div>
+      </fieldset> <!-- FIM FORM2 -->
+    </form>
+    <!-- CONTA FORM3 -->
+    <form [formGroup]="fGroupEmpresaConta">
+      <fieldset>
+        <legend>Conta para Crédito (Opcional)</legend>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inputEstado">Selecione um Banco da lista</label>
+            <select id="inputCount" formControlName="idBanco" class="form-control">
+              <option selected="selected" value="null">Selecione...</option>
+              <option *ngFor="let nomeBanco of bancos" [(value)]="nomeBanco">{{nomeBanco}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputAgency">Ag. (Sem dígito)</label>
+            <input type="text" formControlName="agencia" class="lower-text" class="form-control" id="inputAgency" placeholder="" maxlength="4">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputCount2">Conta (Com dígito)</label>
+            <input type="text" formControlName="conta" class="lower-text" class="form-control" id="inputCount2" placeholder="" maxlength="10">
+          </div>
+          
+          <div class="form-group form-check-set">
+            <label>Titularidade:</label>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="gridCheck">
+                Sim
+              </label>
+              <input class="form-check-input" formControlName="titularidade" [(checked)]="empresa.titularidade" value="true" type=radio id="opcao1" name="titularidade">
+              <label class="form-check-label" for="gridCheck">
+                Não
+              </label>
+              <input class="form-check-input" formControlName="titularidade" [(checked)]="empresa.titularidade" value="false" type="radio" id="opcao2" name="titularidade">
+            </div>
+          </div>
+  
+          <div class="form-group form-check-set">
+            <label>Conta conjunta:</label>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="gridCheck">
+                Sim
+              </label>
+              <input class="form-check-input" formControlName="contaConjunta" [(checked)]="empresa.contaConjunta" value="true" type="radio" id="opcao1" name="contaConjunta">
+              <label class="form-check-label" for="gridCheck">
+                Não
+              </label>
+              <input class="form-check-input" formControlName="contaConjunta" [(checked)]="empresa.contaConjunta" value="false" type="radio" id="opcao2" name="contaConjunta">
+            </div>
+          </div>
+  
+        </div>
+      </fieldset> <!-- FIM FORM3-->
+    </form>
+    
+    <form [formGroup]="fGroupUsuario">
+      <fieldset>
+        <legend>Dados para Acesso ao Site</legend>
+        <div class="form-row">
+          <div class="form-group col-md-5">
+            <label for="inputName2">E-mail</label>
+            <input type="email" [attr.disabled]="true" formControlName="email" class="form-control" id="inputName2" placeholder="Nome" maxlength="120"> 
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputCpf">Senha</label>
+            <input type="password" formControlName="senha" class="lower-text" class="form-control" id="inputCpf" maxlength="50"
+            [ngClass]="{ 'is-invalid': submitted && fUsuario.senha.errors }"> 
+            <div *ngIf="submitted && fUsuario.senha.errors" class="invalid-feedback">
+              <small *ngIf="fUsuario.senha.required">Senha é obrigatório</small>
+              <small *ngIf="fUsuario.senha.minlength">Senha deve ter no mínimo 6 caracteres</small>
+            </div>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputCpf">Confirmação</label>
+            <input type="password" formControlName="confirmaSenha" class="form-control" id="inputCpf" 
+            [ngClass]="{ 'is-invalid': submitted && fUsuario.confirmaSenha.errors }" maxlength="50">
+            <div *ngIf="submitted && fUsuario.confirmaSenha.errors" class="invalid-feedback">
+              <small *ngIf="fUsuario.confirmaSenha.required"> Confirmação de senha é obrigatório </small>
+              <small *ngIf="fUsuario.confirmaSenha.minlength"> Confirmação de senha deve ter no mínimo 6 caracteres </small>
+            </div>
+          </div>
+        </div>
+      </fieldset> 
+    </form>
+    <div class="btn-cadastro">
+      <button type="submit" class="btn btn-primary btn-atualizacao" (click)="validaEmpresa()" type="submit" popover="Criar usuário"
+      triggers="mouseenter:mouseleave">Criar Usuário</button>
+      <button class="btn btn-secondary btn-atualizacao" [routerLink]="'/'" type="submit" popover="Voltar"
+      triggers="mouseenter:mouseleave">Voltar</button >
+    </div>
+  </div>

@@ -1,0 +1,347 @@
+<!-- REQUERIMENTO DE PROTESTO -->
+
+<section class="requeriment" #divRequeriment style="box-sizing: border-box;">
+  <div class="requeriment-body">
+    <div class="requeriment-header">
+      <h2 style="font: bold 14px Arial; border-bottom: 1px solid; padding-bottom: 10px; text-align: center;">FORMULÁRIO DE APRESENTAÇÃO A
+        PROTESTO DE TÍTULO OU DOCUMENTO DE DÍVIDA</h2>
+
+      <p style="float: left; margin: 10px 0 0 10px;">
+        Cendival Disdivibuidora de Títulos para Protesto de Franca<br>
+        AVENIDA MAJOR NICACIO, Nº 1836 - CENdivO - FRANCA - SP.<br>
+        Tel.: (16) 3724-4878.<br>
+        Horário de Atendimento: de segunda a sexta-feira das 12:00h às 16:00h.
+      </p>
+      <div style="float: right; margin: 0 10px 0 0; ">
+        <ngx-barcode [bc-value]="barcode" [bc-height]="50" [bc-display-value]="true"></ngx-barcode>
+      </div>
+    </div>
+
+    <!-- GRADE REQUERIMENTO -->
+    <div style="clear: both; float:left; border: 1px solid;">
+
+      <div class="container">
+        <div class="row" style="height: 45px;">
+          <div style="width: 100%; float: left; height: 100%;">
+            <label style="float: left; padding: 5px;">O apresentante abaixo qualificado requer o apontamento a protesto do
+              título/documento de
+              dívida abaixo, nos termos da lei nº 9.492, de 10 de setembro de 1997, informando para tanto os seguintes
+              dados:</label>
+            <p></p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;">
+          <div style="width: 80%; height: 100%; float: left; border: 1px solid; border-right: none; border-left: none;">
+            <label style="float: left; padding-left: 5px;">Credor / Apresentante:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{titulo.dados.nomeCredor}} </p>
+          </div>
+          <div style="width: 136px;  height: 100%; float: left; border: 1px solid; border-right: none;">
+            <label style="float: left; padding-left: 5px;">Telefone:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{titulo.dados.telefone}}</p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;">
+          <div style="width: 50%; float: left; height: 100%; border: 1px solid; border-right: none; border-left: none;">
+            <label style="float: left; padding-left: 5px;">RG:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{titulo.dados.rg}}</p>
+          </div>
+          <div style="width: 49.5%; float: left; height: 100%; border: 1px solid;">
+            <label style="float: left; padding-left: 5px;">CPF/CNPJ:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{titulo.dados.numeroDocumento}}</p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;"> 
+          <div style="width: 100%; float: left; height: 100%; ">
+            <label  style="float: left; padding-left: 5px;">Endereço:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{titulo.dados.endereco}}, {{titulo.dados.numero}} {{titulo.dados.complemento}}</p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;">
+          <div style="float: left; width: 18.5%; height: 100%; border: 1px solid;">
+            <label style="float: left; padding-left: 5px;">CEP:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{titulo.dados.cep}}</p>
+          </div>
+          <div  style="float: left; width: 35%; height: 100%; border: 1px solid;">
+            <label style="float: left; padding-left: 5px;" >Bairro:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{titulo.dados.bairro}}</p>
+          </div>
+          <div style="float: left; width: 35%; height: 100%; border: 1px solid;" >
+            <label style="float: left; padding-left: 5px;">Cidade:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{titulo.dados.cidade}}</p>
+          </div>
+          <div  style="float: left; width: 10%; height: 100%; border: 1px solid;">
+            <label style="float: left; padding-left: 5px;">UF:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{titulo.dados.estado}}</p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;">
+          <div style="width: 100%; float: left; height: 100%; border: 1px solid;">
+            <label style="float: left; padding-left: 5px;">E-mail:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{titulo.dados.email}}</p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 25px;">
+          <div style="width: 100%; float: left; height: 100%; border: 1px solid; text-align: center;  padding-top: 5px;">
+            <label  style="width: 100%;">DADOS DO TÍTULO OU DOCUMENTO DE DÍVIDA</label>
+            <p></p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;">
+          <div style="width: 100%; float: left; height: 100%;">
+            <label  style="float: left; padding-left: 5px;">Tipo de Protesto:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{titulo.dados.tipoProtesto}}</p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;">
+          <div style="width: 9%; float: left; height: 100%; border: 1px solid; border-left: none;">
+            <label  style="float: left; padding-left: 5px;">Espécie</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{titulo.dados.siglaEspecie}}</p>
+          </div>
+          <div style="width: 16%;  float: left; height: 100%; border: 1px solid; border-right: none;">
+            <label  style="float: left; padding-left: 5px;">Número do Título</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{titulo.dados.numeroTitulo}}</p>
+          </div>
+          <div style="width: 12%; float: left; height: 100%; border: 1px solid; border-right: none;">
+            <label  style="float: left; padding-left: 5px;">Emissão</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{titulo.dados.dataEmissao}}</p>
+          </div>
+          <div style="width: 12%; float: left; height: 100%; border: 1px solid; border-right: none;">
+            <label  style="float: left; padding-left: 5px;">Vencimento</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{titulo.dados.vencimento}}</p>
+          </div>
+          <div style="width: 14%; float: left; height: 100%; border: 1px solid; border-right: none;">
+            <label  style="float: left; padding-left: 5px;">Valor Original</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">R$ {{titulo.dados.valorOriginalTitulo}},00</p>
+          </div>
+          <div style="width: 16%; float: left; height: 100%; border: 1px solid; border-right: none;">
+            <label  style="float: left; padding-left: 5px;">Valor a Protestar</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">R$ {{titulo.dados.valorProtesto}},00</p>
+          </div>
+          <div style="width: 16%; float: left; height: 100%; border: 1px solid; border-right: none;">
+            <label  style="float: left; padding-left: 5px;">Endosso</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{titulo.dados.endosso}}</p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 25px;">
+          <div style="width: 100%; float: left; height: 100%; text-align: center; padding-top: 5px;">
+            <label style="width: 100%; float: left;">DADOS DO(S) DEVEDOR(ES)</label>
+            <p></p>
+          </div>
+        </div>
+
+        <span *ngFor="let devedor of devedores; let idx = index">        
+          <div class="row" style="height: 35px;">
+            <div style="width: 60%; height: 35px; float: left; height: 100%; border: 1px solid; border-left: none;">
+              <label  style="float: left; padding-left: 5px;">Devedor {{ idx + 1 }} </label>
+              <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{ devedor.nomeDevedor }}</p>
+            </div>
+            <div style="width: 20%;  float: left; height: 100%; border: 1px solid; border-right: none;">
+              <label  style="float: left; padding-left: 5px;">CPF/CNPJ:</label>
+              <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{devedor.numeroDocumento}}</p>
+            </div>
+            <div style="width: 15%; float: left; height: 100%; border: 1px solid; border-right: none;">
+              <label  style="float: left; padding-left: 5px;">RG:</label>
+              <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{devedor.numeroDocumento2}}</p>
+            </div>
+          </div>
+
+
+          <div class="row" style="height: 35px;">
+            <div style="width: 50%; float: left; height: 100%; border: 1px solid; border-left: none;">
+              <label  style="float: left; padding-left: 5px;">Endereço:</label>
+              <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{devedor.endereco}}, {{devedor.numero}} {{devedor.complemento}}</p>
+            </div>
+            <div style="width: 48.5%;  float: left; height: 100%; border: 1px solid; border-right: none;">
+              <label  style="float: left; padding-left: 5px; ">Bairro:</label>
+              <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{devedor.bairro}}</p>
+            </div>
+          </div>
+
+
+          <div class="row" style="height: 35px;">
+            <div style="width: 15%; float: left; height: 100%; border: 1px solid; border-left: none;">
+              <label  style="float: left; padding-left: 5px;">CEP:</label>
+              <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{devedor.cep}}</p>
+            </div>
+            <div style="width: 40%; float: left; height: 100%; border: 1px solid; border-right: none;">
+              <label  style="float: left; padding-left: 5px;">Cidade:</label>
+              <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{devedor.cidade}}</p>
+            </div>
+            <div style="width: 10%; float: left; height: 100%; border: 1px solid; border-right: none;">
+              <label  style="float: left; padding-left: 5px;">UF:</label>
+              <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{devedor.estado}}</p>
+            </div>
+            <div style="width: 18.5%; float: left; height: 100%; border: 1px solid; border-right: none;">
+              <label  style="float: left; padding-left: 5px;">Telefone:</label>
+              <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{devedor.telefone}}</p>
+            </div>
+          </div>
+        </span>
+
+        <div class="row" style="height: 60px;">
+          <div style="width: 100%; float: left; height: 100%;">
+            <label style="float: left; padding-left: 5px;">Outras Informações: Documento pagável em FRANCA (SP). Os dados fornecidos são de
+              responsabilidade do apresentante.
+               O Apresentante declara que conferiu os dados ora fornecidos e que tem
+              pleno conhecimento das informações constantes no endereço: 
+              <a href="http://titulosdefranca.com.br/">http://titulosdefranca.com.br/</a>.</label>
+            <p>
+            </p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 25px;">
+          <div style="width: 100%; float: left; height: 100%; border: 1px solid; text-align: center; padding-top: 5px;">
+            <label  style="width: 100%; float: left;">REPRESENTANTE LEGAL / PROCURADOR</label>
+            <p></p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;">
+          <div style="width: 100%; float: left; height: 100%; border: 1px solid;">
+            <label  style="float: left; padding-left: 5px;">Nome do Representante Legal ou Procurador</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{ representante.nomeRepresentante }}</p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;">
+          <div style="width: 50%; float: left; height: 100%; border: 1px solid; border-left: none;">
+            <label  style="float: left; padding-left: 5px;">RG</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{representante.rg}}</p>
+          </div>
+          <div style="width: 48.5%; float: left; height: 100%; border: 1px solid; border-right: none;">
+            <label  style="float: left; padding-left: 5px;">CPF:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{representante.cpfRepresentante}}</p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;">
+          <div style="width: 100%; float: left;  height: 100%;">
+            <label  style="float: left; padding-left: 5px;">Endereço:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{representante.endereco}}, {{representante.numero}} {{representante.complemento}}</p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;">
+          <div style="width: 18%; float: left; height: 100%; border: 1px solid; border-left: none;">
+            <label  style="float: left; padding-left: 5px;">CEP:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{representante.cep}}</p>
+          </div>
+          <div style="width: 35%; float: left; height: 100%; border: 1px solid; border-right: none;">
+            <label  style="float: left; padding-left: 5px;">Bairro:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{representante.bairro}}</p>
+          </div>
+          <div style="width: 35%; float: left; height: 100%; border: 1px solid; border-right: none;">
+            <label  style="float: left; padding-left: 5px;">Cidade:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{representante.cidade}}</p>
+          </div>
+          <div style="width: 10%; float: left; height: 100%; border: 1px solid; border-right: none;">
+            <label  style="float: left; padding-left: 5px;">UF:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{representante.estado}}</p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;">
+          <div style="width: 100%;  float: left; height: 100%; border: 1px solid;">
+            <label  style="float: left; padding-left: 5px;">Assinatura do Credor / Representante Legal / Procurador</label>
+            <p></p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 25px;">
+          <div style="width: 100%; float: left;  height: 100%; border: 1px solid; text-align: center; padding-top: 5px;">
+            <label  style="width: 100%; float: left;">PESSOA QUE DEU ENTRADA NESTE PEDIDO DE PROTESTO</label>
+            <p></p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;">
+          <div style="width: 100%;  float: left; height: 100%;">
+            <label  style="float: left; padding-left: 5px;">Nome completo da pessoa que protocolará o título no cartório / disdivibuidor de protesto</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;"> {{ entregador.nomeRepresentante }} </p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;">
+          <div style="width: 28%; float: left; height: 100%; border: 1px solid; border-left: none;">
+            <label  style="float: left; padding-left: 5px;">RG:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{entregador.rg}}</p>
+          </div>
+          <div style="width: 40%; float: left; height: 100%; border: 1px solid; border-right: none;">
+            <label  style="float: left; padding-left: 5px;">CPF:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{ entregador.cpfRepresentante }}</p>
+          </div>
+          <div style="width: 30%; float: left; height: 100%; border: 1px solid; border-right: none;">
+            <label  style="float: left; padding-left: 5px;">Telefone:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{ entregador.telefone }}</p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;">
+          <div style="width: 100%;  float: left; height: 100%; border: 1px solid;">
+            <label  style="float: left; padding-left: 5px;">Endereço:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{ entregador.endereco }}, {{entregador.numero}} {{entregador.complemento}}</p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;">
+          <div style="width: 18%; float: left; height: 100%; border: 1px solid; border-left: none;">
+            <label  style="float: left; padding-left: 5px;">CEP:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{ entregador.cep }}</p>
+          </div>
+          <div style="width: 35%; float: left; height: 100%; border: 1px solid; border-right: none;">
+            <label  style="float: left; padding-left: 5px;">Bairro:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{ entregador.bairro }}</p>
+          </div>
+          <div style="width: 35%; float: left; height: 100%; border: 1px solid; border-right: none;">
+            <label  style="float: left; padding-left: 5px;">Cidade:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{ entregador.cidade }}</p>
+          </div>
+          <div style="width: 10%; float: left; height: 100%; border: 1px solid; border-right: none;">
+            <label  style="float: left; padding-left: 5px;">UF:</label>
+            <p style="float: left; clear: left; margin-top: 0px; padding-left: 5px;">{{ entregador.estado }}</p>
+          </div>
+        </div>
+
+        <div class="row" style="height: 35px;">
+          <div style="width: 100%; float: left;  height: 100%; border: 1px solid;">
+            <label style="float: left; padding-left: 5px;">Assinatura de quem protocolará o título no cartório / disdivibuidor de protesto</label>
+            <p></p>
+          </div>
+        </div>
+
+        <div class="row footer" style="height: 25px;">
+          <div style="width: 100%;  float: left; height: 100%; border: 1px solid;  padding-top: 5px;">
+            <label>Importante: Imprima esse Requerimento em 2 vias para Endivega no Cartório/Disdivibuidor de
+              Protesto.</label>
+            <p>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div> <!-- FIM GRADE REQUERIMENTO -->
+  </div>
+</section>
+
+<!-- BOTÕES -->
+<div class="btn-wrapper">
+  <button class="btn btn-outline-secondary btn-print" (click)="abrirImpressao()" popover="Imprimir formulário (altere a quantidade de cópias para 2 nas propriedades de impressão"
+  triggers="mouseenter:mouseleave" >Imprimir</button>
+  <button class="btn btn-primary btn-new" type="submit" (click)="openModal()" popover="Digitar novo título"
+  triggers="mouseenter:mouseleave" >Novo
+    Título</button>
+  <button class="btn btn-primary btn-new-return" type="submit"  (click)="openModal(true)" popover="Digitar novo título com o mesmo apresentante"
+  triggers="mouseenter:mouseleave" >Novo Título (Com o
+    mesmo
+    Apresentante)</button>
+</div>

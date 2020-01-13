@@ -1,0 +1,69 @@
+<!-- PESQUISA TITULOS -->
+<section class="cl-titulos">
+  <div class="titledigital">
+    <h2>Meus Títulos | Lotes Digitados</h2>
+  </div>
+  <form [formGroup]="fGroupLote">
+    <div class="input-group ms-2" (change)="alterandoConsultaLote()">
+      <label class="form-check-label" for="inlineCheckbox1">Exibir:</label>
+      <select formControlName="status" class="custom-select" id="inputGroupSelect01">
+        <option value="TODOS OS LOTES">Todos os Lotes</option>
+        <option value="EM ABERTO">Em Aberto</option>
+        <option value="FECHADO - AGUARDANDO ENTREGA">Fechado - Aguardando Entrega</option>
+        <option value="EM ANDAMENTO">Em Andamento</option>
+        <option value="RESULTADO Disponível">Resultado Disponível</option>
+        <option value="RESULTADO ENTREGUE">Resultado Entregue</option>
+        <option value="REJEITADO DISTRIBUIDOR">Rejeitado Distribuidor</option>
+      </select>
+      <button class="btn btn-outline-secondary" type="button" id="button-addon" (click)="AbrirLote()">Novo Lote de Títulos</button>
+    </div>
+  </form>
+</section>
+
+
+<!-- TABELA -->
+<table class="table table-sm table-striped table-bordered">
+  <thead class="title-table">
+    <tr>
+      <th scope="col">Lote </th>
+      <th scope="col">Dt. Abertura</th>
+      <th scope="col">Responsável</th>
+      <th scope="col">Status</th>
+      <th scope="col">Dt. Fechamento</th>
+      <th scope="col">Qtde. Títulos</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let lote of lotes">
+      <td>{{lote.numeroLote}}</td>
+      <td>{{lote.dataAbertura.dia}}/{{lote.dataAbertura.mes}}/{{lote.dataAbertura.ano}}</td>
+      <td>{{lote.responsavel}}</td>
+      <td>{{lote.status}}</td>
+      <td><div *ngIf="lote.data != null">{{lote.dataFechamento.dia}}/{{lote.dataFechamento.mes}}/{{lote.dataFechamento.ano}}</div></td>
+      <td>{{lote.qtdTitulo}}</td>
+      <td class="table-icon">
+        <fa name="upload" data-toggle="tooltip" data-placement="top" title="Fazer Upload de Arquivos Para o Lote"
+          size="2x"></fa>
+      </td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" (click)="editarLote(lote.idLote)" title="Abrir Digitação de Títulos" size="2x"  [routerLink]="'/digitacao-titulos'"></fa>
+      </td>
+      <td class="table-icon">
+        <fa name="trash" data-toggle="tooltip" data-placement="top" (click)="apagarLote(lote.idLote)" title="Remover o Lote" size="2x"></fa>
+      </td>
+    </tr>
+    <ngx-spinner
+      bdColor="rgba(51,51,51,0.8)"
+      size="medium"
+      color="#fff"
+      type="ball-clip-rotate">
+    </ngx-spinner>
+  </tbody>
+
+  <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()">
+</div>
+</table>

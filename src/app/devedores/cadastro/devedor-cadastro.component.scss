@@ -1,0 +1,89 @@
+/* MODAL CADASTRO DE DEVEDORES*/
+.modal-header {
+  background-color: #e4e9ef;
+}
+
+.modal-header h4 {
+  margin-left: 380px;
+}
+
+.modal-header .close span {
+  width: 25px;
+  height: 25px;
+}
+
+.modal-body .abas-container {
+  margin-top: 10px;
+}
+ 
+.modal-body
+.endereco-container,
+.telefone-container,
+.email-container{
+  margin-top: -5px;
+}
+
+.modal-body accordion-group div h3  {
+  font-size: 18px;
+  font-weight: 600;
+} 
+
+.modal-body .btn-cep {
+  height: 32px;
+  margin: 28px 5px 0 2px;
+  width: 161px;
+}
+
+.modal-body .btn-cep .btn-cep-search {
+  width: 161px;
+  margin-left: 2px;
+}
+
+.modal-body .btn-add {
+  height: 32px;
+  margin: 28px 5px 0 0;
+  width: 162px;
+}
+
+.modal-body .btn-add .btn-add-adress {
+  width: 162px;
+}
+
+.modal-body .btn-add {
+  height: 32px;
+  margin: 28px 5px 0 0;
+  width: 160px;
+}
+
+.modal-body .btn-cep .btn-add-contact,
+.btn-add-email,
+.btn-add-tel {
+  width: 160px;
+}
+
+
+/* === TABELA ===*/
+.table {
+  margin-top: 20px;
+}
+
+.table .title-table {
+  background-color: #bfc0c5;
+}
+
+.table-medium {
+  width: 500px;
+}
+
+.table-icon {
+  text-align: center;
+}
+
+/* === RODAPÉ MODAL === */
+.modal-footer .btn {
+  margin: 0 auto;
+}
+
+.modal-footer {
+  background-color: #e4e9ef;
+}

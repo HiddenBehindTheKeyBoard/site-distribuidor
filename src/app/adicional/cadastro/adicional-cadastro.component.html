@@ -1,0 +1,88 @@
+<!-- MODAL CADASTRO DE USUÁRIOS -->
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Cadastro de Usuários</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+
+    <td width="40" class="table-icon2">
+      <fa name="window-close" data-toggle="tooltip" data-placement="top" title="Fechar Sem Salvar Dados" size="2x"></fa>
+    </td>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form id="form-container" [formGroup]="fGroupUsuario">
+
+    <!--  FORM-IDENTIFICAÇÃO -->
+    <div id="identificacao">
+      <fieldset>
+        <legend>Identificação do Usuário</legend>
+        <div class="form-identificacao">
+          <div class="form-group col-10">
+            <label for="inputNome">Nome do Usuário</label>
+            <input type="text" class="form-control" id="inputNome" required maxlength="50" placeholder=""
+              formControlName="nome" [ngClass]="{ 'is-invalid': submitted && f.nome.errors }">
+          </div>
+
+          <div class="form-group col-8">
+            <label for="inputCpfNumber">CPF</label>
+            <input type="text" class="form-control" id="inputCpfNumero" required placeholder=""
+              formControlName="cpf" [ngClass]="{ 'is-invalid': submitted && f.cpf.errors }">
+          </div>
+
+          <!-- <div class="form-group col-8">
+            <label for="inputRgNumber">RG</label>
+            <input type="text" class="form-control" id="inputRgNumero" required placeholder="">
+          </div>
+
+          <div class="form-group col-8">
+            <label for="inputIssuingOrgan">Emissor/UF</label>
+            <input type="text" class="form-control" id="inputOrgaoEmissor" placeholder="">
+          </div> -->
+
+        </div>
+      </fieldset>
+    </div> <!-- FIM FORM-IDENTIFICAÇÃO -->
+
+
+    <!-- ACESSO AO SITE -->
+    <div id="acesso">
+      <fieldset>
+        <legend>Acesso ao Site</legend>
+        <div class="form-acesso">
+          <div class="form-group col-10">
+            <label for="inputNewEmail">Email</label>
+            <input type="email" class="form-control lower-text" id="inputNewEmail" required maxlength="50" placeholder=""
+              formControlName="email">
+          </div>
+
+          <div class="form-group col-8">
+            <label for="inputNewSenha1">Senha (Máx. 8 Caracteres)</label>
+            <input type="password" class="form-control" id="inputNewSenha1" maxlength="8" required placeholder=""
+              formControlName="senha">
+          </div>
+
+          <div class="form-group col-8">
+            <label for="inputNewSenha2">Confirme a Senha</label>
+            <input type="password" class="form-control" id="inputNewSenha2" maxlength="8" required placeholder=""
+              formControlName="confirmaSenha">
+          </div>
+
+          <!-- <div class="form-group col-8">
+            <label for="inputAdm">Administrador</label>
+            <select id="inputAdm" class="form-control">
+              <option selected>NÃO</option>
+              <option>SIM</option>
+            </select>
+          </div> -->
+
+        </div>
+      </fieldset>
+    </div> <!-- FIM FORM-ACESSO AO SITE -->
+
+  </form>
+</div><!-- FIM MODAL -->
+
+
+<div class="modal-footer">
+  <button class="btn btn-primary" (click)="newUsuario()">Salvar Dados do Usuário</button>
+</div>

@@ -1,0 +1,44 @@
+<!-- TERMO DE ADESAO -->
+<section class="adesao">
+  <h2>Termo de Adesão ao Sistema</h2>
+  <div class="termo_adesao" #divTermo style="line-height: 1.4em;">
+    <h3 style="text-align: center; font-size: 24pt;">Termo de Adesão</h3>
+    <p>Pelo presente termo, <strong class="upper-text" style="text-transform: uppercase;"> {{empresa.nome}}</strong>, <strong class="upper-text" style="text-transform: uppercase;">{{documento.documento}}</strong>, manifesta
+      sua adesão ao sistema "Web Protesto", disponibilizado pelo serviço distribuidor mantido pelos tabeliães de
+      protesto da comarca de Franca, Estado de São Paulo, nos termos do artigo 7º, parágrafo único, da Lei Federal
+      9.492, de 10 de setembro de 1997, na seguinte forma:</p><br>
+    <p>1) O Sistema "Web Protesto" é disponibilizado gratuitamente pelo serviço ditribuidor de protesto de Franca, com
+      acesso pelo endereço eletrônico <a href="http://www.titulosdefranca.com.br">http://www.titulosdefranca.com.br</a>, o qual permite a
+      preparação de lotes de títulos e documentos de dívida para encaminhamento a protesto, na forma da Lei Ferderal nº
+      9.492, de 10 de setembro de 1997.</p>
+    <p>2) O recebimento eletrônico dos lotes e o consequente encaminhamento dos títulos e documentos de dívida aos
+      tabelionatos depende da validação do cadastro do apresentante que pretende aderir ao sistema "Web Protesto",
+      mediante a apresentação de via impressa e assinada deste termo e de cópia do documento de identidade do
+      apresentante ou de seu representante legal, se pessoa jurídica. Caso exista dúvida quanto à autenticidade da
+      documentação poderá ser solicitada prova suficiente ao esclarecimento do fato.</p>
+    <p>3) A senha de acesso será gerada pelo próprio titular e será de seu exclusivo controle, uso e conhecimento. As
+      informações enviadas em meio eletrônico após a validação do cadastro são admitidas pelas partes na forma do artigo
+      10, § 2º, da Medida Provisória nº 2.200-2, de 24 de agosto de 2001.</p>
+    <p>4) Os títulos e documentos de dívida serão entregues no guichê próprio do serviço distribuidor ou, se cabível,
+      poderão ser enviadas indicações por meio eletrônico.</p>
+    <p>5) Após o recebimento e processamento dos lotes, o procedimento observará as disposições da Lei Federal nº 9.492,
+      de 10 de setembro de 1997, e da Lei Estadual nº 11.331/2002, de 26 de dezembro de 2002.</p>
+    <p class="present-day" style="text-align: center; margin: 35px 0;">FRANCA, {{data.dia}} de {{data.mes}} de {{data.ano}}.</p>
+    <p style="text-align: center; margin: 35px 0;"><strong class="upper-text" style="text-transform: uppercase;">{{empresa.nome}}: {{documento.documento}}</strong></p>
+    <hr style="width: 420px; margin: 35px auto; background-color: #111;">
+    <p style="text-align: center;"><strong>Importante:</strong> Entregue este termo no serviço distribuidor, situado à <strong>AVENIDA MAJOR NICACIO, Nº
+        1836 - CENTRO - FRANCA/SP</strong>, acompanhado de copia do documento de identidade do apresentante ou de seu
+      representante legal, se pessoa jurídica. </p>
+  </div>
+
+  <!-- BOTÃO IMPRESSÃO -->
+  <div class="btn-adesao-container">
+    <button class="btn btn-outline-secondary" type="button" id="button-adesao" data-toggle="tooltip"
+      (click)="ImprimirConteudo()" value="imprimir" data-placement="bottom"
+      title="Imprimir Termo de Adesão" popover="Imprimir termo de adesão"
+      triggers="mouseenter:mouseleave">Imprimir</button>
+  </div>
+</section>
+
+
+

@@ -1,0 +1,210 @@
+<!-- PESQUISAR DEVEDORES -->
+<form class="devedores-container">
+  <fieldset>
+    <legend>Pesquisar Devedores</legend>
+    <div class="form-group col-md-5">
+      <label for="formGroupNameDev">Nome do Devedor</label>
+      <input type="password" class="form-control" id="NameDev" maxlength="8" placeholder="">
+    </div>
+
+    <div class="form-group col-md-5">
+      <label for="formGroupDocument">Documento</label>
+      <input type="password" class="form-control" id="formGroupDocument" maxlength="8" placeholder="">
+    </div>
+
+    <div class="form-group col-md-5">
+      <label for="inputOcorrencia">Ocorrência</label>
+      <select id="inputOcorrencia" class="form-control">
+        <option selected>Todas</option>
+        <option>Em Aberto</option>
+        <option>Retirado</option>
+        <option>Pago Micro Empresa</option>
+        <option>Protestado</option>
+        <option>Sustado</option>
+        <option>Sustado Definitivo</option>
+        <option>Irregular</option>
+        <option>Título Aceito</option>
+        <option>Protesto Cancelado</option>
+        <option>Título Aceito</option>
+        <option>Digitado - Aguardando Apontamento</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-3">
+      <button type="button" class="btn-search-debt btn btn-primary shadow" (click)="pesquisar()">Pesquisar</button>
+    </div>
+
+  </fieldset>
+</form>
+
+<!-- TABELA -->
+<table *ngIf="mostrargrid" class="table table-sm table-striped table-bordered">
+  <thead class="title-table">
+    <tr>
+      <th scope="col">Dt. Digitação</th>
+      <th scope="col">Espécie</th>
+      <th scope="col">N° do Título</th>
+      <th scope="col">Valor Original</th>
+      <th scope="col">Valor a Protestar</th>
+      <th scope="col">Devedore(es)</th>
+      <th scope="col">Baixa</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>01/01/2019</td>
+      <td>DS</td>
+      <td>33427</td>
+      <td>R$ 257,60</td>
+      <td>R$ 257,60</td>
+      <td>KATILENE CALCADOS CNPJ 06306174000163</td>
+      <td>PAGO</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Editar Título" size="2x"
+          [routerLink]="'/digitacao-titulos'"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>01/01/2019</td>
+      <td>DS</td>
+      <td>33427</td>
+      <td>R$ 257,60</td>
+      <td>R$ 257,60</td>
+      <td>KATILENE CALCADOS CNPJ 06306174000163</td>
+      <td>PAGO</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Editar Título" size="2x"
+          [routerLink]="'/digitacao-titulos'"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>01/01/2019</td>
+      <td>DS</td>
+      <td>33427</td>
+      <td>R$ 257,60</td>
+      <td>R$ 257,60</td>
+      <td>KATILENE CALCADOS CNPJ 06306174000163</td>
+      <td>PAGO</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Editar Título" size="2x"
+          [routerLink]="'/digitacao-titulos'"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>01/01/2019</td>
+      <td>DS</td>
+      <td>33427</td>
+      <td>R$ 257,60</td>
+      <td>R$ 257,60</td>
+      <td>KATILENE CALCADOS CNPJ 06306174000163</td>
+      <td>PAGO</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Editar Título" size="2x"
+          [routerLink]="'/digitacao-titulos'"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>01/01/2019</td>
+      <td>DS</td>
+      <td>33427</td>
+      <td>R$ 257,60</td>
+      <td>R$ 257,60</td>
+      <td>KATILENE CALCADOS CNPJ 06306174000163</td>
+      <td>PAGO</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Editar Título" size="2x"
+          [routerLink]="'/digitacao-titulos'"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>01/01/2019</td>
+      <td>DS</td>
+      <td>33427</td>
+      <td>R$ 257,60</td>
+      <td>R$ 257,60</td>
+      <td>KATILENE CALCADOS CNPJ 06306174000163</td>
+      <td>PAGO</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Editar Título" size="2x"
+          [routerLink]="'/digitacao-titulos'"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>01/01/2019</td>
+      <td>DS</td>
+      <td>33427</td>
+      <td>R$ 257,60</td>
+      <td>R$ 257,60</td>
+      <td>KATILENE CALCADOS CNPJ 06306174000163</td>
+      <td>PAGO</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Editar Título" size="2x"
+          [routerLink]="'/digitacao-titulos'"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>01/01/2019</td>
+      <td>DS</td>
+      <td>33427</td>
+      <td>R$ 257,60</td>
+      <td>R$ 257,60</td>
+      <td>KATILENE CALCADOS CNPJ 06306174000163</td>
+      <td>PAGO</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Editar Título" size="2x"
+          [routerLink]="'/digitacao-titulos'"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>01/01/2019</td>
+      <td>DS</td>
+      <td>33427</td>
+      <td>R$ 257,60</td>
+      <td>R$ 257,60</td>
+      <td>KATILENE CALCADOS CNPJ 06306174000163</td>
+      <td>PAGO</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Editar Título" size="2x"
+          [routerLink]="'/digitacao-titulos'"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>01/01/2019</td>
+      <td>DS</td>
+      <td>33427</td>
+      <td>R$ 257,60</td>
+      <td>R$ 257,60</td>
+      <td>KATILENE CALCADOS CNPJ 06306174000163</td>
+      <td>PAGO</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Editar Título" size="2x"
+          [routerLink]="'/digitacao-titulos'"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="11" scope="col">
+        <nav aria-label="Navegação de página títulos">
+          <ul class="pagination pagination-md">
+            <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Próximo</a></li>
+          </ul>
+        </nav>
+      </td>
+    </tr>
+  </tbody>
+</table>

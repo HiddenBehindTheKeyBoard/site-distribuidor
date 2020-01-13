@@ -1,0 +1,277 @@
+/* == HEADER == */
+.btn-cad {
+  float: right;
+  margin: 30px 30px 0px 0px;
+  width: 150px;
+}
+
+h1 {
+  font-family: "Pontano Sans", sans-serif;
+  font-weight:300;
+  letter-spacing: 2px;
+  font-size:25px;
+  line-height: 0px;
+}
+
+  span {
+  font-family: "Montserrat";
+  font-size: 50px;
+  font-weight: 700;
+}
+
+p {
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 1px;
+  font-size:14px;
+  color: #333333;
+}
+
+.header {
+  position:relative;
+  text-align:center;
+  background: linear-gradient(60deg, rgba(0,100,183,1) 0%, rgba(0,172,193,1) 100%);
+  color:white;
+}
+
+.inner-header {
+  height:300px;
+  width:900px;
+  padding-top: 150px;
+  margin: auto;
+}
+
+.waves {
+  position:relative;
+  width: 100%;
+  height:10vh;
+  margin-bottom:-7px; /*Fix for safari gap*/
+  min-height:100px;
+  max-height:150px;
+}
+
+.content {
+  position:relative;
+  height:20vh;
+  text-align:center;
+  background-color: white;
+}
+
+
+/* == ÁREA DE LOGIN == */
+.login-container {
+  height: 500px;
+  width: 100%;
+}
+
+.login-container .ilustration-container {
+  float: left;
+  margin-left: 150px;
+  max-width: 400px;
+  height: 400px;
+}
+
+.ilustration-container img {
+  max-width: 400px;
+  height: 400px;
+}
+
+.login-container .login {
+  float: right;
+  margin-right: 190px;
+  margin-top: 95px;
+  width: 400px;
+  height: 400px;
+}
+
+.login-container .btn-login-cont {
+  width: 320px;
+  margin-top: 5px;
+}
+
+.login-container .btn-login, .btn-password  {
+  width: 150px;
+
+  &.btn-login {
+    margin-right: 10px;
+  }
+}
+
+
+/* == WEB FORMULÁRIO == */
+.web-form {
+  background: #151515 url(/assets/images/web_form_bg.jpg) no-repeat center;
+  width: 100%;
+  height: 400px;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  
+}
+
+.web-form .web-form-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.title-container h2 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    margin: 50px 5px 20px 0;
+    display: inline-block;
+    width: 60px;
+  
+  }
+  
+  .title-container .text-title {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    width: 300px;
+  }
+
+  .web-form .text-destaque {
+    width: 600px;
+    margin: auto;
+    margin-bottom: 50px;
+    text-align: center;
+    color: #fff;
+  }
+
+.web-form .form-print {
+  margin: auto;
+  width: 300px;
+  height: 90px;
+  padding: 0px 10px 10px 10px ;  
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  color: #fff;
+  transition: 0.5s ease;
+}
+
+.web-form .form-print:hover {
+  border: 1px solid #BABBBC;
+  color: #BABBBC;
+
+  &.form-print .print, p {
+    color: #BABBBC;
+  }
+}
+
+.web-form .form-print, .print,
+p,
+span:hover {
+  cursor: pointer;
+}
+
+.form-print p {
+  font-size: 20px;
+  font-weight: 300;
+  margin: 0px 0 0 20px;
+  font-family: "Open Sans", sans-serif;
+  color: #fff;
+}
+
+.form-print .print {
+  margin: 20px 0px 0px 20px;
+  color: #fff;
+}
+
+.form-print .text-print {
+  font-size: 25px;
+  font-weight: 700;
+  margin: -26px 0 0 79px;
+  font-family: "Open Sans", sans-serif;
+}
+
+
+/* == BARRA LATERAL == */
+.cadastro-sidebar {
+  background-color: #fff;
+  padding: 2em 1em;
+  height: 100%;
+  width: 400px;
+
+  &.ng-sidebar--opened.ng-sidebar--over {
+    box-shadow: 0 0 2.5em rgba(85, 85, 85, 0.5);
+  }
+}
+
+.cadastro-sidebar .sign-up .btn-cadastro {
+  width: 150px;
+}
+
+/* == CARDS  == */
+.cards-container {
+  height: 400px;
+  width: 100%;
+  text-align: center;
+  margin: 3rem 0px;
+}
+
+.cards-container .title-cards {
+  margin-bottom: 3px;
+}
+
+.cards-container h2 {
+  text-align: center;
+  font-size: 25px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.cards-container span {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  margin-bottom: -10px;
+  width: 300px;
+}
+
+.cards-container .card-deck {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px auto;
+  width: 900px;
+}
+
+.card-deck .card-title {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.card-deck .card1,
+.card2,
+.card3 {
+  padding: 30px;
+  height: 340px;
+  margin-top: 15px;
+}
+
+.hr-down {
+  margin-top: -5px;
+  margin-bottom: 30px;
+}
+
+.card .btn {
+  padding: 10px 0px;
+}
+
+.shadow-drop-center:hover {
+  -webkit-box-shadow: 0px 5px 15px -1px rgba(50, 50, 50, 0.15);
+-moz-box-shadow:    0px 5px 15px -1px rgba(50, 50, 50, 0.15);
+box-shadow:         0px 5px 15px -1px rgba(50, 50, 50, 0.15);
+}
+
+.shadow-drop-center {
+  -webkit-transition: 0.5s ease-in;
+-moz-transition: 0.5s ease-in;
+-o-transition: 0.5s ease-in;
+transition: 0.5s ease-in;
+}
+

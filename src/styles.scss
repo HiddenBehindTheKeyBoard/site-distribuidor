@@ -1,0 +1,96 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Playfair+Display|Poppins|Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Pontano+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Pontano+Sans&display=swap");
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~ngx-toastr/toastr-bs4-alert';
+
+/* ----------- EFEITOS GLOBAIS ------------ */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Open-Sans", sans-serif;
+  font-size: 14px;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+
+// .upper-text, input, select {
+//   text-transform: uppercase;
+// }
+
+// .lower-text {
+//   text-transform: none;
+// }
+
+fa {
+  color: #808080;
+}
+
+fa:hover {
+  color: #095d6e;
+}
+
+.no-hover:hover {
+  color: #808080;
+}
+
+small {
+  font-size: 100%;
+}
+
+.btn {
+  transition: 0.5s ease;
+}
+
+
+/* -------------- RODAPÉ -------------*/
+.footer {
+  width: 100%;
+  height: 250px;
+  margin-top: 4rem;
+  float: left;
+  background: linear-gradient(60deg, rgba(0,100,183,1) 0%, rgba(0,172,193,1) 100%);
+  color: #aaa9ab;
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footer-component {
+  width: 600px;
+  display: flex;
+  margin: 0 auto;
+}
+
+.footer-component fa,
+.footer span {
+  color: #fff;
+}
+
+.footer-component p {
+  margin-left: 10px;
+}
+
+.footer .info-dev img {
+  width: 120px;
+}
+
+.modal-dialog {
+  max-width: 1024px;
+}
+

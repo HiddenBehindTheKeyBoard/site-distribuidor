@@ -1,0 +1,126 @@
+/* === CONTAINER FORMULÁRIO === */
+.form-container {
+  width: 900px;
+  margin: 0 auto;
+}
+
+.form-container h2 {
+  margin-bottom: 20px;
+}
+
+.form-container .btn-cep {
+  height: 32px;
+  margin-top: 28px;
+  width: 155px;
+}
+
+.btn-cep .btn {
+  width: 140px;
+}
+
+/* === CHECKBOX PROTESTO=== */
+.form-container .form-check {
+  margin-bottom: 15px;
+}
+
+.form-container .form-check input {
+  margin: 0 15px 0 3px;
+}
+
+
+/* ===  FORM-2 DADOS TÍTULO === */
+.form-2 {
+  margin: 25px 0 20px 0;
+}
+
+
+/* === FORM-3 DEVEDORES === */
+.form-3 .container-icon {
+  margin-bottom: 10px;
+}
+
+.form-3 .container-icon fa:hover {
+    color: #095d6e;
+    cursor: pointer;
+}
+
+.form-3 .container-icon fa {
+  margin: 3px 20px 0 6px;
+}
+
+/* == TABELA == */
+table {
+  margin-top: 25px;
+} 
+
+table .table-icon {
+  text-align: center;
+}
+
+/* === BOTOES === */
+.form-container .btn-create {
+  width: 140px;
+}
+
+
+.form-container .btn-wrapper {
+  width: 400px;
+  margin: 2rem auto;
+}
+
+.btn-wrapper .btn-save, .btn-cancel {
+  width: 140px;
+}
+
+.btn-wrapper .btn-save-dev, .btn-cancel-dev1, .btn-cancel-dev2{
+  width: 145px;
+}
+
+.btn-wrapper .btn-save-dev {
+  margin: 0 10px 0 0px;
+}
+
+.btn-wrapper .btn-cancel-dev2 {
+  width: 145px;
+  margin-left: 100px;
+}
+
+.btn-wrapper .btn-save {
+  margin: 0 10px 0 5px;
+}
+
+ .btn-wrapper .btn-send {
+  margin: 15px 10px 0 3px;
+}
+
+.btn-wrapper .btn-canc {
+  width: 138px;
+  margin-top: 15px;
+  margin-left: 60px;
+}
+
+/* === INFORMAÇÕES === */
+.info-container {
+  margin-top: 70px;
+  height: 300px;
+}
+
+.info-item-1 {
+  float: left;
+}
+
+.info-container .info-item-2 h3 {
+  font-size: 15px;
+  float: right;
+  top: 30px;
+  margin: 70px 90px 0 0;
+  font-weight: bold;
+  color: #5A6268;
+}
+
+.info-container .info-item-3 p {
+  clear: both;
+  float: left;
+  margin: 50px 0 0 125px;
+  text-decoration: underline;
+}

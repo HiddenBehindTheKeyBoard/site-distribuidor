@@ -1,0 +1,36 @@
+<!-- POSIÇÃO DE TÍTULOS -->
+<section class="ptitulos-container ">
+    <div class="ptitulos-container-sub">
+    <div>
+      <h2>Posição de Títulos Apontados Por Devedor</h2>
+      <p><strong>Informe o período em que os títulos foram apontados e o documento do devedor para emissão do relatório.</strong>.</p>
+    </div>
+  
+    <div class="form-row">
+      <div class="form-group col-md-3 form-inline">
+        <label for="formGroupStartIn">Iniciar em:</label>
+        <input type="date" class="form-control" id="StartIn" maxlength="8" placeholder="">
+      </div>
+  
+      <div class="form-group col-sm-3 form-inline">
+        <label for="formGroupEndIn">Finalizar em:</label>
+        <input type="date" class="form-control" id="formGroupEndIn" maxlength="8" placeholder="">
+      </div>
+
+      <div class="form-group col-sm-3 form-inline">
+          <label for="formGroupDocument">Documento:</label>
+          <input type="text" class="form-control" id="Document" maxlength="14" placeholder="">
+        </div>
+  
+      <div class="btn-search">
+        <button class="btn btn-primary btn-pesquisa" type="submit">Aplicar Filtro</button>
+      </div>
+    </div>
+  
+    <div class="btn-print">
+      <button class="btn btn-outline-secondary" type="button" id="button-print" data-toggle="tooltip"
+        OnClick="javascript:window.print();" value="imprimir" data-placement="bottom"
+        title="Imprimir Termo de Adesão">Imprimir</button>
+    </div>
+  </div>
+  </section>

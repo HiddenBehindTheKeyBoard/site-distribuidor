@@ -1,0 +1,48 @@
+/* === ALTERAR SENHA === */
+.password-container {
+  width: 400px;
+  float: left;
+  margin-left: 250px;
+}
+
+.password-container .form-group input, label, {
+  width: 250px;
+}
+
+.password-container .btn-password {
+  width: 140px;
+}
+
+.password-container legend,
+p {
+  margin-left: 15px;
+}
+
+.form-group input:required:focus:valid {
+  border: 1px solid #4CAF50;
+}
+
+.form-group input:required:focus:invalid {
+  border: 1px solid red;
+}
+
+.form-group .feedback {
+  display: none;
+}
+
+.feedback-group input:required:focus:invalid {
+  display: block;
+}
+
+/* == ILUSTRAÇÃO == */
+.ilustration-pw-container {
+  float: left;
+  // margin-left: 200px;
+  max-width: 400px;
+  height: 400px;
+}
+
+.ilustration-pw-container img {
+  max-width: 400px;
+  height: 400px;
+}

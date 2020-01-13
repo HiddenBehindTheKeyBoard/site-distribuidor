@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Edição de Usuários</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+
+    <td width="40" class="table-icon2">
+      <fa name="window-close" popover="Fechar sem salvar os dados"
+      triggers="mouseenter:mouseleave" size="2x"></fa>
+    </td>
+  </button>
+</div>
+
+<div class="modal-body">
+
+  <form [formGroup]="fGroupUsuario" id="form-container">
+    <div id="identificacao form-row">
+      <fieldset>
+        <legend>Identificação do Usuário</legend>
+        <div class="form-identificacao form-row">
+          <div class="form-group col-md-4">
+            <label for="inputUserName">Nome do Usuário</label>
+            <input type="text" class="form-control" id="inputNomeUsuario" required maxlength="50" placeholder=""
+              formControlName="nome" [ngClass]="{ 'is-invalid': f.nome.errors }">
+          </div>
+
+          <div class="form-group col-md-3">
+            <label for="inputCpfNumber">CPF</label>
+            <input type="text" class="form-control" id="inputCpfNumero" required placeholder=""
+              formControlName="cpf" [ngClass]="{ 'is-invalid': f.cpf.errors }">
+          </div>
+        </div>
+      </fieldset>
+    </div> <!-- FIM FORM-IDENTIFICAÇÃO -->
+
+  </form>
+</div><!-- FIM MODAL -->
+
+<div class="modal-footer">
+  <button class="btn btn-primary" (click)="salvar()" popover="Salvar"
+  triggers="mouseenter:mouseleave">Salvar Dados do Usuário</button>
+</div>
+
+

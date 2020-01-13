@@ -1,0 +1,30 @@
+export interface Empresa{    
+    idUsuario?:string,
+    idEmpresa?:string,
+    tipo?:string
+    email?:string,
+    bairro?:string,
+    cep?:string,
+    cidade?:string,
+    complemento?:string,
+    cpf?:string,
+    telefone?:string,
+    documento?:string,
+    emissor?:string,
+    endereco?:string,
+    estado?:string,
+    nome?:string,
+    numero?:number,
+    rg?:string,
+
+    nomeRepresentante?:string,
+    rgRepresentante?:string,    
+    cpfRepresentante?:string,
+    emissorRepresentante?:string,
+    
+    idBanco?:string,
+    contaConjunta?:boolean,
+    agencia?:string,
+    conta?:string,
+    titularidade?:boolean,
+}

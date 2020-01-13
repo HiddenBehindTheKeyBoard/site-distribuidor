@@ -1,0 +1,240 @@
+<!-- TÍTULOS APONTADOS -->
+<section class="lotes-container ">
+  <h2>Pesquisar Lotes de Títulos Apontados</h2>
+  <fieldset>
+    <legend>Critérios de Busca</legend>
+    <div class="form-row">
+      <div class="form-group col-md-3 form-inline">
+        <label for="formGroupPeriodStard">No Período de:</label>
+        <input type="date" class="form-control" id="Period" maxlength="8" placeholder="">
+      </div>
+
+      <div class="form-group col-sm-3 form-inline">
+        <label for="formGroupPeriodEnd">Até:</label>
+        <input type="date" class="form-control" id="PeriodEnd" maxlength="8" placeholder="">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-3 form-inline">
+        <label for="formGroupLoteStart">Do Lote:</label>
+        <input type="text" class="form-control form-lote" id="LoteStart" maxlength="8" placeholder="">
+      </div>
+
+      <div class="form-group col-md-3 form-inline">
+        <label for="formGroupLoteEnd">Até:</label>
+        <input type="text" class="form-control form-lote" id="LoteEnd" maxlength="8" placeholder="">
+      </div>
+    </div>
+
+    <div class="form-group mb-5 form-inline form-select">
+      <label for="formGroupLotesEstado">Status do Lote:</label>
+      <select id="inputEstado" class="form-control fcontrol-target">
+        <option selected>Todos os Lotes</option>
+        <option>Em Aberto</option>
+        <option>Fechado - Aguardando Entrega</option>
+        <option>Em Andamento</option>
+        <option>Resultado Disponível</option>
+        <option>Resultado Entregue</option>
+        <option>Rejeitado Distribuidor</option>
+      </select>
+    </div>
+
+    <div class="btn-search-ta">
+      <button class="btn btn-primary btn-pesquisa-ta" type="submit" (click)="pesquisar()">Pesquisar</button>
+    </div>
+  </fieldset>
+</section>
+
+
+<!-- TABELA -->
+<table *ngIf="mostrargrid" class="table table-sm table-striped table-bordered">
+  <thead class="title-table">
+    <tr>
+      <th scope="col">Lote </th>
+      <th scope="col">Dt. Abertura</th>
+      <th scope="col">Responsável</th>
+      <th scope="col">Status</th>
+      <th scope="col">Dt. Fechamento</th>
+      <th scope="col">Qtde. Títulos</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>0000</td>
+      <td>01/01/2019</td>
+      <td>ECOLIXO TRANSP. GESTAO AMB. EIRELI-ME .</td>
+      <td>FECHADO - AGUARDANDO ENTREGA</td>
+      <td>01/01/2019</td>
+      <td>2</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Exibir Títulos do Lote" size="2x"
+          [routerLink]="'/titulos-lote'"></fa>
+      </td>
+      <td class="table-icon">
+        <fa name="trash" data-toggle="tooltip" data-placement="top" title="Remover o Lote" size="2x"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>0000</td>
+      <td>01/01/2019</td>
+      <td>ECOLIXO TRANSP. GESTAO AMB. EIRELI-ME</td>
+      <td>FECHADO - AGUARDANDO ENTREGA</td>
+      <td>01/01/2019</td>
+      <td>2</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Exibir Títulos do Lote" size="2x"
+        [routerLink]="'/titulos-lote'"></fa>
+      </td>
+      <td class="table-icon">
+        <fa name="trash" data-toggle="tooltip" data-placement="top" title="Remover o Lote" size="2x"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>0000</td>
+      <td>01/01/2019</td>
+      <td>ECOLIXO TRANSP. GESTAO AMB. EIRELI-ME</td>
+      <td>FECHADO - AGUARDANDO ENTREGA</td>
+      <td>01/01/2019</td>
+      <td>2</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Exibir Títulos do Lote" size="2x"
+        [routerLink]="'/titulos-lote'"></fa>
+      </td>
+      <td class="table-icon">
+        <fa name="trash" data-toggle="tooltip" data-placement="top" title="Remover o Lote" size="2x"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>0000</td>
+      <td>01/01/2019</td>
+      <td>ECOLIXO TRANSP. GESTAO AMB. EIRELI-ME</td>
+      <td>FECHADO - AGUARDANDO ENTREGA</td>
+      <td>01/01/2019</td>
+      <td>2</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Exibir Títulos do Lote" size="2x"
+        [routerLink]="'/titulos-lote'"></fa>
+      </td>
+      <td class="table-icon">
+        <fa name="trash" data-toggle="tooltip" data-placement="top" title="Remover o Lote" size="2x"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>0000</td>
+      <td>01/01/2019</td>
+      <td>ECOLIXO TRANSP. GESTAO AMB. EIRELI-ME</td>
+      <td>FECHADO - AGUARDANDO ENTREGA</td>
+      <td>01/01/2019</td>
+      <td>2</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Exibir Títulos do Lote" size="2x"
+        [routerLink]="'/titulos-lote'"></fa>
+      </td>
+      <td class="table-icon">
+        <fa name="trash" data-toggle="tooltip" data-placement="top" title="Remover o Lote" size="2x"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>0000</td>
+      <td>01/01/2019</td>
+      <td>ECOLIXO TRANSP. GESTAO AMB. EIRELI-ME</td>
+      <td>FECHADO - AGUARDANDO ENTREGA</td>
+      <td>01/01/2019</td>
+      <td>2</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Exibir Títulos do Lote" size="2x"
+        [routerLink]="'/titulos-lote'"></fa>
+      </td>
+      <td class="table-icon">
+        <fa name="trash" data-toggle="tooltip" data-placement="top" title="Remover o Lote" size="2x"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>0000</td>
+      <td>01/01/2019</td>
+      <td>ECOLIXO TRANSP. GESTAO AMB. EIRELI-ME</td>
+      <td>FECHADO - AGUARDANDO ENTREGA</td>
+      <td>01/01/2019</td>
+      <td>2</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Exibir Títulos do Lote" size="2x"
+        [routerLink]="'/titulos-lote'"></fa>
+      </td>
+      <td class="table-icon">
+        <fa name="trash" data-toggle="tooltip" data-placement="top" title="Remover o Lote" size="2x"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>0000</td>
+      <td>01/01/2019</td>
+      <td>ECOLIXO TRANSP. GESTAO AMB. EIRELI-ME</td>
+      <td>FECHADO - AGUARDANDO ENTREGA</td>
+      <td>01/01/2019</td>
+      <td>2</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Exibir Títulos do Lote" size="2x"
+        [routerLink]="'/titulos-lote'"></fa>
+      </td>
+      <td class="table-icon">
+        <fa name="trash" data-toggle="tooltip" data-placement="top" title="Remover o Lote" size="2x"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>0000</td>
+      <td>01/01/2019</td>
+      <td>ECOLIXO TRANSP. GESTAO AMB. EIRELI-ME</td>
+      <td>FECHADO - AGUARDANDO ENTREGA</td>
+      <td>01/01/2019</td>
+      <td>2</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Exibir Títulos do Lote" size="2x"
+        [routerLink]="'/titulos-lote'"></fa>
+      </td>
+      <td class="table-icon">
+        <fa name="trash" data-toggle="tooltip" data-placement="top" title="Remover o Lote" size="2x"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td>0000</td>
+      <td>01/01/2019</td>
+      <td>ECOLIXO TRANSP. GESTAO AMB. EIRELI-ME</td>
+      <td>FECHADO - AGUARDANDO ENTREGA</td>
+      <td>01/01/2019</td>
+      <td>2</td>
+      <td class="table-icon">
+        <fa name="pencil" data-toggle="tooltip" data-placement="top" title="Exibir Títulos do Lote" size="2x"
+        [routerLink]="'/titulos-lote'"></fa>
+      </td>
+      <td class="table-icon">
+        <fa name="trash" data-toggle="tooltip" data-placement="top" title="Remover o Lote" size="2x"></fa>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="11" scope="col">
+        <nav aria-label="Navegação de página títulos">
+          <ul class="pagination pagination-md">
+            <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Próximo</a></li>
+          </ul>
+        </nav>
+      </td>
+    </tr>
+  </tbody>
+</table>

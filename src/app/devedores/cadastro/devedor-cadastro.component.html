@@ -1,0 +1,348 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Cadastro de Devedores</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+
+    <td width="40" class="table-icon2">
+      <fa name="window-close" popover="Fechar sem salvar os dados"
+      triggers="mouseenter:mouseleave"  size="2x"></fa>
+    </td>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="fGroupDevedor" id="form-container">
+    <div id="identificacao">
+      <fieldset>
+        <legend>1. Identificação do Devedor</legend>
+        <div class="form-row">
+          <div class="form-group col-md-2">
+
+
+            <label for="inputDocumentTypeLabel">Tipo Doc.1</label>
+            <select (change)="alteraValidator($event)" formControlName="tipoDocumento" id="inputTipoDocumento"
+              class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tipoDocumento.errors }">
+              <option>CPF</option>
+              <option>CNPJ</option>
+            </select>
+
+            <div *ngIf="submitted && f.tipoDocumento.errors" class="invalid-feedback">
+              <div *ngIf="f.tipoDocumento.errors.required">CPF ou CNPJ são obrigatórios</div>
+            </div>
+          </div>
+
+
+          <!-- CPF -->
+          <div *ngIf="f.tipoDocumento.value == 'CPF'" class="form-group col-md-2">
+            <label for="NumberDocument2">N° do CPF</label>
+            <input formControlName="numeroDocumento" class="form-control lower-text" id="NumberDocument1"
+              aria-describedby="emailHelp" placeholder="N° do CPF"
+              [ngClass]="{ 'is-invalid': submitted && f.numeroDocumento.errors }" [textMask]="{mask: MASKS.cpf.textMask}">
+            <div *ngIf="submitted && f.numeroDocumento.errors" class="invalid-feedback">
+              <div *ngIf="f.numeroDocumento.errors.required">Documento é obrigatório</div>
+              <div *ngIf="f.numeroDocumento.errors.cpf">O CPF digitado está inválido</div>
+            </div>
+          </div>
+
+
+          <!-- CNPJ  -->
+          <div *ngIf="f.tipoDocumento.value == 'CNPJ'" class="form-group col-md-2">
+            <label for="NumberDocument2">N° do CNPJ</label>
+            <input formControlName="numeroDocumento" class="form-control lower-text" id="NumberDocument2"
+              aria-describedby="emailHelp" placeholder="N° do CNPJ"
+              [ngClass]="{ 'is-invalid': submitted && f.numeroDocumento.errors }" [textMask]="{mask: MASKS.cnpj.textMask}">
+            <div *ngIf="submitted && f.numeroDocumento.errors" class="invalid-feedback">
+              <div *ngIf="f.numeroDocumento.errors.required">Documento é obrigatório</div>
+              <div *ngIf="f.numeroDocumento.errors.cnpj">O CNPJ digitado está inválido</div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="inputDebtName">Nome do Devedor</label>
+            <input formControlName="nomeDevedor" type="text" class="form-control" id="inputNomeDevedor" placeholder=""
+              maxlength="50" [ngClass]="{ 'is-invalid': submitted && f.nomeDevedor.errors }" uppercase>
+
+            <div *ngIf="submitted && f.nomeDevedor.errors" class="invalid-feedback">
+              <div *ngIf="f.nomeDevedor.errors.required">Nome ou Razão Social são obrigatórios</div>
+              <div *ngIf="f.nomeDevedor.errors.minlength">Nome deve ter no mínimo 3 caracteres</div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-1">
+            <label for="inputDocumentTypeLabel2">Tipo Doc. 2</label>
+            <select formControlName="tipoDocumento2" id="inputTipoDocumento2" class="form-control">
+              <option selected></option>
+              <option>RG</option>
+              <option>RNE</option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-2">
+            <label for="inputDocumentNumberLabel2">N° Documento 2</label>
+            <input formControlName="numeroDocumento2" type="tel" class="form-control" id="inputNumeroDocumento2"
+              maxlength="14" placeholder="">
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </form> <!-- FIM FORM-IDENTIFICAÇÃO -->
+
+
+  <!-- ABAS NAVEGAÇÃO -->
+  <div class="abas-container">
+    <accordion [isAnimated]="true" [closeOthers]="true">
+
+
+      <!-- FORM ENDEREÇO -->
+      <accordion-group [isOpen]="true">
+
+        <div accordion-heading>
+          <h5>2. Endereço</h5>
+        </div>
+        <form [formGroup]="fGroupEndereco" id="form-adress-cont">
+
+
+          <div class="endereco-container">
+            <div class="form-row">
+              <div class="form-group col-md-2">
+                <label for="inputCepAdress">CEP</label>
+                <input formControlName="cep" type="text" pattern="^\d{5}-\d{3}$" [textMask]="{mask: CEP}"
+                  class="form-control" id="inputCep" placeholder=""
+                  [ngClass]="{ 'is-invalid': submittedEnd && fend.cep.errors }">
+
+                <div *ngIf="submittedEnd && fend.cep.errors" class="invalid-feedback">
+                  <div *ngIf="fend.cep.errors.required">Cep é obrigatório</div>
+                  <div *ngIf="fend.cep.errors.minlength">Digite um cep válido</div>
+                </div>
+              </div>
+
+              <div class="form-group btn-cep">
+                <button class="btn btn-primary btn-cep-search" (click)="buscarCep()" popover="Localizar Endereço"
+                triggers="mouseenter:mouseleave" >Buscar</button>
+              </div>
+
+              <div class="form-group col-md-3">
+                <label for="inputAdress">Endereço</label>
+                <input formControlName="logradouro" type="text" class="form-control" id="inputEndereco" placeholder=""
+                  maxlength="60" [ngClass]="{ 'is-invalid': submittedEnd && fend.logradouro.errors }">
+
+                <div *ngIf="submittedEnd && fend.logradouro.errors" class="invalid-feedback">
+                  <div *ngIf="fend.logradouro.errors.required">Endereço é obrigatório</div>
+                  <div *ngIf="fend.logradouro.errors.minlength">Endereço deve ter no mínimo 3 caracteres</div>
+                </div>
+              </div>
+
+              <div class="form-group col-md-2">
+                <label for="inputAdressNumber">Número</label>
+                <input formControlName="numero" type="text" class="form-control" id="inputNumero" maxlength="7"
+                  placeholder="" [ngClass]="{ 'is-invalid': submittedEnd && fend.numero.errors }">
+                <div *ngIf="submittedEnd && fend.numero.errors" class="invalid-feedback">
+                  <div *ngIf="fend.numero.errors.required">Número é obrigatório</div>
+                </div>
+              </div>
+
+              <div class="form-group col-md-2">
+                <label for="inputComplement">Complemento</label>
+                <input formControlName="complemento" type="text" class="form-control" id="inputComplemento"
+                  maxlength="20" placeholder="">
+              </div>
+
+              <div class="form-group col-md-3">
+                <label for="inputNeighborhood">Bairro</label>
+                <input formControlName="bairro" type="text" class="form-control" id="inputBairro" maxlength="50"
+                  placeholder="" [ngClass]="{ 'is-invalid': submittedEnd && fend.bairro.errors }">
+
+                <div *ngIf="submittedEnd && fend.bairro.errors" class="invalid-feedback">
+                  <div *ngIf="fend.bairro.errors.required">Bairro é obrigatório</div>
+                  <div *ngIf="fend.bairro.errors.minlength">Bairro deve ter no mínimo 3 caracteres</div>
+                </div>
+              </div>
+
+              <div class="form-group col-md-3">
+                <label for="inputCity">Cidade</label>
+                <input formControlName="localidade" type="text" class="form-control" id="inputCidade" maxlength="50"
+                  placeholder="" [ngClass]="{ 'is-invalid': submittedEnd && fend.localidade.errors }">
+
+                <div *ngIf="submittedEnd && fend.localidade.errors" class="invalid-feedback">
+                  <div *ngIf="fend.localidade.errors.required">Cidade é obrigatório</div>
+                  <div *ngIf="fend.localidade.errors.minlength">Cidade deve ter no mínimo 3 caracteres</div>
+                </div>
+              </div>
+
+              <div class="form-group col-md-1">
+                <label for="inputStateLabel">Estado</label>
+                <select formControlName="uf" id="inputEstado" class="form-control"
+                  [ngClass]="{ 'is-invalid': submittedEnd && fend.uf.errors }">
+                  <option value="null"></option>
+                  <option *ngFor="let uf of estados" [(value)]="uf">{{uf}}</option>
+                </select>
+
+                <div *ngIf="submittedEnd && fend.uf.errors" class="invalid-feedback">
+                  <div *ngIf="fend.uf.errors.required">Estado é obrigatório</div>
+                </div>
+              </div>
+
+              <div class="form-group col-md-2 btn-add">
+                <button *ngIf="mostrarButtonAdd" class="btn btn-primary btn-add-email" (click)="adicionarEndereco()" popover="Adicionar Endereço"
+                triggers="mouseenter:mouseleave" >Adicionar</button>
+                <button *ngIf="mostrarButtonAlt" class="btn btn-secondary btn-add-tel" (click)="salvarEnderecoEditado()" popover="Salvar Alterações"
+                triggers="mouseenter:mouseleave" >Salvar</button>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- TABELA ENDEREÇO DEVEDORES -->
+          <table *ngIf="enderecos.length > 0" class="table table-sm table-striped table-bordered">
+            <thead class="title-table">
+              <tr>
+                <th scope="col">Cep</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">Bairro</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Estado</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let endereco of enderecos">
+                <td>{{endereco.cep}}</td>
+                <td>{{endereco.logradouro}}, {{endereco.numero}} {{endereco.complemento}}</td>
+                <td>{{endereco.bairro}}</td>
+                <td>{{endereco.localidade}} </td>
+                <td>{{endereco.uf}}</td>
+                <td width="50" class="table-icon">
+                  <fa name="pencil" popover="Editar Endereço"
+                  triggers="mouseenter:mouseleave" size="2x" (click)="editarEndereco(endereco)"></fa>
+                </td>
+                <td width="50" class="table-icon">
+                  <fa name="trash" popover="Excluir Endereço"
+                  triggers="mouseenter:mouseleave" size="2x" (click)="excluirAdress(endereco)"></fa>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form> <!-- FIM FORM-ENDEREÇO -->
+      </accordion-group>
+
+
+      <!--FORM TELEFONE-->
+      <accordion-group>
+
+        <div accordion-heading>
+          <h5>3. Telefone (Opcional)</h5>
+        </div>
+        <form [formGroup]="fGroupTelefone" id="form-tel-cont">
+
+          <div class="telefone-container">
+            <div class="form-row">
+              <div class="form-group col-md-2">
+                <label for="inputPhone">Telefone</label>
+                <input type="tel" formControlName="telefone" id="telephone" class="form-control" id="inputTelefone" minlength="8" maxlength="15" placeholder="">
+              </div>
+
+              <div class="form-group col-md-2 btn-add">
+                <button *ngIf="mostrarButtonAdd" class="btn btn-primary btn-add-tel" (click)="adicionarTelefone()" popover="Adicionar Telefone"
+                triggers="mouseenter:mouseleave" >Adicionar</button>
+                <button *ngIf="mostrarButtonAlt" class="btn btn-secondary btn-add-tel" (click)="salvarTelefoneEditado()" popover="Salvar Alterações"
+                triggers="mouseenter:mouseleave" >Salvar</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TABELA TELEFONE DEVEDORES -->
+          <table *ngIf="telefones.length > 0" class="table table-sm table-striped table-bordered table-medium">
+            <thead class="title-table">
+              <tr>
+                <th scope="col">Telefone(s)</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let telefone of telefones">
+                <td>{{telefone.telefone}}</td>
+                <td width="50px" class="table-icon">
+                  <fa name="pencil" popover="Editar Telefone"
+                  triggers="mouseenter:mouseleave"  size="2x" (click)="editarTelefone(telefone)"></fa>
+                </td>
+                <td width="50px" class="table-icon">
+                  <fa name="trash" popover="Excluir Telefone"
+                  triggers="mouseenter:mouseleave"  size="2x" (click)="excluirTel(telefone)"></fa>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form> <!-- FIM FORM-TELEFONE-->
+      </accordion-group>
+
+
+      <!-- FORM-EMAIL-->
+      <accordion-group>
+
+        <div accordion-heading>
+          <h5>4. E-mail (Opcional)</h5>
+        </div>
+        <form [formGroup]="fGroupEmail" id="form-email-cont">
+
+
+          <div class="email-container">
+            <div class="form-row">
+              <div id="references" class="form-group col-md-4">
+                <label for="inputEmailAdress">Email</label>
+                <input type="email" formControlName="email" class="form-control lower-text" id="inputEmail"
+                 maxlength="50" placeholder="">
+              </div>
+
+              <div class="form-group col-md-2 btn-add">
+                <button *ngIf="mostrarButtonAdd" class="btn btn-primary btn-add-email" (click)="adicionarEmail()" popover="Adicionar Email"
+                triggers="mouseenter:mouseleave" >Adicionar</button>
+                <button *ngIf="mostrarButtonAlt" class="btn btn-secondary btn-add-email" (click)="salvarEmailEditado()" popover="Salvar Alterações"
+                triggers="mouseenter:mouseleave" >Salvar</button>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- TABELA EMAIL DEVEDORES -->
+          <table *ngIf="emails.length > 0" class="table table-sm table-striped table-bordered table-medium">
+            <thead class="title-table">
+              <tr>
+                <th scope="col">Email(s)</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let email of emails">
+                <td>{{email.email}}</td>
+                <td width="50px" class="table-icon">
+                  <fa name="pencil" popover="Editar Email"
+                  triggers="mouseenter:mouseleave"  size="2x" (click)="editarEmail(email)"></fa>
+                </td>
+                <td width="50px" class="table-icon">
+                  <fa name="trash" popover="Excluir Email"
+                  triggers="mouseenter:mouseleave" size="2x" (click)="excluirAdressEmail(email)"></fa>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+
+        <!--FIM FORM-EMAIL-->
+      </accordion-group>
+    </accordion>
+
+  </div>
+  <!--FIM ABAS PAINEIS -->
+
+</div><!-- FIM MODAL-BODY -->
+
+<!-- BOTÃO -->
+<div class="modal-footer">
+  <button class="btn btn-primary" (click)="onSubmitDev()" popover="Salvar informações do devedor"
+  triggers="mouseenter:mouseleave" >Salvar Dados do Devedor</button>
+</div>

@@ -1,0 +1,68 @@
+<!-- PESQUISA DEVEDORES -->
+<section class="cl-devedores">
+  <div class="titledebt">
+    <h2>Cadastro de Devedores</h2>
+    <p>Pesquise pelo nome do devedor ou pelo documento (<strong>somente números</strong>).</p>
+  </div>
+  <form [formGroup]="fGBusca">
+    <div class="input-group ms-2">
+      <input  formControlName="busca" type="text" class="form-control" placeholder="Pesquisar nome ou documento"
+        aria-label="Recipient's username" aria-describedby="button-addon1">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon1" popover="Pesquisar Devedor"
+        triggers="mouseenter:mouseleave"  placement="bottom"
+          (click)="pesquisar()" >Pesquisar</button>
+      </div>
+      <button class="btn btn-outline-secondary" type="button" id="button-addon3" popover="Cadastrar Devedor"
+      triggers="mouseenter:mouseleave"  placement="bottom"
+        (click)="openModalWithComponent()">Cadastrar</button>
+    </div>
+  </form>
+</section>
+
+
+<!-- TABELA DE PESQUISA -->
+<table *ngIf="mostrargrid && devedores.length > 0" class="table table-sm table-striped table-bordered">
+  <thead class="title-table">
+    <tr>
+      <th colspan="5" scope="col">Nome do Devedor</th>
+      <th scope="col">Tipo 1</th>
+      <th scope="col">Documento 1</th>
+      <th scope="col">Tipo 2</th>
+      <th scope="col">Documento 2</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let devedor of devedores">
+      <th colspan="5" scope="row">{{devedor.nomeDevedor}}</th>
+      <td width="65">{{devedor.tipoDocumento}}</td>
+      <td width="60">{{devedor.numeroDocumento}}</td>
+      <td width="65">{{devedor.tipoDocumento2}}</td>
+      <td width="60">{{devedor.numeroDocumento2}}</td>
+      <td width="40" class="table-icon">
+        <fa name="pencil" (click)="abrirModalParaEditar(devedor)" popover="Editar Devedor"
+        triggers="mouseenter:mouseleave" size="2x"></fa>
+      </td>
+      <td width="40" class="table-icon">
+        <fa name="trash" (click)="apagarDevedor(devedor.idDevedor)" popover="Excluir Devedor"
+        triggers="mouseenter:mouseleave" size="2x"></fa>
+      </td>
+    </tr>
+  </tbody>
+  <div infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="1000"
+    (scrolled)="onScroll()">
+  </div>
+</table>
+<!-- 
+<div>
+  <ngx-datatable class="material" 
+  [rows]="rows" 
+  [columns]="columns"
+  [scrollbarV]="true">
+  </ngx-datatable>
+</div> -->

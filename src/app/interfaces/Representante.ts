@@ -1,0 +1,16 @@
+export interface Representante {
+    nomeRepresentante?:string,
+    cpfRepresentante?:string,
+    emissorRepresentante?:string,
+    telefone?:string,
+    rg?:string,
+    tipo?:string,
+    cep?:string,
+    endereco?:string,
+    bairro?:string,
+    numero?:string,
+    complemento?:string,
+    cidade?:string,
+    estado?:string,
+    idTitulo?:string,
+}

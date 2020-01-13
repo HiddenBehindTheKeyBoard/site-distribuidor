@@ -1,0 +1,220 @@
+<!-- Container for sidebar(s) + page content -->
+<ng-sidebar-container style="height: 100vh;">
+
+  <!-- SIDEBAR -->
+  <ng-sidebar 
+    [closeOnClickOutside]="'true'"
+    [showBackdrop]="'true'"
+    [mode]="'over'"
+    [position]="'right'"    
+    [(opened)]="_opened">
+
+    <div class="cadastro-sidebar">
+      <!-- CADASTRO -->
+      <form [formGroup]="formGroupCadastro" class="sign-up" (ngSubmit)="onSubmitCad()">
+        <h2>NOVO USUÁRIO</h2>
+        <div class="form-group">
+          <label for="InputEmail2">Endereço de email</label>
+          <input type="email" formControlName="email" class="form-control lower-text" id="InputEmail2"
+            aria-describedby="emailHelp" placeholder="Digite seu email" maxlength="50"
+            [ngClass]="{ 'is-invalid': submittedCad && fCad.email.errors }">
+          <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
+
+          <div *ngIf="submittedCad && fCad.email.errors" class="invalid-feedback">
+            <div *ngIf="fCad.email.errors.required">E-mail é obrigatório</div>
+            <div *ngIf="fCad.email.errors.email">Digite um endereço de e-mail válido</div>
+          </div>
+
+          <div *ngIf="existeEmail" class="invalid-feedback">Email já está em uso</div>
+        </div>
+
+        <div class="form-check form-check-inline">
+          <input type="radio" formControlName="tipo" value="CPF" class="form-check-input lower-text" id="Check1"
+            name="tipo" (click)="alteraValidator('CPF')">
+          <label class="form-check-label" for="Check1">CPF</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+          <input type="radio" formControlName="tipo" value="CNPJ" class="form-check-input lower-text" id="Check2"
+            name="tipo" (click)="alteraValidator('CNPJ')">
+          <label class="form-check-label" for="Check2">CNPJ</label>
+        </div>
+
+        <!-- CPF -->
+        <div *ngIf="fCad.tipo.value == 'CPF'" class="form-group">
+          <input formControlName="documento" class="form-control lower-text" id="NumberDocument"
+            aria-describedby="emailHelp" placeholder="N° do CPF"
+            [ngClass]="{ 'is-invalid': submittedCad && fCad.documento.errors }" [textMask]="{mask: MASKS.cpf.textMask}">
+          <div *ngIf="submittedCad && fCad.documento.errors" class="invalid-feedback">
+            <div *ngIf="fCad.documento.errors.required">Documento é obrigatório</div>
+            <div *ngIf="fCad.documento.errors.cpf">O CPF digitado está inválido</div>
+            <div *ngIf="existeDocumento">Documento digitado já está em uso</div>
+          </div>
+        </div>
+
+        <!-- CNPJ -->
+        <div *ngIf="fCad.tipo.value == 'CNPJ'" class="form-group">
+          <input formControlName="documento" class="form-control lower-text" id="NumberDocument"
+            aria-describedby="emailHelp" placeholder="N° do CNPJ"
+            [ngClass]="{ 'is-invalid': submittedCad && fCad.documento.errors }"
+            [textMask]="{mask: MASKS.cnpj.textMask}">
+          <div *ngIf="submittedCad && fCad.documento.errors" class="invalid-feedback">
+            <div *ngIf="fCad.documento.errors.required">Documento é obrigatório</div>
+            <div *ngIf="fCad.documento.errors.cnpj">O CNPJ digitado está inválido</div>
+            <div *ngIf="existeDocumento">Documento digitado já está em uso</div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary shadow btn-cadastro" popover="Iniciar o cadastro no sistema"
+        triggers="mouseenter:mouseleave" placement="bottom" >Cadastro</button>
+      </form>
+    </div>    
+  </ng-sidebar>
+
+  <!-- PAGE CONTENT -->
+  <div ng-sidebar-content>
+    <div class="header">
+      <div>
+        <button class="btn btn-outline-light shadow btn-cad" (click)="_toggleSidebar()"  popover="Iniciar o cadastro no sistema"
+        triggers="mouseenter:mouseleave" placement="bottom">Cadastre-se</button>
+      </div>
+
+      <div class="inner-header">
+        <h1>CENTRAL DISTRIBUIDORA DE</h1>
+        <span> TÍTULOS PARA PROTESTO</span>
+      </div>
+
+      <!-- ONDAS -->
+      <div>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+          <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+          </defs>
+          <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+          </g>
+        </svg>
+      </div>
+      <!-- FIM ONDAS-->
+
+    </div>
+    <!-- HEADER FIM -->
+
+
+    <!-- ÁREA DE LOGIN -->
+    <div class="login-container">
+      <div class="ilustration-container">
+        <img src="/assets/images/ilustration_sign_up.svg">
+      </div>
+
+      <!-- LOGIN -->
+      <form [formGroup]="formGroupUsuario" class="login" (ngSubmit)="onSubmitUser()">
+        <h2>JÁ SOU CADASTRADO</h2>
+        <div class="form-group">
+          <label for="InputEmail">Endereço de e-mail</label>
+          <input formControlName="email" type="email" class="lower-text form-email form-control" id="InputEmail1"
+            aria-describedby="emailHelp" placeholder="Digite seu email" maxlength="50"
+            [ngClass]="{ 'is-invalid': submittedUser && fUser.email.errors }">
+          <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
+          <div *ngIf="submittedUser && fUser.email.errors" class="invalid-feedback">
+            <div *ngIf="fUser.email.errors.required">E-mail é obrigatório</div>
+            <div *ngIf="fUser.email.errors.email">Digite um endereço de e-mail válido</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="InputPassword">Senha</label>
+          <input formControlName="senha" type="password" class="lower-text form-control" id="InputPassword"
+            placeholder="Digite sua Senha" maxlength="6"
+            [ngClass]="{ 'is-invalid': submittedUser && fUser.senha.errors }" required>
+          <div *ngIf="submittedUser && fUser.senha.errors" class="invalid-feedback">
+            <div *ngIf="fUser.senha.errors.required">Senha é obrigatório</div>
+            <div *ngIf="fUser.senha.errors.minlength">A Senha deve ter no mínimo 6 caracteres</div>
+          </div>
+        </div>
+
+        <div class="form-check-inline btn-login-cont">
+          <button class="btn-login btn btn-primary shadow" popover="Acessar o sistema"
+          triggers="mouseenter:mouseleave" placement="bottom" [adaptivePosition]="false" >Entrar</button>
+          <button (click)="validarEmail()" type="submit" class="btn-password btn btn-secondary shadow" popover="Clique para resetar a senha de acesso"
+          triggers="mouseenter:mouseleave" placement="bottom"  [adaptivePosition]="false" >Esqueci a
+            Senha</button>
+
+        </div>
+
+        <div class="form-check-inline">
+                  </div>
+      </form>
+
+    </div>
+
+
+    <!-- WEB FORMULÁRIO -->
+    <section class="web-form">
+      <div class="web-form-overlay">
+        <div class="title-container">
+          <h2>WEB</h2> <span class="text-title">PROTESTO</span>
+        </div>
+        <p class="text-destaque">
+          O sistema Web Protesto é recomendável para usuários frequentes. <br>
+          Permite agilizar a apresentação de documentos de dívida para<br> protesto e disponibiliza ferramentas de
+          controle
+          em
+          nosso site.
+          <br>Caso pretenda apresentar apenas um documento,<br> utilize o formulário abaixo para agilizar o atendimento:
+        </p>
+        <div class="form-print" (click)="openModal()" popover="Digitar títulos utilizando o formulário eletrônico de protesto"
+        triggers="mouseenter:mouseleave" placement="bottom" >
+          <fa class="print" name="print" size="3x"></fa>
+          <p>FORMULÁRIO </p>
+          <span class="text-print">DE PROTESTO</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARDS PARCEIROS -->
+    <section class="cards-container">
+      <div class="title-cards">
+        <h2>CARTÓRIOS DE </h2><span>PROTESTOS DE FRANCA - SP</span>
+      </div>
+      <div class="card-deck">
+        <div class="card card1 shadow-drop-center">
+          <img class="card-img-top" src="/assets/images/image_card_1.png" alt="Imagem 1° Oficial de Registro">
+          <h3 class="card-title">1° Oficial de Registro</h3>
+          <hr>
+          <p class="text-center">Rua Washington Luis, 1901 - Boa Esperança Fone (16) 3712-4888</p>
+          <hr class="hr-down">
+          <a href="http://www.1registrodefranca.com.br/" target="_blank" class="btn btn-outline-secondary" popover="Consultar"
+          triggers="mouseenter:mouseleave" placement="bottom" >Consultar</a>
+        </div>
+
+        <div class="card card2 shadow-drop-center">
+          <img class="card-img-top" src="/assets/images/image_card_2.png" alt="Imagem 1° Tabelião de Protesto">
+          <h3 class="card-title">1° Tabelião de Protesto</h3>
+          <hr>
+          <p class="text-center">Rua Padre Anchieta, 1888 - Centro Franca Fone (16) 3722-0716</p>
+          <hr class="hr-down">
+          <a href="http://www.1notasfranca.com.br/www.1notasfranca.com.br/index.html" target="_blank"
+            class="btn btn-outline-secondary" popover="Consultar"
+            triggers="mouseenter:mouseleave" placement="bottom" >Consultar</a>
+        </div>
+
+        <div class="card card3 shadow-drop-center">
+          <img class="card-img-top" src="/assets/images/image_card_3.png" alt="Imagem 2° Tabelião de Protesto">
+          <h3 class="card-title">2° Tabelião de Protesto</h3>
+          <hr>
+          <p class="text-center">Rua Campos Salles, 1908 - Centro Franca Fone (16) 3722-2718</p>
+          <hr class="hr-down">
+          <a href="http://www.contartnotariado.com.br/" target="_blank" class="btn btn-outline-secondary" popover="Consultar"
+          triggers="mouseenter:mouseleave" placement="bottom" >Consultar</a>
+        </div>
+      </div>
+    </section>
+
+    <rodape></rodape>
+  </div>
+</ng-sidebar-container>

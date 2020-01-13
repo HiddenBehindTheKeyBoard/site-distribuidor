@@ -1,0 +1,29 @@
+/* MODAL EDICAO DE USUARIOS*/
+.modal-header {
+  background-color: #e4e9ef;
+}
+
+.modal-header h4 {
+  margin-left: 380px;
+}
+
+.modal-header .close span {
+    width: 25px;
+    height: 25px;
+  }
+
+  #identificacao {
+    width: 350px;
+    float: left;
+    margin-left: 100px;
+  }
+
+.modal-footer {
+  background-color: #e4e9ef;
+  clear: both;
+}
+
+.modal-footer .btn {
+  margin: 0 auto;
+}
+

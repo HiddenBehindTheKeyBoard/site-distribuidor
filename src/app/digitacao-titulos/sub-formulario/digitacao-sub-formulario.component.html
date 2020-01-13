@@ -1,0 +1,69 @@
+<!-- MODAL FORMULÁRIO PROTESTO -->
+<div class="modal-header">
+  <h4 class="modal-title">Pesquisa de Devedor</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="finalizar()">
+    <td width="40" class="table-icon2">
+      <fa name="window-close" data-toggle="tooltip" data-placement="top" title="Fechar Sem Salvar Dados" size="2x"></fa>
+    </td>
+  </button>
+</div>
+
+<!-- FORMULÁRIO BODY -->
+<div class="modal-body">
+  <fieldset>
+    <legend>Identificação do Devedor</legend>
+    <table class="table table-sm table-striped table-bordered">
+      <thead class="title-table">
+        <tr>
+          <th scope="col-4">Tipo Doc 1</th>
+          <th scope="col-2">Documento</th>
+          <th scope="col-2">Nome</th>
+          <th *ngIf="devedor.tipoDocumento == 'CPF'" scope="col-2">Tipo Doc 2</th>
+          <th *ngIf="devedor.tipoDocumento == 'CPF'" scope="col-2">Documento 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td width="2" scope="row">{{devedor.tipoDocumento}}</td>
+          <td width="70">{{devedor.numeroDocumento}}</td>
+          <td width="60">{{devedor.nomeDevedor}}</td>
+          <td *ngIf="devedor.tipoDocumento == 'CPF'" width="65">{{devedor.tipoDocumento2}}</td>
+          <td *ngIf="devedor.tipoDocumento == 'CPF'" width="65">{{devedor.numeroDocumento2}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+</div>
+<div class="modal-body">
+  <fieldset>
+    <legend>Endereços do Devedor</legend>
+    <table class="table table-sm table-striped table-bordered">
+      <thead class="title-table">
+        <tr>
+          <th scope="col-4">CEP</th>
+          <th scope="col-2">Endereço</th>
+          <th scope="col-2">Bairro</th>
+          <th scope="col-2">Cidade</th>
+          <th scope="col-1">UF</th>
+          <th scope="col-1">Escolher</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let endereco of enderecos">
+          <td width="2">{{endereco.cep}}</td>
+          <td width="40">{{endereco.endereco}}</td>
+          <td width="40">{{endereco.bairro}}</td>
+          <td width="40">{{endereco.cidade}}</td>
+          <td width="40">{{endereco.estado}}</td>
+          <td width="40" >
+            <button class="btn btn-success"(click)="selecionaEndereco(endereco)">Escolher esse endereço</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+</div>
+<!-- MODAL RODAPÉ -->
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="finalizar()">Finalizar Digitação</button>
+</div>

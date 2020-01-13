@@ -1,0 +1,190 @@
+/* ---- CONTAINER FORMULÁRIO --*/
+.form-container {
+  width: 900px;
+  margin: 0 auto;
+}
+
+.form-container h2 {
+  margin-bottom: 20px;
+}
+
+.btn-cep {
+  width: 140px;
+  height: 32px;
+  margin: 29px 5px 0 5px;
+}
+
+
+/* === FORM-2 DEVEDORES === */
+.form-2 {
+  margin: 20px 0 30px 0;
+}
+
+.form-2 .icon-debt-container {
+  margin-bottom: 10px;
+}
+
+.icon-debt-container fa:hover {
+  color: #095d6e;
+  cursor: pointer;
+}
+
+.icon-debt-container fa:first-child {
+  margin: 3px 20px 0 6px;
+}
+
+.btn-devedor {
+  height: 32px;
+  margin-top: 28px;
+  width: 155px;
+}
+
+.btn-devedor .btn {
+  width: 140px;
+}
+
+.btn-cep-search {
+  height: 30px;
+  margin-top: 28px;
+}
+
+.btn-cep-search .btn {
+  width: 140px;
+}
+
+.btn-add {
+  width: 140px;
+}
+
+/*------ TABELA --------*/
+.form-container .value-table {
+  float: right;
+  width: 500px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.table {
+  max-width: 900px;
+  margin: auto;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.table .title-table {
+  background-color: #bfc0c5;
+}
+
+.table .table-icon:hover {
+  color: #095d6e;
+  cursor: pointer;
+}
+
+/* ---- BOTOES ----- */
+.form-row .btn-create {
+  width: 140px;
+  margin-left: 4px;
+}
+
+.btn-wrapper {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.btn-wrapper .btn-send {
+  width: 140px;
+  margin-top: 50px;
+  margin-right: 6px;
+  margin-left: 4px;
+}
+
+.btn-wrapper .btn-send1 {
+  width: 140px;
+  margin-right: 10px;
+  margin-left: 4px;
+}
+
+.btn-send2 {
+width: 140px;
+}
+
+.btn-wrapper .btn-exit {
+  width: 140px;
+  margin-left: 152px;
+}
+
+.btn-wrapper .btn-add-title {
+  width: 140px;
+  margin-right: 152px;
+}
+
+.btn-wrapper .btn-send2:active {
+  margin-right: -90px;
+}
+
+.btn-cadastro {
+  width: 340px;
+  margin: 0 auto;
+}
+
+.btn-cadastro .btn-send1 {
+  width: 140px;
+  margin-right: 10px;
+  margin-left: 4px;
+}
+
+.btn-cadastro .btn-send2 {
+  width: 140px;
+}
+
+.btn-cadastro .btn-add {
+  width: 140px;
+}
+
+/* === DECLARAÇÃO INDICAÇÃO === */ 
+.declaracao-container {
+  width: 900px;
+  padding: 20px;
+  margin: auto;
+  border: 1px solid;
+  text-align: left;
+} 
+
+/* === TÍTULOS INDICAÇÃO === */ 
+.declaracao-body h2,
+h3 {
+  text-align: center;
+}
+
+.declaracao-body h3 {
+  text-decoration: underline;
+  margin: 20px 0;
+}
+
+.declaracao-body h4 {
+  margin-top: 20px;
+} 
+
+/* === TABELA === */ /*
+.declaracao-body .table {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.declaracao-body .table span,
+p span {
+  font-weight: bold;
+} */
+
+.declaracao-body p:nth-child(8) {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.declaracao-body p:last-child {
+  width: 600px;
+  margin: 60px auto;
+  text-align: center;
+  border-top: 1px solid;
+}
+

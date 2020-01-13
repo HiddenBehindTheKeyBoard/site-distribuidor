@@ -1,0 +1,43 @@
+ /* === TERMO DE ADESAO === */
+.adesao  {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.adesao h2 {
+  margin-bottom: 50px;
+}
+
+.adesao .termo_adesao {
+  height: 400px;
+  overflow-y: scroll;
+}
+
+.termo_adesao h3 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.termo_adesao a {
+  font-weight: bold;
+  color: red;
+  text-decoration: none;
+}
+
+
+/* === BOTÃO === */
+.adesao .btn-adesao-container {
+  margin: 0 auto;
+  width: 170px;
+}
+
+.btn-adesao .btn {
+    width: 150px;
+    margin-top: 20px;
+}
+
+.btn-adesao-container .btn {
+  width: 150px;
+  margin-top: 20px;
+}
+

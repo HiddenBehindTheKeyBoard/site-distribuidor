@@ -1,0 +1,65 @@
+/* === MODAL FORMULÁRIO DE PROTESTO === */
+.modal-header {
+  background-color: #e4e9ef;
+}
+
+.modal-header .modal-title {
+  margin-left: 390px;
+}
+
+#identificacao legend {
+  font-size: 14px;
+  margin: 10px 0 5px 0;
+  font-weight: bold;
+  color: red;
+  text-align: center;
+}
+
+.form-row label span {
+  font-weight: bold;
+}
+
+.form-row .col-custom {
+  width: 223px;
+}
+
+/* === BOTÕES ===*/
+.modal-body .btn-cep {
+  height: 32px;
+  margin: 28px 5px 0 5px;
+  width: 156px;
+}
+
+.btn-cep .btn-cep-search {
+  width: 156px;
+}
+
+.modal-body .wrapper-btn-copy {
+  margin-top: 28px;
+}
+
+/* === MODAL RODAPÉ ===*/
+.modal-footer .btn {
+  margin: 0 auto;
+  width: 157px;
+}
+
+.modal-footer {
+  background-color: #e4e9ef;
+}
+
+// Tabela Devedores
+.table {
+  max-width: 1024px;
+  margin: auto;
+  margin-bottom: 6rem;
+}
+
+.table .title-table {
+  background-color: #bfc0c5;
+}
+
+.table .table-icon:hover {
+  color: #095d6e;
+  cursor: pointer;
+}

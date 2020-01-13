@@ -1,0 +1,79 @@
+/* === REQUERIMENTO === */
+.requeriment {
+  width: 1024px !important;
+  margin: auto !important;
+}
+
+.requeriment .requeriment-body {
+  border: 1px solid !important;
+  padding: 20px 0 !important;
+}
+
+.requeriment-header p {
+  // text-align: center;
+  padding: 20px !important;
+}
+
+.requeriment-header h2,
+h3,
+h4,
+p {
+  text-align: center !important;
+}
+
+.container div {
+  border: 1px solid !important;
+}
+
+.container .row {
+  height: 40px !important;
+  border: none !important;
+}
+
+.row div {
+  height: 100% !important;
+}
+
+.row label {
+  float: left !important;
+  padding-left: 5px !important;
+  font-weight: bold !important;
+}
+
+.row p {
+  float: left !important;
+  clear: left !important;
+  margin-top: -7px !important;
+  padding-left: 5px !important;
+}
+
+.row p a {
+  font-weight: bold !important;
+  color: red !important;
+  text-decoration: none !important;
+}
+
+.row .footer label::first-word {
+  color: red !important;
+}
+
+/* === BOTÕES === */
+.btn-wrapper {
+  width: 1024px;
+  margin: 10px auto;
+}
+
+.btn-wrapper .btn-print {
+  margin-left: 20%;
+}
+
+.btn-wrapper .btn-print,
+.btn-new {
+  width: 150px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.btn-wrapper .btn-new-return {
+  margin-top: 10px;
+}

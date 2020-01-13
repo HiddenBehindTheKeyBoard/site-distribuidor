@@ -1,0 +1,33 @@
+/* === PESQUISA DEVEDORES === */
+.devedores-container {
+  width: 900px;
+  margin: 0 auto;
+}
+
+.devedores-container legend {
+  margin-left: 15px;
+}
+
+.form-group .btn-search-debt {
+  width: 150px;
+}
+
+
+/* === TABELA DEVEDORES === */
+.table {
+  max-width: 1024px;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 6rem;
+  font-size: 12.5px;
+}
+
+.table .title-table {
+  background-color: #bfc0c5;
+  font-size: 15px;
+}
+
+.table .table-icon:hover {
+  color: #095d6e;
+  cursor: pointer;
+}

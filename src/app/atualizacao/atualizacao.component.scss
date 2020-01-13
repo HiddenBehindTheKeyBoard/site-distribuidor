@@ -1,0 +1,57 @@
+/* ---- CONTAINER FORMULÁRIO --*/
+.form-container {
+  width: 1024px;
+  margin: 0 auto;
+  padding: 20px 15px;
+  border-radius: 5px;
+}
+
+.btn-cep {
+  height: 32px;
+  margin: 28px 5px 0 -5px;
+  width: 148px;
+}
+
+.btn-cep .btn-cep-search {
+  width: 158px;
+  margin-left: 4px;
+}
+
+.form-check {
+  margin-top: 35px;
+}
+
+.form-check-label {
+  margin-right: 10px;
+}
+
+.form-check-set {
+  margin-left: 15px;
+}
+
+/* == RADIO BUTTONS == */
+.radio-title {
+  float: left;
+}
+
+.form-check-inline {
+  margin-top: 2px;
+  float: left;
+  clear: left;
+}
+
+
+/* == BOTÕES == */
+.btn-cadastro {
+  width: 300px;
+  margin-left: 359px;
+}
+
+.form-container .btn-atualizacao {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.form-container .btn-atualizacao:last-child {
+  width: 135px;
+}

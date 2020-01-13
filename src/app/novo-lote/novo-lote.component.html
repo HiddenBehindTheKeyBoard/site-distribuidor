@@ -1,0 +1,188 @@
+<!-- NOVO LOTE DE TITULOS -->
+<form class="form-container">
+  <h2>Digitação de Títulos | Lote Nº 8719</h2>
+  <fieldset class="form-1">
+    <legend>1. Dados do Título</legend>
+    <div class="form-row">
+      <div class="form-group col-md-5">
+        <label for="inputTitleSpecies">Espécie do Título</label>
+        <select class="custom-select" id="inputGroupSelect01">
+          <option selected>Selecione uma Espécie</option>
+          <option value="1">CA - Crédito de Aluguel</option>
+          <option value="2">CC - Contrato de Cambio</option>
+          <option value="3">CH - Cheque</option>
+          <option value="4">CL - Contrato de Locação</option>
+          <option value="5">CM - Contrato de Mutuo</option>
+          <option value="6">FS - Fatura de Serviços</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="inputProtestType">Tipo de Protesto</label>
+        <select class="custom-select" id="inputGroupSelect02">
+          <option selected>Comum</option>
+          <option value="1">Falimentar</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="inputPayout">Praça de Pagamento</label>
+        <select class="custom-select" id="inputGroupSelect03">
+          <option selected>Franca</option>
+          <option value="1">Restinga</option>
+          <option value="2">Cirstais Paulista</option>
+          <option value="3">Ribeirão Corrente</option>
+          <option value="4">São José da Bela Vista</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="inputEmissionDate">Data de Emissão</label>
+        <input type="date" class="form-control" id="inputDataEmissao" placeholder="">
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="inputExpiration">Vencimento</label>
+        <input type="date" class="form-control" id="inputVencimento" placeholder="">
+      </div>
+
+      <div class="form-group col-sm-2">
+        <label for="inputItemNumber">Número do Título</label>
+        <input type="number" class="form-control" id="inputNumeroTitulo" placeholder="">
+      </div>
+
+      <div class="form-group col-sm-1">
+        <label for="inputLine">Alínea</label>
+        <input type="text" class="form-control" id="inputAlinea" placeholder="" disabled>
+      </div>
+
+      <div class="form-group col-sm-3">
+        <label for="inputOriginalValue">Valor Original do Título</label>
+        <input type="text" class="form-control" id="inputValorOriginal" placeholder="">
+      </div>
+
+      <div class="form-group col-sm-3">
+        <label for="inputProtestValue">Valor a Protestar</label>
+        <input type="text" class="form-control" id="inputValorProtesto" placeholder="">
+      </div>
+
+      <div class="form-group col-sm-2">
+        <label for="inputEndorsement">Endosso</label>
+        <select class="custom-select" id="inputGroupSelect04">
+          <option selected>Sem Endosso</option>
+          <option value="1">Mandato</option>
+          <option value="2">Translativo</option>
+        </select>
+      </div>
+
+      <div class="form-group col-sm-5">
+        <label for="inputFavored">Favorecido</label>
+        <input type="text" class="form-control" id="inputFavorecido" placeholder="">
+      </div>
+    </div>
+  </fieldset><!-- FIM FORM-1-->
+
+
+  <fieldset class="form-2">
+    <legend>2. Devedor(es)</legend>
+
+    <div class="icon-debt-container form-row">
+      <fa name="edit" data-toggle="tooltip" data-placement="top" title="Editar" size="3x"></fa>
+      <fa name="user-plus" data-toggle="tooltip" data-placement="top" title="Adicionar outro devedor" size="3x"></fa>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <label for="DocumentTypeLabel">Tp. Documento</label>
+        <select id="DocumentType" class="form-control">
+          <option selected>CPF</option>
+          <option>CNPJ</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="inputDocumentNumber">N° Documento</label>
+        <input type="number" class="form-control" id="inputNumeroDocumento" placeholder="">
+      </div>
+
+      <div class="form-group col-md-2 btn-devedor">
+        <button class="btn btn-primary" type="submit">Buscar Devedor</button>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="inputDebtName">Nome do Devedor</label>
+        <input type="text" class="form-control" id="inputNomeDevedor" placeholder="">
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="inputTypeDocumentLabel2">Tp. Documento 2</label>
+        <select id="inputTypeDocument2" class="form-control">
+          <option>RG</option>
+          <option>RNE</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="inputDocumentNumber2">N° Documento 2</label>
+        <input type="number" class="form-control" id="inputNumeroDocumento2" placeholder="">
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="inputAdressCep">CEP</label>
+        <input type="text" class="form-control" id="inputCep" placeholder="">
+      </div>
+
+      <div class="btn-cep-search form-group col-md-2">
+        <button class="btn btn-primary" type="submit">Buscar</button>
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="inputAdress">Endereço</label>
+        <input type="text" class="form-control" id="inputEndereco" placeholder="">
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="inputNumberAdress">Número</label>
+        <input type="number" class="form-control" id="inputNumero" placeholder="">
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="inputComplement">Complemento</label>
+        <input type="text" class="form-control" id="inputComplemento" placeholder="">
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="inputNeighborhood">Bairro</label>
+        <input type="text" class="form-control" id="inputBairro" placeholder="">
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="inputCity">Cidade</label>
+        <input type="text" class="form-control" id="inputCidade" placeholder="">
+      </div>
+
+      <div class="form-group col-md-1">
+        <label for="inputStateLabel">Estado</label>
+        <select id="inputEstado" class="form-control">
+          <option></option>
+          <option></option>
+        </select>
+      </div>
+
+      <div class="form-group btn-cadastro col-md-2">
+        <button class="btn btn-primary btn-add" type="submit">Adicionar Título</button>
+      </div>
+    </div><!--  FORM-2 -->
+
+    <div class="amount-titles">
+        <p>Quantidade de títulos no lote: 2</p>
+        <p>Total a protestar neste lote: R$ 440,25</p>
+      </div>
+
+    <div class="btn-wrapper">
+      <button class="btn btn-primary btn-send" type="submit" [routerLink]="'/requerimento-protesto'">Finalizar
+        Lote</button>
+      <button class="btn btn-secondary" type="button" [routerLink]="'/titulos'">Sair da Digitação</button>
+    </div>
+  </fieldset>
+</form>

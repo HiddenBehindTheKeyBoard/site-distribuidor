@@ -1,0 +1,48 @@
+/* === PESQUISA TITULOS === */
+.cl-titulos {
+  margin-bottom: 3rem;
+}
+.titledigital {
+  margin: 0 0 20px 230px;
+}
+
+.input-group {
+  width: 40%;
+  margin-left: 230px;
+}
+
+.input-group .custom-select {
+  border-radius: 3px;
+  margin-right: 5px;
+  z-index: 1;
+}
+
+.cl-titulos .form-check-label {
+  margin: 5px 5px 0 0;
+}
+
+.cl-titulos .btn {
+  margin-left: 5px;
+}
+
+
+/*------ TABELA --------*/
+.table {
+  max-width: 1024px;
+  margin: auto;
+  margin-bottom: 6rem;
+  text-align: center;
+}
+
+.table .title-table {
+  background-color: #bfc0c5;
+}
+
+.table .table-icon:hover {
+  color: #095d6e;
+  cursor: pointer;
+}
+
+.alert {
+  display: none;
+}

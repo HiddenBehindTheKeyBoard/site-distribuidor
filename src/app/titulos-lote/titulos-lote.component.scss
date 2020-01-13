@@ -1,0 +1,44 @@
+/* === TÍTULOS DO LOTE === */
+.tlotes-container {
+  width: 1024px;
+  margin: 0 auto;
+}
+
+.tlotes-container h2 {
+    margin-bottom: 25px;
+  }
+
+
+/* === TABELA TÍTULOS APONTADOS === */
+.table {
+    max-width: 1024px;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    font-size: 12.5px;
+  }
+  
+  .table .title-table {
+    background-color: #bfc0c5;
+    font-size: 15px;
+  }
+  
+  .table .table-icon:hover {
+    color: #095d6e;
+    cursor: pointer;
+  }
+
+
+  /* === BOTÃO === */
+
+.btn-wrapper {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.btn-wrapper .btn-before {
+  margin-left: 70px;
+  width: 150px;
+}
+
+  

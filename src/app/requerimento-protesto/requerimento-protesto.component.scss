@@ -1,0 +1,91 @@
+/* === REQUERIMENTO === */
+.requeriment {
+  width: 1024px;
+  margin: auto;
+}
+
+.requeriment .requeriment-body {
+  border: 1px solid;
+  padding-top: 20px;
+}
+
+.requeriment-header p {
+  text-align: center;
+  padding: 20px;
+}
+
+.requeriment span {
+  font-weight: bold;
+}
+
+.requeriment-header h2,
+h3,
+h4,
+p {
+  text-align: center;
+}
+
+/*------ TABELA --------*/
+.table {
+  max-width: 1024px;
+  margin: auto;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.table .title-table {
+  background-color: #bfc0c5;
+}
+
+.table .separator {
+    height: 20px;
+    background-color: #E4E9EF;
+}
+
+/* === FOOTER REQUERIMENT === */
+.requeriment-footer .left-info-table {
+  margin: 20px 0 50px 0;
+}
+
+.left-info-table p {
+  display: block;
+  text-align: left;
+  margin: 0 0 10px 20px;
+}
+
+.requeriment-footer .top-b {
+  border-top: 1px solid;
+}
+
+.requeriment-footer .top-b,
+.border-top-none {
+  width: 500px;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+.requeriment-footer .w-none {
+  float: left !important;
+  width: 225px !important;
+  margin-left: 85px !important;
+  border-top: 1px solid !important;
+  margin-bottom: 40px !important;
+}
+
+.requeriment-footer p:nth-child(8) {
+  clear: both;
+  margin-top: 40px;
+}
+
+
+/* === BOTÕES === */
+.btn-wrapper {
+  width: 360px;
+  margin: 10px auto;
+}
+
+.btn-wrapper .btn-print, .btn-close  {
+  width: 170px;
+  margin-right: 10px;
+  margin-top: 10px;
+}

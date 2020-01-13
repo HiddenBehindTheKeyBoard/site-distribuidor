@@ -1,0 +1,229 @@
+<!-- ATUALIZAR CADASTRO -->
+<div class="form-container">
+  <form [formGroup]="fGroupEmpresa">
+    <fieldset>
+      <legend>Informações do Cadastrado</legend>
+   
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label for="inputDocument">Documento</label>
+          <input type="tel" formControlName="documento" [attr.disabled]="true" class="form-control" id="inputDocument"
+            placeholder="" maxlength="18">
+        </div>
+        <div class="form-group col-md-5">
+          <label for="inputName">Nome / Razão Social</label>
+          <input type="text" formControlName="nome" class="form-control" id="inputName1" placeholder="" maxlength="50"
+            [ngClass]="{ 'is-invalid': submitted && f.nome.errors }">
+          <div *ngIf="submitted && f.nome.errors" class="invalid-feedback">
+            <div *ngIf="f.nome.errors.required">Nome ou Razão Social são obrigatórios</div>
+            <div *ngIf="f.nome.errors.minlength">O nome deve ter no mínimo 3 caracteres</div>
+          </div>
+        </div>
+        <div class="form-group col-md-2" *ngIf="empresa.tipo == 'CPF'">
+          <label for="inputRg">RG (Pessoa Física)</label>
+          <input type="tel" formControlName="rg" class="lower-text" class="form-control"
+            id="inputRg" placeholder="" maxlength="14">
+        </div>
+        <div class="form-group col-md-1" *ngIf="empresa.tipo == 'CPF'">
+          <label for="inputEmissor">Emissor/UF</label>
+          <input type="text" formControlName="emissor" class="form-control" id="inputEmissor" maxlength="7" placeholder="">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputTelefone">Telefone</label>
+          <input type="tel" formControlName="telefone" class="form-control" maxlength="15" id="inputTelefone"
+            [ngClass]="{ 'is-invalid': submitted && f.telefone.errors }">
+          <div *ngIf="submitted && f.telefone.errors" class="invalid-feedback">
+            <div *ngIf="f.telefone.errors.required">Telefone é obrigatório</div>
+            <div *ngIf="f.telefone.errors.minlength">Digite um n° de telefone válido</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="inputCep">CEP</label>
+          <input type="tel" pattern="^\d{5}-\d{3}$" [textMask]="{mask: cep}" formControlName="cep" class="form-control" id="inputCep"
+            placeholder=""  maxlength="" [ngClass]="{ 'is-invalid': submitted && f.cep.errors }">
+          <div *ngIf="submitted && f.cep.errors" class="invalid-feedback">
+            <div *ngIf="f.cep.errors.required">Cep é obrigatório</div>
+            <div *ngIf="f.cep.errors.minlength">Digite um cep válido</div>
+          </div>
+        </div>
+        <div class="form-group col-md-2 btn-cep">
+          <button type="button" class="btn btn-primary btn-cep-search" (click)="buscaCep()" popover="Localizar Endereço"
+          triggers="mouseenter:mouseleave">Buscar</button>
+        </div>
+        <div class="form-group col-md-5">
+          <label for="inputAddress">Endereço</label>
+          <input type="text" formControlName="endereco" class="form-control" id="inputAdress"
+            placeholder="" maxlength="60" [ngClass]="{ 'is-invalid': submitted && f.endereco.errors }">
+          <div *ngIf="submitted && f.endereco.errors" class="invalid-feedback">
+            <div *ngIf="f.endereco.errors.required">Endereço é obrigatório</div>
+            <div *ngIf="f.endereco.errors.minlength">Endereço deve ter no mínimo 3 caracteres</div>
+          </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputNumber2">Número</label>
+          <input type="text" formControlName="numero" maxlength="7" class="form-control" id="inputNumber2" placeholder="" [ngClass]="{ 'is-invalid': submitted && f.numero.errors }">
+          <div *ngIf="submitted && f.numero.errors" class="invalid-feedback">
+            <div *ngIf="f.numero.errors.required">Número é obrigatório</div>
+          </div>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="inputAddress2">Bairro</label>
+          <input type="text" formControlName="bairro" class="form-control" id="inputAdress2" placeholder=""
+            maxlength="50" [ngClass]="{ 'is-invalid': submitted && f.bairro.errors }">
+          <div *ngIf="submitted && f.bairro.errors" class="invalid-feedback">
+            <div *ngIf="f.bairro.errors.required">Bairro é obrigatório</div>
+            <div *ngIf="f.bairro.errors.minlength">Bairro deve ter no mínimo 3 caracteres</div>
+          </div>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="inputCity">Cidade</label>
+          <input type="text" formControlName="cidade" class="form-control" id="inputCity" placeholder="" maxlength="50"
+            [ngClass]="{ 'is-invalid': submitted && f.cidade.errors }">
+          <div *ngIf="submitted && f.cidade.errors" class="invalid-feedback">
+            <div *ngIf="f.cidade.errors.required">Cidade é obrigatório</div>
+            <div *ngIf="f.cidade.errors.minlength">Cidade deve ter no mínimo 3 caracteres</div>
+          </div>
+        </div>
+        <div class="form-group col-md-1">
+          <label for="inputState">Estado</label>
+          <select formControlName="estado" id="inputCount" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.estado.errors }">
+            <option value="null">UF</option>
+            <option *ngFor="let uf of estados" [(value)]="uf">{{uf}}</option>
+          </select>
+          <div *ngIf="submitted && f.estado.errors" class="invalid-feedback">
+            <div *ngIf="f.estado.errors.required">Estado é obrigatório</div>
+          </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputComplement">Complemento</label>
+          <input type="text" formControlName="complemento" class="form-control" id="inputComplement"
+            placeholder="" maxlength="20">
+        </div>
+      </div>
+    </fieldset> <!-- FIM INFORMAÇÕES DO CADASTRADO -->
+
+    <!-- FORM2 DADOS DO REPRESENTANTE LEGAL-->
+    <fieldset>
+      <legend>Dados do Representante Legal</legend>
+      <div class="form-row">
+        <div class="form-group col-md-5">
+          <label for="inputName2">Nome</label>
+          <input type="text" formControlName="nomeRepresentante" class="form-control" id="inputName2" placeholder=""
+            maxlength="60" [ngClass]="{ 'is-invalid': submitted && f.nomeRepresentante.errors }">
+          <div *ngIf="submitted && f.nomeRepresentante.errors" class="invalid-feedback">
+            <div *ngIf="f.nomeRepresentante.errors.required">Nome do representante é obrigatório</div>
+            <div *ngIf="f.nomeRepresentante.errors.minlength">Nome deve ter no mínimo 3 caracteres</div>
+          </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputCpf">CPF</label>
+          <input type="tel" [textMask]="{mask: MASKS.cpf.textMask}" formControlName="cpfRepresentante" class="form-control"
+            id="inputCpf" placeholder=""
+            [ngClass]="{ 'is-invalid': submitted && f.cpfRepresentante.errors }">
+          <div *ngIf="submitted && f.cpfRepresentante.errors" class="invalid-feedback">
+            <div *ngIf="f.cpfRepresentante.errors.required">CPF é obrigatório</div>
+            <div *ngIf="f.cpfRepresentante.errors.pattern">O CPF digitado está inválido</div>
+          </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputRg2">RG</label>
+          <input type="tel" formControlName="rg" class="lower-text"
+            class="form-control" id="inputRg2" placeholder="" maxlength="12"
+            [ngClass]="{ 'is-invalid': submitted && f.rg.errors }">
+          <div *ngIf="submitted && f.rg.errors" class="invalid-feedback">
+            <div *ngIf="f.rg.errors.required">RG é obrigatório</div>
+            <div *ngIf="f.rg.errors.minlength">RG deve ter 9 caracteres</div>
+          </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputEmissor2">Emissor</label>
+          <input type="text" formControlName="emissorRepresentante" class="form-control" id="inputEmissor2"
+            maxlength="7" [ngClass]="{ 'is-invalid': submitted && f.emissorRepresentante.errors }">
+          <div *ngIf="submitted && f.emissorRepresentante.errors" class="invalid-feedback">
+            <div *ngIf="f.emissorRepresentante.errors.required">Emissor é obrigatório</div>
+            <div *ngIf="f.emissorRepresentante.errors.minlength">Emissor deve ter no mínimo 3 caracteres</div>
+          </div>
+        </div>
+      </div>
+    </fieldset> <!-- FIM DADOS DO REPRESENTANTE LEGAL -->
+
+    <!-- CONTA PARA CRÉDITO FORM3 -->
+    <fieldset>
+      <legend>Conta para Crédito (Opcional)</legend>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputEstado">Selecione um Banco da lista</label>
+          <select id="inputCount" formControlName="idBanco" class="form-control">
+            <option selected="selected" value="null">Selecione...</option>
+            <option *ngFor="let nomeBanco of bancos" [(value)]="nomeBanco">{{nomeBanco}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputAgency">Ag. (Sem dígito)</label>
+          <input type="text" formControlName="agencia" class="lower-text" class="form-control" id="inputAgency"
+            placeholder="" maxlength="10">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputCount2">Conta (Com dígito)</label>
+          <input type="text" formControlName="conta" class="lower-text" class="form-control" id="inputCount2"
+            placeholder="" maxlength="10">
+        </div>
+
+
+        <!-- RADIO BUTTONS TITULARIDADE -->
+        <div class="form-group form-check-set">
+          <label class="radio-title">Titularidade:</label>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label" for="gridCheck" popover="Selecione a titularidade da conta"
+            triggers="mouseenter:mouseleave" placement="bottom">
+              Sim
+            </label>
+            <input class="form-check-input" formControlName="titularidade" [(checked)]="empresa.titularidade"
+              value="true" type=radio id="opcao1" name="titularidade">
+            <label class="form-check-label" for="gridCheck" popover="Selecione a titularidade da conta"
+            triggers="mouseenter:mouseleave" placement="bottom">
+              Não
+            </label>
+            <input class="form-check-input" formControlName="titularidade" [(checked)]="!empresa.titularidade"
+              value="false" type="radio" id="opcao2" name="titularidade">
+          </div>
+        </div> <!-- FIM RADIO BUTTONS TITULARIDADE -->
+
+
+        <!-- RADIO BUTTONS CONTA CONJUNTA -->
+        <div class="form-group form-check-set">
+          <label class="radio-title">Conta conjunta:</label>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label" for="gridCheck" popover="Selecione o tipo de conta"
+            triggers="mouseenter:mouseleave" placement="bottom">
+              Sim
+            </label>
+            <input class="form-check-input" formControlName="contaConjunta" [(checked)]="empresa.contaConjunta"
+              value="true" type="radio" id="opcao1" name="contaConjunta">
+            <label class="form-check-label" for="gridCheck" popover="Selecione o tipo de conta"
+            triggers="mouseenter:mouseleave" placement="bottom">
+              Não
+            </label>
+            <input class="form-check-input" formControlName="contaConjunta" [(checked)]="!empresa.contaConjunta"
+              value="false" type="radio" id="opcao2" name="contaConjunta">
+          </div>
+        </div> <!-- FIM RADIO BUTTONS CONTA CONJUNTA -->
+
+      </div>
+    </fieldset> <!-- FIM CONTA PARA CRÉDITO FORM3-->
+   
+  </form>
+    <!-- BOTÕES -->
+  <div class="btn-cadastro">
+    <button class="btn btn-primary btn-atualizacao" (click)="onSubmit()" popover="Salvar alterações"
+    triggers="mouseenter:mouseleave" placement="bottom">Salvar Alterações</button>
+    <button class="btn btn-secondary btn-atualizacao" [routerLink]="'/home'" popover="Cancelar"
+    triggers="mouseenter:mouseleave" placement="bottom">Cancelar</button>
+  </div>
+</div>
+
+

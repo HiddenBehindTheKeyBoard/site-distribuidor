@@ -1,0 +1,498 @@
+<!-- DIGITACAO DE TITULOS -->
+<form [formGroup]="fGroupTitulo" class="form-container">
+  <h2>Digitação de Títulos | Lote Nº 8719 {{email}}</h2>
+  <fieldset class="form-1">
+
+    <legend>1. Dados do Título</legend>
+    <div class="form-row">
+      <div class="form-group col-md-2" (click)="verificaCheque()" (blur)="verificaCheque()">
+        <label for="inputData">Espécie do Título</label>
+        <select formControlName="siglaEspecie" (click)="verificaCheque()" (blur)="verificaCheque()" class="custom-select" id="inputDados" 
+        [ngClass]="{ 'is-invalid': submitted && fTitulo.siglaEspecie.errors }">
+          <option value="Selecione">Selecione</option>
+          <option *ngFor="let especie of especies" [(value)]="especie.sigla">{{especie.especie}}</option>
+        </select>
+        <div *ngIf="submitted && fTitulo.siglaEspecie.errors" class="invalid-feedback">
+          <small *ngIf="fTitulo.siglaEspecie.errors.required">Espécie é obrigatório</small>
+        </div>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="inputTypeP">Tipo de Protesto</label>
+        <select formControlName="tipoProtesto" class="custom-select" id="inputTipoProtesto">
+          <option value="C"selected>Comum</option>
+          <option value="F">Falimentar</option>
+        </select>
+      </div>
+
+      <div class="form-group col-sm-2">
+        <label for="inputLocalPayment">Praça de Pagamento</label>
+        <select formControlName="pracaPagamento" class="custom-select" id="inputPracaPagamento">
+          <option value="Franca"selected>Franca</option>
+          <option value="Restinga">Restinga</option>
+          <option value="Cristais Paulista">Cristais Paulista</option>
+          <option value="Ribeirão Corrente">Ribeirão Corrente</option>
+          <option value="São José da Bela Vista">São José da Bela Vista</option>
+        </select>
+      </div>
+
+      <div class="form-group col-sm-2">
+        <label for="inputDateEmission">Data de Emissão</label>
+        <input formControlName="dataEmissao"  type="text" class="form-control" id="inputDataEmissao" placeholder=""
+        [ngClass]="{ 'is-invalid': submitted && fTitulo.dataEmissao.errors }" [textMask]="{mask: mask}">
+        <div *ngIf="submitted && fTitulo.dataEmissao.errors" class="invalid-feedback">
+          <small *ngIf="fTitulo.dataEmissao.errors.required">Emissão é obrigatório</small>
+        </div>
+      </div>
+
+      <div class="form-group col-sm-2">
+        <label for="inputTitleNumber">Número do Título</label>
+        <input type="tel" formControlName="numeroTitulo" maxlength="15" class="form-control" id="inputNumeroTitulo" placeholder=""
+        [ngClass]="{ 'is-invalid': submitted && fTitulo.numeroTitulo.errors }">
+        <div *ngIf="submitted && fTitulo.numeroTitulo.errors" class="invalid-feedback">
+          <small *ngIf="fTitulo.numeroTitulo.errors.required">Nº do título é obrigatório</small>
+        </div>
+      </div>
+
+      <div class="form-group col-sm-1">
+        <label for="inputLine">Alínea</label>
+        <input type="text" maxlength="2" formControlName="alinea" [attr.disabled]="titulo.siglaEspecie != 'CH'" class="form-control" id="inputAlinea" placeholder="" >
+      </div>
+      <div class="form-group col-sm-2">
+        <label for="inputDateExpiration">Vencimento</label>
+        <input formControlName="vencimento" maxlength="15" [attr.disabled]="titulo.siglaEspecie == 'CH'" type="text" class="form-control" id="inputDataExpericao" placeholder=""
+        [ngClass]="{ 'is-invalid': submitted && fTitulo.vencimento.errors }" [textMask]="{mask: mask}">
+        <div *ngIf="submitted && fTitulo.vencimento.errors" class="invalid-feedback">
+          <small *ngIf="fTitulo.vencimento.errors.required">Vencimento é obrigatório</small>
+        </div>
+      </div>
+
+      <div class="form-group col-sm-3">
+        <label for="inputOriginalValue">Valor Original do Título</label>
+        <input type="text" formControlName="valorOriginalTitulo"  maxlength="15" class="form-control" id="inputValorOriginal" 
+        maxlength="15" currencyMask
+            [options]="{align: 'left', prefix: 'R$ ', thousands: '.', decimal: ',' }" class="form-control"
+            id="inputValorOriginal" placeholder=""
+            [ngClass]="{ 'is-invalid': submitted && fTitulo.valorOriginalTitulo.errors }">
+            <div *ngIf="submitted && fTitulo.valorOriginalTitulo.errors" class="invalid-feedback">
+              <small *ngIf="fTitulo.valorOriginalTitulo.errors.required">Valor é obrigatório</small>
+              <small *ngIf="fTitulo.valorOriginalTitulo.errors.minlength">O valor deve ser maior que R$ 1,00</small>
+            </div>
+      </div>
+
+      <div class="form-group col-sm-2">
+        <label for="inputValueProtest">Valor a Protestar</label>
+        <input type="text" formControlName="valorProtesto" maxlength="15" class="form-control" id="inputValorProtesto" 
+        maxlength="15" currencyMask
+            [options]="{align: 'left', prefix: 'R$ ', thousands: '.', decimal: ',' }" class="form-control"
+            id="inputValorProtesto" placeholder=""
+            [ngClass]="{ 'is-invalid': submitted && fTitulo.valorProtesto.errors }">
+            <div *ngIf="submitted && fTitulo.valorProtesto.errors" class="invalid-feedback">
+              <small *ngIf="fTitulo.valorProtesto.errors.required">Valor é obrigatório</small>
+              <small *ngIf="fTitulo.valorProtesto.errors.valorPermitido">O valor deve ser maior que R$ 1,00</small>
+            </div>
+      </div>
+      
+      <div class="form-group col-sm-2" (change)="verificaEndosso()">
+        <label for="inputEndorsement">Endosso</label>
+        <select formControlName="endosso" (change)="verificaEndosso()" class="custom-select" id="inputEndosso">
+          <option value="S" selected>Sem Endosso</option>
+          <option value="M">Mandato</option>
+          <option value="T">Translativo</option>
+        </select>
+      </div>     
+
+      <div class="form-group col-md-3">
+        <label for="inputCity">Favorecido</label>
+        <input type="text" formControlName="favorecido" class="form-control" id="inputCidade" placeholder="">
+      </div>
+
+      <div *ngIf="endosso" class="form-group col-md-2" (click)="atualizaTipo()">
+        <label for="inputValueProtest">Tp. Documento</label>
+        <select formControlName="tipoDocumentoEndossante" (change)="alteraValidator($event)" (blur)="atualizaTipo()" class="custom-select" id="inputEndosso">
+          <option value="CPF" selected>CPF</option>
+          <option value="CNPJ">CNPJ</option>
+        </select>
+      </div>
+
+      <!-- TESTE -->
+      <div *ngIf="endosso" class="form-group col-md-2" (click)="atualizaTipo()">
+        <label for="inputValueProtest">Tipo Doc.</label>
+        <select (change)="alteraValidator($event)" formControlName="tipoDocumentoEndossante" (blur)="atualizaTipo()" class="custom-select "
+          id="inputEndosso" [ngClass]="{ 'is-invalid': submitted && fTitulo.tipoDocumentoEndossante.errors }">
+          <option value="CPF">CPF</option>
+          <option value="CNPJ">CNPJ</option>
+        </select>
+        <div *ngIf="submitted && fTitulo.tipoDocumentoEndossante.errors" class="invalid-feedback">
+          <small *ngIf="fTitulo.tipoDocumentoEndossante.errors.required">Documento é obrigatório</small>
+        </div>
+      </div>
+
+      <!-- CPF -->
+      <div *ngIf="fTitulo.tipoDocumentoEndossante.value == 'CPF'" class="form-group col-md-2">
+        <label for="NumberDocument1">N° do CPF</label>
+        <input formControlName="documentoEndossante" class="form-control lower-text" id="NumberDocument1"
+          aria-describedby="emailHelp" placeholder="N° do CPF"
+          [ngClass]="{ 'is-invalid': submitted && fTitulo.numeroDocumento.errors }"
+          [textMask]="{mask: MASKS.cpf.textMask}">
+        <div *ngIf="submitted && fTitulo.numeroDocumento.errors" class="invalid-feedback">
+          <small *ngIf="fTitulo.numeroDocumento.errors.required">Documento é obrigatório</small>
+          <small *ngIf="fTitulo.numeroDocumento.errors.cpf">O CPF digitado está inválido</small>
+        </div>
+      </div>
+
+
+      <!-- CNPJ  -->
+      <div *ngIf="fTitulo.tipoDocumentoEndossante.value == 'CNPJ'" class="form-group col-md-2">
+        <label for="inputAgency">N° do CNPJ</label>
+        <input formControlName="documentoEndossante" class="form-control lower-text" id="NumberDocument2"
+          aria-describedby="emailHelp" placeholder="N° do CNPJ"
+          [ngClass]="{ 'is-invalid': submitted && fTitulo.numeroDocumento.errors }"
+          [textMask]="{mask: MASKS.cnpj.textMask}">
+        <div *ngIf="submitted && fTitulo.numeroDocumento.errors" class="invalid-feedback">
+          <small *ngIf="fTitulo.numeroDocumento.errors.required">Documento é obrigatório</small>
+          <small *ngIf="fTitulo.numeroDocumento.errors.cnpj">O CNPJ digitado está inválido</small>
+        </div>
+      </div>
+<!-- fim teste-->
+
+      <!-- <div *ngIf="endosso" class="form-group col-md-2">
+        <label for="inputAgency">Nº Documento</label>
+        <input formControlName="documentoEndossante" type="text" maxlength="18" class="form-control" id="inputAgencia" placeholder="">
+      </div> -->
+
+      <div *ngIf="endosso" class="form-group col-md-6">
+        <label for="inputCountNumber">Nome do endossante</label>
+        <input formControlName="endossante" type="text" maxlength="50" class="form-control" id="inputNameEndossante" placeholder="">
+      </div>
+
+    </div> 
+  </fieldset><!-- FIM FORM-1-->
+</form>
+
+
+<!-- DIGITACAO DE TITULOS -->
+<form [formGroup]="fGroupDevedores"  class="form-container">
+  <fieldset class="form-2">
+    <legend>2. Devedor(es)</legend>
+  
+    <div class="container-icon form-row" *ngIf="devedores.length > 0">
+      <table class="table table-sm table-striped table-bordered">
+        <thead class="title-table">
+          <tr>
+            <th scope="col-4">Nome</th>
+            <th scope="col-2">Documento</th>
+            <th scope="col-2">Cidade</th>
+            <th name="alterar" title="Altera" data-toggle="tooltip" data-placement="top" scope="col-1"></th>
+            <th name="trash" title="Apagar" data-toggle="tooltip" data-placement="top" scope="col-1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let devedor of devedores">
+            <td width="2" scope="row">{{devedor.nomeDevedor}}</td>
+            <td width="70">{{devedor.numeroDocumento}}</td>
+            <td width="65">{{devedor.cidade}}</td>
+            <td name="trash" title="alterar" data-toggle="tooltip" data-placement="top" scope="col-1" width="40" class="table-icon">
+              <fa name="pencil" data-toggle="tooltip" data-placement="top" size="2x" (click)="carregaDevedor(devedor)"></fa>
+            </td>
+            <td name="trash" title="Apagar" data-toggle="tooltip" data-placement="top" scope="col-1" width="40" class="table-icon">
+              <fa name="trash" data-toggle="tooltip" data-placement="top" size="2x" (click)="apagarDevedor(devedor.numeroDocumento)"></fa>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="criandoDevedor" class="form-row"  (click)="atualizaTipoDevedor()">
+      <div class="form-group col-md-2"  (click)="verificaTipoDevedor()">
+        <label for="DocumentTypeLabel">Tp. Documento</label>
+        <select formControlName="tipoDocumento" id="DocumentType" class="form-control" (change)="alteraValidator2($event)" (blur)="atualizaTipoDevedor()"
+        [ngClass]="{ 'is-invalid': devSubmitted && fDevedor.tipoDocumento.errors }">
+          <option value="CPF">CPF</option>
+          <option value="CNPJ">CNPJ</option>
+        </select>
+        <div *ngIf="devSubmitted && fDevedor.tipoDocumento.errors" class="invalid-feedback">
+          <small *ngIf="fDevedor.tipoDocumento.errors.required">Documento é obrigatório</small>
+        </div>
+      </div>
+
+       <!-- CPF -->
+       <div *ngIf="fDevedor.tipoDocumento.value == 'CPF'" class="form-group col-md-3">
+        <label for="NumberDocument2">N° do CPF</label>
+        <input formControlName="numeroDocumento" class="form-control lower-text" id="NumberDocument"
+          aria-describedby="emailHelp" placeholder="N° do CPF"
+          [ngClass]="{ 'is-invalid': devSubmitted && fDevedor.numeroDocumento.errors }"
+          [textMask]="{mask: MASKS.cpf.textMask}">
+        <div *ngIf="devSubmitted && fDevedor.numeroDocumento.errors" class="invalid-feedback">
+          <small *ngIf="fDevedor.numeroDocumento.errors.required">Documento é obrigatório</small>
+          <small *ngIf="fDevedor.numeroDocumento.errors.cpf">O CPF digitado está inválido</small>
+        </div>
+      </div>
+
+
+      <!-- CNPJ  -->
+      <div *ngIf="fDevedor.tipoDocumento.value == 'CNPJ'" class="form-group col-md-3">
+        <label for="NumberDocument2">N° do CNPJ</label>
+        <input formControlName="numeroDocumento" class="form-control lower-text" id="NumberDocument"
+          aria-describedby="emailHelp" placeholder="N° do CNPJ"
+          [ngClass]="{ 'is-invalid': devSubmitted && fDevedor.numeroDocumento.errors }"
+          [textMask]="{mask: MASKS.cnpj.textMask}">
+        <div *ngIf="devSubmitted && fDevedor.numeroDocumento.errors" class="invalid-feedback">
+          <small *ngIf="fDevedor.numeroDocumento.errors.required">Documento é obrigatório</small>
+          <small *ngIf="fDevedor.numeroDocumento.errors.cnpj">O CNPJ digitado está inválido</small>
+        </div>
+      </div>
+
+
+      <!-- <div class="form-group col-md-3">
+        <label for="inputDocumentNumber">N° Documento</label>
+        <input formControlName="numeroDocumento" type="text" maxlength="20" class="form-control" id="inputNumeroDocumento" placeholder="">
+      </div> -->
+
+      <div class="form-group col-md-2 btn-devedor">
+        <button class="btn btn-primary" (click)="buscaDevedor()" type="submit">Buscar Devedor</button>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="inputDebtName">Nome do Devedor</label>
+        <input formControlName="nomeDevedor" type="text" class="form-control" id="inputNomeDevedor" placeholder=""
+        [ngClass]="{ 'is-invalid': devSubmitted && fDevedor.nomeDevedor.errors }" maxlength="50">
+        <div *ngIf="devSubmitted && fDevedor.nomeDevedor.errors" class="invalid-feedback">
+          <small *ngIf="fDevedor.nomeDevedor.errors.required">Nome do devedor é obrigatório</small>
+          <small *ngIf="fDevedor.nomeDevedor.errors.minLength">O tamanho mínimo do devedor é 3 caracteres</small>
+        </div>
+      </div>
+
+      <div class="form-group col-md-2" *ngIf="devedor.tipoDocumento != 'CNPJ'">
+        <label for="inputTypeDocumentLabel2">Tp. Documento 2</label>
+        <select formControlName="tipoDocumento2" id="inputTypeDocument2" class="form-control">
+          <option value="RG">RG</option>
+          <option value="RNE">RNE</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="inputDocumentNumber2">N° Documento 2</label>
+        <input formControlName="numeroDocumento2" type="text" class="form-control" id="inputNumeroDocumento2" placeholder="" maxlength="14">
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="inputAdressCep">CEP</label>
+        <input type="text" formControlName="cep" class="form-control" id="inputCep" placeholder=""
+        pattern="^\d{5}-\d{3}$"
+          [textMask]="{mask: CEP}" [ngClass]="{ 'is-invalid': devSubmitted && fDevedor.cep.errors }">
+          <div *ngIf="devSubmitted && fDevedor.cep.errors" class="invalid-feedback">
+            <small *ngIf="fDevedor.cep.errors.required">Cep é obrigatório</small>
+            <small *ngIf="fDevedor.cep.errors.minlength">Digite um cep válido</small>
+          </div>
+      </div>
+
+      <div class="btn-cep-search form-group col-md-2">
+        <button (click)="buscarCEPDevedor()" class="btn btn-outline-primary" type="submit">Buscar</button>
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="inputAdress">Endereço</label>
+        <input type="text" formControlName="endereco" class="form-control" id="inputEndereco" placeholder="" maxlength="50"
+        [ngClass]="{ 'is-invalid': devSubmitted && fDevedor.endereco.errors }">
+        <div *ngIf="devSubmitted && fDevedor.endereco.errors" class="invalid-feedback">
+          <small *ngIf="fDevedor.endereco.errors.required">Endereço é obrigatório</small>
+          <small *ngIf="fDevedor.endereco.errors.minlength">Endereço deve ter no mínimo 3 caracteres</small>
+        </div>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="inputNumberAdress">Número</label>
+        <input type="tel" formControlName="numero" class="form-control" id="inputNumero" placeholder="" maxlength="7"
+        [ngClass]="{ 'is-invalid': devSubmitted && fDevedor.numero.errors }">
+        <div *ngIf="devSubmitted && fDevedor.numero.errors" class="invalid-feedback">
+          <small *ngIf="fDevedor.numero.errors.required">Número é obrigatório</small>
+        </div>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="inputComplement">Complemento</label>
+        <input type="text" formControlName="complemento" class="form-control" id="inputComplemento" placeholder="" maxlength="20">
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="inputNeighborhood">Bairro</label>
+        <input type="text" formControlName="bairro" class="form-control" id="inputBairro" placeholder="" maxlength="50"
+        [ngClass]="{ 'is-invalid': devSubmitted && fDevedor.bairro.errors }">
+        <div *ngIf="devSubmitted && fDevedor.bairro.errors" class="invalid-feedback">
+          <small *ngIf="fDevedor.bairro.errors.required">Bairro é obrigatório</small>
+          <small *ngIf="fDevedor.bairro.errors.minlength">Bairro deve ter no mínimo 3 caracteres</small>
+        </div>
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="inputCity">Cidade</label>
+        <input type="text" formControlName="cidade" class="form-control" id="inputCidade" placeholder="" maxlength="50"
+        [ngClass]="{ 'is-invalid': devSubmitted && fDevedor.cidade.errors }">
+        <div *ngIf="devSubmitted && fDevedor.cidade.errors" class="invalid-feedback">
+          <small *ngIf="fDevedor.cidade.errors.required">Cidade é obrigatório</small>
+          <small *ngIf="fDevedor.cidade.errors.minlength">Cidade deve ter no mínimo 3 caracteres</small>
+        </div>
+      </div>
+
+      <div class="form-group col-md-1">
+        <label for="inputStateLabel">Estado</label>
+        <select formControlName="estado" id="inputEstado" class="form-control" [ngClass]="{ 'is-invalid': devSubmitted && fDevedor.estado.errors }">
+          <option value="null">UF</option>
+          <option *ngFor="let uf of estados" [(value)]="uf">{{uf}}</option>
+        </select>
+        <div *ngIf="devSubmitted && fDevedor.estado.errors" class="invalid-feedback">
+          <small *ngIf="fDevedor.estado.errors.required">Estado é obrigatório</small>
+        </div>
+      </div>
+    
+    <div *ngIf="btnAdd " class="btn-wrapper">
+      <button   class="btn btn-primary btn-send1" type="submit" (click)="criarOuAlterar(devedor)" >Salvar Devedor</button>
+      <button class="btn btn-secondary btn-send2" type="submit" (click)="cancelar()" >Cancelar </button>
+    </div>
+
+    </div><!--  FORM-2 -->
+    <div class="form-row">
+      <button *ngIf="!criandoDevedor" (click)="iniciaDevedor()" class="btn btn-primary btn-create" type="submit" >Criar Devedores</button>
+    </div>
+
+    <div *ngIf="alterando" class="form-group btn-cadastro col-md-6">
+      <button class="btn btn-primary btn-send1" type="submit" (click)="criarOuAlterar(devedor)" >Salvar Alterações</button>
+      <button class="btn btn-secondary btn-send2" type="submit" (click)="cancelar()" >Cancelar </button>
+    </div>
+    <!-- <div class="form-group btn-cadastro col-md-2">
+      <button *ngIf="devedores.length > 0 && !alterandoTitulo" class="btn btn-primary btn-add" (click)="adicionaTitulo()" type="submit">Adicionar Título</button>
+    </div> -->
+    <div class="btn-wrapper">
+      <button class="btn btn-primary btn-send" (click)="salvarTitulo()" *ngIf="alterandoTitulo" type="submit">Salvar Título</button>
+      <button class="btn btn-secondary btn-send" (click)="cancelarAlteracaoTitulo(titulo)" *ngIf="alterandoTitulo" type="submit">Cancelar Título</button>
+    </div>
+    
+    <div class="value-table">
+      <p>Quantidade de títulos no lote: {{lote.qtdTitulo}}</p>
+      <p>Total a protestar neste lote: R$ {{lote.valorTotalTitulo | number:'1.2-2'}}</p>
+    </div>
+
+    <!-- TABELA DEVEDORES-->
+    <table  class="table table-sm table-striped table-bordered">
+      <thead class="title-table" >
+        <tr >
+          <th scope="col">Identif. Título </th>
+          <th scope="col">Espécie</th>
+          <th scope="col">N° do Título</th>
+          <th scope="col">Valor Original</th>
+          <th scope="col">Valor a Protestar</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+
+      <tbody  *ngFor="let titulo of titulos">
+        <tr>
+          <td>{{titulo.numeroTitulo}}</td>
+          <td>{{titulo.siglaEspecie}}</td>
+          <td>{{titulo.numeroTitulo}}</td>
+          <td> {{titulo.valorOriginalTitulo}}</td>
+          <td> {{titulo.valorProtesto}}</td>
+          <td class="table-icon">
+            <fa name="print" data-toggle="tooltip" data-placement="top" title="Imprimir Declaração (Indicação)" size="2x" (click)="imprimirConteudo(titulo)"></fa>
+          </td>
+          <td class="table-icon">
+            <fa name="pencil" data-toggle="tooltip" data-placement="top" (click)="carregarTitulo(titulo)" title="Editar Título" size="2x"></fa>
+          </td>
+          <td class="table-icon">
+            <fa name="trash" data-toggle="tooltip" data-placement="top" (click)="apagarTitulo(titulo)" title="Excluir o Título" size="2x"></fa>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="btn-wrapper">
+      <button *ngIf="devedores.length > 0" class="btn btn-primary btn-send btn-add-title" (click)="salvarTitulo()" type="submit">Adicionar Título</button>
+      <button *ngIf="devedores.length > 0" class="btn btn-primary btn-send" type="submit" [routerLink]="'/requerimento-protesto/' + idLote" >Finalizar Lote</button>
+      <button class="btn btn-secondary btn-exit" type="button" [routerLink]="'/titulos'">Sair da Digitação</button>
+    </div>
+  </fieldset>  
+</form>
+
+
+
+<!-- DECLARAÇÃO DE INDICAÇÃO/ OCULTA --> 
+<section class="declaracao-container collapse">
+
+  <div class="declaracao-body" #divDeclaracao>
+    <h2>Ao Central Distribuidora de Títulos para Protesto de Franca </h2>
+
+    <h3>Ref.: Protesto de Duplicata Mercantil por Indicação </h3>
+
+    <p>
+      Na qualidade de: <strong>SACADOR</strong>, solicitamos o protesto do título abaixo, por Indicação, nos termos da
+      Lei nº 5.474 de
+      18/07/68, com redação dada pela Lei nº 6.458 de 1º/11/77 e artigo 21 e parágrafos da Lei nº 9.492 de 10/09/97.
+    </p>
+
+    <h4> Devedor(es)</h4>
+
+    <table class="table table-sm table-bordered" style="text-align: left; margin-bottom: 30px;">
+      <tbody>
+        <tr *ngFor="let devedor of devedoresPrint">
+          <td colspan="2"><span style="font-weight: bold;">SACADO:</span> {{ devedor.nomeDevedor }}</td>
+          <td colspan="2"><span style="font-weight: bold;">CNPJ/CPF:</span> {{devedor.numeroDocumento}}</td>
+        </tr>
+
+        <tr>
+          <td colspan="2"><span style="font-weight: bold;">ENDEREÇO:</span> {{devedor.endereco}}, {{devedor.numero}} {{devedor.complemento}}</td>
+          <td colspan="3"><span style="font-weight: bold;">BAIRRO:</span> {{devedor.bairro}}</td>
+        </tr>
+
+        <tr>
+          <td colspan="2"><span style="font-weight: bold;">CIDADE:</span> {{devedor.cidade}}</td>
+          <td colspan="2"><span style="font-weight: bold;">CEP:</span> {{devedor.cep}}</td>
+        </tr>
+
+        <tr>
+          <td><span style="font-weight: bold;">EMISSÃO:</span> 15/11/2019 </td>
+          <td><span style="font-weight: bold;">VENCTO.:</span> 05/12/2019 </td>
+          <td><span style="font-weight: bold;">PRAÇA DE PAGTO.:</span> FRANCA</td>
+        </tr>
+
+        <tr>
+          <td><span style="font-weight: bold;">VALOR:</span> R$ 400,00 </td>
+          <td><span style="font-weight: bold;">SALDO:</span> R$ 400,00</td>
+          <td><span style="font-weight: bold;">Nº DA DUPLICATA:</span> 3</td>
+        </tr>
+
+        <tr >
+          <td colspan="2"><span style="font-weight: bold;">SACADOR:</span>   </td>
+          <td colspan="2"><span style="font-weight: bold;">ENDOSSOS:</span> EM ENDOSSO</td>
+        </tr>
+
+        <tr>
+          <td><span style="font-weight: bold;">ENDEREÇO:</span> RUA THOMAZ GONZAGA, 1869 3 ANDAR</td>
+          <td><span style="font-weight: bold;">CNPJ/CPF:</span> 39142875862 </td>
+          <td><span style="font-weight: bold; padding-bottom: 5px;">TELEFONE:</span> 992452216</td>
+        </tr>
+      </tbody>
+    </table> 
+
+    <p class="declaracao"><strong>Declaramos, para os devidos fins, sob as penas da Lei, que os documentos originais (ou
+        suas cópias
+        autenticadas),
+        que comprovam a venda mercantil, bem como o comprovante da entrega e do recebimento da(s) mercadoria(s)
+        correspondente(s), são mantidos em nosso poder, comprometendo-nos a exibi-los, sempre que exigidos, no lugar
+        onde
+        for determinado, especialmente se sobrevir sustação judicial do protesto.</strong>
+    </p>
+
+    <p><span style="font-weight: bold;">Sem mais, firmamo-nos,</span>
+    </p>
+    <p style="margin: 40px 0 70px 0;">FRANCA(SP), {{data.dia}} de {{data.mes}} de {{data.ano}}.</p>
+    <p style="text-align:center;  width: 500px; margin: auto; margin-bottom: 40px;border-top: 1px solid; font: bold 10px Arial;">
+      (Assinatura da Empresa sob carimbo)
+    </p>
+  </div>
+</section> 
+
+
+

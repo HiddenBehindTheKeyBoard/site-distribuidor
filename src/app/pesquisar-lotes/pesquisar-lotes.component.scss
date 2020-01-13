@@ -1,0 +1,65 @@
+/* === TÍTULOS APONTADOS === */
+.lotes-container {
+  width: 900px;
+  margin: 0 auto;
+
+}
+
+.lotes-container h2 {
+  margin-bottom: 25px;
+}
+
+.lotes-container legend {
+  margin-bottom: 15px;
+}
+
+.lotes-container label {
+  margin-right: 25px;
+}
+
+.lotes-container input[type="date"] {
+  width: 183px;
+}
+
+.lotes-container .form-lote {
+  width: 183px;
+}
+
+.lotes-container .form-select {
+  margin-top: 20px;
+}
+
+.lotes-container select {
+  width: 300px;
+}
+
+.lotes-container .fcontrol-target {
+  width: 290px;
+}
+
+
+/* === BUTTON TITULOS APONTADOS === */
+.btn-search-ta .btn-pesquisa-ta {
+  width: 180px;
+  margin-top: -8px;
+}
+
+
+/* === TABELA TÍTULOS APONTADOS === */
+.table {
+  max-width: 1024px;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 6rem;
+  font-size: 12.5px;
+}
+
+.table .title-table {
+  background-color: #bfc0c5;
+  font-size: 15px;
+}
+
+.table .table-icon:hover {
+  color: #095d6e;
+  cursor: pointer;
+}

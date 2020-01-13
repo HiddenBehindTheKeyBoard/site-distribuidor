@@ -1,0 +1,67 @@
+<!-- HEADER -->
+<div class="header">
+  <div class="inner-header">
+    <nav class="menu-container">
+      <ul class="menu">
+        <li [routerLink]="'/home'">
+          <p><a>HOME</a></p>
+        </li>
+
+        <li>
+          <div class="dropdown">
+            <p class="drop-btn " active>MEU CADASTRO</p>
+            <div class="dropdown-content">
+              <a [routerLink]="['/atualizacao', idU]">Atualizar Cadastro</a>
+              <a [routerLink]="'/adicional'">Usuário Adicional</a>
+              <a [routerLink]="'/adesao'">Termo de Adesão</a>
+              <a [routerLink]="'/senha'">Alterar Minha Senha</a>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="dropdown">
+            <p class="drop-btn ">MEUS TÍTULOS</p>
+            <div class="dropdown-content">
+              <a href="#" [routerLink]="'/titulos'">Digitar Títulos</a>
+              <div>
+                <a class="dropdown-down">
+                  <p class="drop-btn-dow">Pesquisas</p>
+                  <div class="dropdown-content-down1">
+                    <a [routerLink]="'/pesquisar-lotes'">Pesquisar Lotes</a>
+                    <a [routerLink]="'/pesquisar-devedores'">Pesquisar Devedores</a>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a class="dropdown-down">
+                  <p class="drop-btn-dow">Relatórios</p>
+                  <div class="dropdown-content-down2">
+                    <a [routerLink]="'/posicao-titulos'">Posição de Títulos</a>
+                    <a [routerLink]="'/posicao-titulos-devedor'">Posição de Títulos Por Devedor</a>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li [routerLink]="'/devedores'">
+          <p><a>MEUS DEVEDORES</a></p>
+        </li>
+
+        <li (click)="sair()">
+          <p><a>SAIR</a></p>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="side-info">
+      <fa name="user" popover="Usuário logado"
+      triggers="mouseenter:mouseleave" size="2x"></fa>
+      <p> {{ empresa.email }} </p>
+    </div>
+  </div>
+
+</div>
+<!-- HEADER FIM -->
