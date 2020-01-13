@@ -5662,23 +5662,33 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                                 this.devedor = data.docs[0].data();
                                 _context26.next = 5;
                                 return this.devedorService.buscarEnderecoDevedor(idDevedor).then(function (data) {
+                                  // Encontrou mais de um endereço abre o modal para escolher um deles
                                   if (data.size > 1) {
                                     for (var i = 0; i < data.size; i++) {
-                                      _this42.enderecos.push(data.docs[i].data());
+                                      var enderecoEncontrado = data.docs[0].data();
+                                      var endereco = enderecoEncontrado;
+                                      endereco.estado = enderecoEncontrado.uf;
+                                      endereco.cidade = enderecoEncontrado.localidade;
+                                      endereco.endereco = enderecoEncontrado.logradouro;
+                                      console.log(data.docs[i].data());
+
+                                      _this42.enderecos.push(endereco);
                                     }
 
                                     _this42.abrirModal();
 
                                     console.log(_this42.enderecos);
                                   } else {
-                                    var enderecoEncontrado = data.docs[0].data();
-                                    var endereco = enderecoEncontrado;
-                                    endereco.estado = enderecoEncontrado.uf;
-                                    endereco.cidade = enderecoEncontrado.localidade;
-                                    endereco.endereco = enderecoEncontrado.logradouro;
+                                    // encontrou apenas um endereco passa o endereço para o endereço
+                                    var _enderecoEncontrado = data.docs[0].data();
+
+                                    var _endereco = _enderecoEncontrado;
+                                    _endereco.estado = _enderecoEncontrado.uf;
+                                    _endereco.cidade = _enderecoEncontrado.localidade;
+                                    _endereco.endereco = _enderecoEncontrado.logradouro;
                                     console.log(data.docs[0].data());
 
-                                    _this42.copiaEnderecoPDevedor(endereco);
+                                    _this42.copiaEnderecoPDevedor(_endereco);
                                   }
                                 }).catch(function (error) {
                                   console.log(error);
@@ -5733,7 +5743,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "abrirModal",
         value: function abrirModal() {
-          this.copiaPDevedor();
           var initialState = {
             devedor: this.devedor,
             enderecos: this.enderecos,
@@ -6472,6 +6481,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /*#__PURE__*/
     function () {
       function DigitacaoSubFormularioComponent(bsModalRef, toastr, formBuilder, digitacaoModalService) {
+        var _this52 = this;
+
         _classCallCheck(this, DigitacaoSubFormularioComponent);
 
         this.bsModalRef = bsModalRef;
@@ -6482,7 +6493,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.enderecos = new Array();
         this.endereco = {};
         this.invalido = 'is-invalid';
-        console.log(this.titulo);
+        setTimeout(function () {
+          console.log(_this52.devedor);
+        }, 100);
       }
 
       _createClass(DigitacaoSubFormularioComponent, [{
@@ -6766,11 +6779,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(AuthGuard, [{
         key: "canActivate",
         value: function canActivate() {
-          var _this52 = this;
+          var _this53 = this;
 
           return new Promise(function (resolve) {
-            _this52.loginService.auth().onAuthStateChanged(function (usuario) {
-              return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this52, void 0, void 0,
+            _this53.loginService.auth().onAuthStateChanged(function (usuario) {
+              return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this53, void 0, void 0,
               /*#__PURE__*/
               regeneratorRuntime.mark(function _callee37() {
                 return regeneratorRuntime.wrap(function _callee37$(_context38) {
@@ -6954,14 +6967,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(LoginGuard, [{
         key: "canActivate",
         value: function canActivate() {
-          var _this53 = this;
+          var _this54 = this;
 
           return new Promise(function (resolve) {
-            _this53.loginService.auth().onAuthStateChanged(function (usuario) {
-              _this53.loginService.menu(false);
+            _this54.loginService.auth().onAuthStateChanged(function (usuario) {
+              _this54.loginService.menu(false);
 
               if (usuario) {
-                _this53.router.navigate(["/home"]);
+                _this54.router.navigate(["/home"]);
               }
 
               resolve(!usuario ? true : false);
@@ -7083,20 +7096,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(HomeComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this54 = this;
+          var _this55 = this;
 
           this.empresaService.buscaEmpresa(this.idU).then(function (adressEmail) {
-            _this54.adressEmail = adressEmail;
+            _this55.adressEmail = adressEmail;
           });
         }
       }, {
         key: "getEmpresa",
         value: function getEmpresa() {
-          var _this55 = this;
+          var _this56 = this;
 
           this.subscribe = this.route.data.subscribe(function (data) {
-            _this55.empresa = data.empresa;
-            _this55.nome = _this55.empresa.nome;
+            _this56.empresa = data.empresa;
+            _this56.nome = _this56.empresa.nome;
           });
         }
       }]);
@@ -7445,17 +7458,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "login",
         value: function login() {
-          var _this56 = this;
+          var _this57 = this;
 
           this.usuario = this.formGroupUsuario.value;
           this.loginService.login(this.usuario).then(function () {
-            _this56.loginService.menu(true);
+            _this57.loginService.menu(true);
 
-            _this56.router.navigate(["/home"]);
+            _this57.router.navigate(["/home"]);
           }).catch(function (err) {
             console.log(err);
 
-            _this56.toastr.error('Tente novamente...', 'Usuário ou senha inválido!');
+            _this57.toastr.error('Tente novamente...', 'Usuário ou senha inválido!');
           });
         }
       }, {
@@ -7505,7 +7518,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
           regeneratorRuntime.mark(function _callee40() {
-            var _this57 = this;
+            var _this58 = this;
 
             var transferencia;
             return regeneratorRuntime.wrap(function _callee40$(_context41) {
@@ -7526,10 +7539,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     console.log('ok');
                     _context41.next = 9;
                     return this.validaService.emailExiste(this.empresa.email).then(function (dataEmail) {
-                      return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this57, void 0, void 0,
+                      return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this58, void 0, void 0,
                       /*#__PURE__*/
                       regeneratorRuntime.mark(function _callee39() {
-                        var _this58 = this;
+                        var _this59 = this;
 
                         return regeneratorRuntime.wrap(function _callee39$(_context40) {
                           while (1) {
@@ -7547,15 +7560,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                                   console.log('dataEmail:' + dataDocumento.empty);
 
                                   if (dataDocumento.empty) {
-                                    _this58.existeDocumento = false;
+                                    _this59.existeDocumento = false;
                                     console.log('formGroupCadastro valido');
 
-                                    _this58.router.navigate(['/cadastro'], {
-                                      queryParams: _this58.empresa
+                                    _this59.router.navigate(['/cadastro'], {
+                                      queryParams: _this59.empresa
                                     });
                                   } else {
                                     sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_12___default.a.fire({
-                                      title: 'O ' + _this58.formGroupCadastro.controls['tipo'].value + ' já está em Uso',
+                                      title: 'O ' + _this59.formGroupCadastro.controls['tipo'].value + ' já está em Uso',
                                       icon: 'error',
                                       cancelButtonColor: '#d33',
                                       cancelButtonText: 'Cancelar'
@@ -7744,11 +7757,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(MenuComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this59 = this;
+          var _this60 = this;
 
           this.empresaService.buscaEmpresa(this.idU).then(function (empresa) {
             console.log(empresa);
-            _this59.empresa = empresa;
+            _this60.empresa = empresa;
           });
         }
       }, {
@@ -8453,31 +8466,31 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(ProtestoComponent, [{
         key: "buscarCEPTitulo",
         value: function buscarCEPTitulo() {
-          var _this60 = this;
+          var _this61 = this;
 
           this.cepService.getCEPCorreios(this.fGroupTitulo.controls['cep'].value).then(function (res) {
-            _this60.fGroupTitulo.controls['endereco'].setValue(res.logradouro);
+            _this61.fGroupTitulo.controls['endereco'].setValue(res.logradouro);
 
-            _this60.fGroupTitulo.controls['bairro'].setValue(res.bairro);
+            _this61.fGroupTitulo.controls['bairro'].setValue(res.bairro);
 
-            _this60.fGroupTitulo.controls['cidade'].setValue(res.localidade);
+            _this61.fGroupTitulo.controls['cidade'].setValue(res.localidade);
 
-            _this60.fGroupTitulo.controls['estado'].setValue(res.uf);
+            _this61.fGroupTitulo.controls['estado'].setValue(res.uf);
           });
         }
       }, {
         key: "buscarCEPDevedor",
         value: function buscarCEPDevedor() {
-          var _this61 = this;
+          var _this62 = this;
 
           this.cepService.getCEPCorreios(this.fGroupDevedores.controls['cep'].value).then(function (res) {
-            _this61.fGroupDevedores.controls['endereco'].setValue(res.logradouro);
+            _this62.fGroupDevedores.controls['endereco'].setValue(res.logradouro);
 
-            _this61.fGroupDevedores.controls['bairro'].setValue(res.bairro);
+            _this62.fGroupDevedores.controls['bairro'].setValue(res.bairro);
 
-            _this61.fGroupDevedores.controls['cidade'].setValue(res.localidade);
+            _this62.fGroupDevedores.controls['cidade'].setValue(res.localidade);
 
-            _this61.fGroupDevedores.controls['estado'].setValue(res.uf);
+            _this62.fGroupDevedores.controls['estado'].setValue(res.uf);
           });
         }
       }, {
@@ -8511,53 +8524,53 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "carregaApresentanteModal",
         value: function carregaApresentanteModal() {
-          var _this62 = this;
+          var _this63 = this;
 
           this.route.params.subscribe(function (data) {
             if (data.id) {
               console.log(data.id);
 
-              if (_this62.route.params) {
-                _this62.tituloService.getTituloByID(data.id).then(function (data) {
-                  _this62.titulo.nomeCredor = data.nomeCredor;
-                  _this62.titulo.email = data.email;
-                  _this62.titulo.tipo = data.tipo;
-                  _this62.titulo.numeroDocumento = data.numeroDocumento;
-                  _this62.titulo.rg = data.rg;
-                  _this62.titulo.telefone = data.telefone;
-                  _this62.titulo.cep = data.cep;
-                  _this62.titulo.endereco = data.endereco;
-                  _this62.titulo.numero = data.numero;
-                  _this62.titulo.bairro = data.bairro;
-                  _this62.titulo.cidade = data.cidade;
-                  _this62.titulo.complemento = data.complemento;
-                  _this62.titulo.estado = data.estado;
+              if (_this63.route.params) {
+                _this63.tituloService.getTituloByID(data.id).then(function (data) {
+                  _this63.titulo.nomeCredor = data.nomeCredor;
+                  _this63.titulo.email = data.email;
+                  _this63.titulo.tipo = data.tipo;
+                  _this63.titulo.numeroDocumento = data.numeroDocumento;
+                  _this63.titulo.rg = data.rg;
+                  _this63.titulo.telefone = data.telefone;
+                  _this63.titulo.cep = data.cep;
+                  _this63.titulo.endereco = data.endereco;
+                  _this63.titulo.numero = data.numero;
+                  _this63.titulo.bairro = data.bairro;
+                  _this63.titulo.cidade = data.cidade;
+                  _this63.titulo.complemento = data.complemento;
+                  _this63.titulo.estado = data.estado;
 
-                  _this62.fGroupTitulo.controls['nomeCredor'].setValue(_this62.titulo.nomeCredor);
+                  _this63.fGroupTitulo.controls['nomeCredor'].setValue(_this63.titulo.nomeCredor);
 
-                  _this62.fGroupTitulo.controls['email'].setValue(_this62.titulo.email);
+                  _this63.fGroupTitulo.controls['email'].setValue(_this63.titulo.email);
 
-                  _this62.fGroupTitulo.controls['tipo'].setValue(_this62.titulo.tipo);
+                  _this63.fGroupTitulo.controls['tipo'].setValue(_this63.titulo.tipo);
 
-                  _this62.fGroupTitulo.controls['numeroDocumento'].setValue(_this62.titulo.numeroDocumento);
+                  _this63.fGroupTitulo.controls['numeroDocumento'].setValue(_this63.titulo.numeroDocumento);
 
-                  _this62.fGroupTitulo.controls['rg'].setValue(_this62.titulo.rg);
+                  _this63.fGroupTitulo.controls['rg'].setValue(_this63.titulo.rg);
 
-                  _this62.fGroupTitulo.controls['telefone'].setValue(_this62.titulo.telefone);
+                  _this63.fGroupTitulo.controls['telefone'].setValue(_this63.titulo.telefone);
 
-                  _this62.fGroupTitulo.controls['cep'].setValue(_this62.titulo.cep);
+                  _this63.fGroupTitulo.controls['cep'].setValue(_this63.titulo.cep);
 
-                  _this62.fGroupTitulo.controls['endereco'].setValue(_this62.titulo.endereco);
+                  _this63.fGroupTitulo.controls['endereco'].setValue(_this63.titulo.endereco);
 
-                  _this62.fGroupTitulo.controls['numero'].setValue(_this62.titulo.numero);
+                  _this63.fGroupTitulo.controls['numero'].setValue(_this63.titulo.numero);
 
-                  _this62.fGroupTitulo.controls['bairro'].setValue(_this62.titulo.bairro);
+                  _this63.fGroupTitulo.controls['bairro'].setValue(_this63.titulo.bairro);
 
-                  _this62.fGroupTitulo.controls['cidade'].setValue(_this62.titulo.cidade);
+                  _this63.fGroupTitulo.controls['cidade'].setValue(_this63.titulo.cidade);
 
-                  _this62.fGroupTitulo.controls['complemento'].setValue(_this62.titulo.complemento);
+                  _this63.fGroupTitulo.controls['complemento'].setValue(_this63.titulo.complemento);
 
-                  _this62.fGroupTitulo.controls['estado'].setValue(_this62.titulo.estado);
+                  _this63.fGroupTitulo.controls['estado'].setValue(_this63.titulo.estado);
                 });
               }
             }
@@ -8979,7 +8992,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "excluirDev",
         value: function excluirDev(devedor) {
-          var _this63 = this;
+          var _this64 = this;
 
           console.log(devedor);
           sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_7___default.a.fire({
@@ -8994,9 +9007,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             console.log(result);
 
             if (result.value) {
-              _this63.apagarDevedor(devedor.numeroDocumento);
+              _this64.apagarDevedor(devedor.numeroDocumento);
 
-              _this63.escondeBtn = true;
+              _this64.escondeBtn = true;
             }
           });
         }
@@ -9165,25 +9178,25 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getTitulo",
         value: function getTitulo() {
-          var _this64 = this;
+          var _this65 = this;
 
           this.subscribe = this.route.data.subscribe(function (data) {
-            var _this64$devedores;
+            var _this65$devedores;
 
             console.log(data.titulo);
-            _this64.titulo = data.titulo;
+            _this65.titulo = data.titulo;
 
-            (_this64$devedores = _this64.devedores).push.apply(_this64$devedores, _toConsumableArray(data.titulo.devedores));
+            (_this65$devedores = _this65.devedores).push.apply(_this65$devedores, _toConsumableArray(data.titulo.devedores));
 
-            if (data.titulo.representante) _this64.representante = data.titulo.representante;
-            if (data.titulo.entregador) _this64.entregador = data.titulo.entregador;
-            console.log(_this64.entregador);
+            if (data.titulo.representante) _this65.representante = data.titulo.representante;
+            if (data.titulo.entregador) _this65.entregador = data.titulo.entregador;
+            console.log(_this65.entregador);
           });
         }
       }, {
         key: "abrirImpressao",
         value: function abrirImpressao() {
-          var _this65 = this;
+          var _this66 = this;
 
           sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_5___default.a.fire({
             title: 'ATENÇÃO!',
@@ -9198,7 +9211,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             console.log(result);
 
             if (result.value) {
-              _this65.ImprimirConteudo();
+              _this66.ImprimirConteudo();
             }
           });
         }
@@ -9461,31 +9474,31 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "buscarCEPRepresentante",
         value: function buscarCEPRepresentante() {
-          var _this66 = this;
+          var _this67 = this;
 
           this.cepService.getCEPCorreios(this.fGroupRepresentante.controls['cep'].value).then(function (res) {
-            _this66.fGroupRepresentante.controls['endereco'].setValue(res.logradouro);
+            _this67.fGroupRepresentante.controls['endereco'].setValue(res.logradouro);
 
-            _this66.fGroupRepresentante.controls['bairro'].setValue(res.bairro);
+            _this67.fGroupRepresentante.controls['bairro'].setValue(res.bairro);
 
-            _this66.fGroupRepresentante.controls['cidade'].setValue(res.localidade);
+            _this67.fGroupRepresentante.controls['cidade'].setValue(res.localidade);
 
-            _this66.fGroupRepresentante.controls['estado'].setValue(res.uf);
+            _this67.fGroupRepresentante.controls['estado'].setValue(res.uf);
           });
         }
       }, {
         key: "buscarCEPEntregador",
         value: function buscarCEPEntregador() {
-          var _this67 = this;
+          var _this68 = this;
 
           this.cepService.getCEPCorreios(this.fGroupEntregador.controls['cep'].value).then(function (res) {
-            _this67.fGroupEntregador.controls['endereco'].setValue(res.logradouro);
+            _this68.fGroupEntregador.controls['endereco'].setValue(res.logradouro);
 
-            _this67.fGroupEntregador.controls['bairro'].setValue(res.bairro);
+            _this68.fGroupEntregador.controls['bairro'].setValue(res.bairro);
 
-            _this67.fGroupEntregador.controls['cidade'].setValue(res.localidade);
+            _this68.fGroupEntregador.controls['cidade'].setValue(res.localidade);
 
-            _this67.fGroupEntregador.controls['estado'].setValue(res.uf);
+            _this68.fGroupEntregador.controls['estado'].setValue(res.uf);
           });
         }
       }, {
@@ -9597,7 +9610,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
           regeneratorRuntime.mark(function _callee43() {
-            var _this68 = this;
+            var _this69 = this;
 
             return regeneratorRuntime.wrap(function _callee43$(_context44) {
               while (1) {
@@ -9624,10 +9637,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
                     _context44.next = 11;
                     return this.tituloService.criaTitulo(this.titulo).then(function (docRef) {
-                      return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this68, void 0, void 0,
+                      return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this69, void 0, void 0,
                       /*#__PURE__*/
                       regeneratorRuntime.mark(function _callee42() {
-                        var _this69 = this;
+                        var _this70 = this;
 
                         var i;
                         return regeneratorRuntime.wrap(function _callee42$(_context43) {
@@ -9652,7 +9665,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
                                   console.log('titulo devedor criado com sucesso!');
 
-                                  (_src_app_services_tit = src_app_services_titulo_devedor_service__WEBPACK_IMPORTED_MODULE_10__["TituloDevedorService"].staticDevedor).push.apply(_src_app_services_tit, _toConsumableArray(_this69.devedores));
+                                  (_src_app_services_tit = src_app_services_titulo_devedor_service__WEBPACK_IMPORTED_MODULE_10__["TituloDevedorService"].staticDevedor).push.apply(_src_app_services_tit, _toConsumableArray(_this70.devedores));
                                 });
 
                               case 8:
@@ -9666,7 +9679,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                                 _context43.next = 15;
                                 return this.representanteService.criaRepresentante(this.entregador).then(function () {
                                   console.log('Entregador criado');
-                                  console.log(_this69.entregador);
+                                  console.log(_this70.entregador);
                                 }).catch(function (error) {
                                   console.log(error);
                                 });
@@ -9683,7 +9696,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                                 _context43.next = 21;
                                 return this.representanteService.criaRepresentante(this.representante).then(function () {
                                   console.log('representante criado');
-                                  console.log(_this69.representante);
+                                  console.log(_this70.representante);
                                 }).catch(function (error) {
                                   console.log(error);
                                 });
@@ -9895,13 +9908,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(RequerimentoProtestoComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this70 = this;
+          var _this71 = this;
 
           this.empresaService.buscaEmpresa(this.idUsuario).then(function (empresa) {
-            _this70.empresa = empresa;
+            _this71.empresa = empresa;
           });
           this.empresaService.buscaEmpresa(this.idUsuario).then(function (documento) {
-            _this70.documento = documento;
+            _this71.documento = documento;
           });
         }
       }, {
@@ -9910,7 +9923,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
           regeneratorRuntime.mark(function _callee46() {
-            var _this71 = this;
+            var _this72 = this;
 
             return regeneratorRuntime.wrap(function _callee46$(_context47) {
               while (1) {
@@ -9918,10 +9931,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                   case 0:
                     _context47.next = 2;
                     return this.loteService.buscaLoteId(this.idLote).then(function (data) {
-                      return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this71, void 0, void 0,
+                      return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this72, void 0, void 0,
                       /*#__PURE__*/
                       regeneratorRuntime.mark(function _callee45() {
-                        var _this72 = this;
+                        var _this73 = this;
 
                         return regeneratorRuntime.wrap(function _callee45$(_context46) {
                           while (1) {
@@ -9931,7 +9944,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                                 console.log(this.lote);
                                 _context46.next = 4;
                                 return this.buscaTitulos().then(function (data) {
-                                  return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this72, void 0, void 0,
+                                  return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this73, void 0, void 0,
                                   /*#__PURE__*/
                                   regeneratorRuntime.mark(function _callee44() {
                                     return regeneratorRuntime.wrap(function _callee44$(_context45) {
@@ -9972,7 +9985,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
           regeneratorRuntime.mark(function _callee48() {
-            var _this73 = this;
+            var _this74 = this;
 
             return regeneratorRuntime.wrap(function _callee48$(_context49) {
               while (1) {
@@ -9980,7 +9993,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                   case 0:
                     _context49.next = 2;
                     return this.tituloService.buscaTituloLote(this.idLote).then(function (data) {
-                      return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this73, void 0, void 0,
+                      return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this74, void 0, void 0,
                       /*#__PURE__*/
                       regeneratorRuntime.mark(function _callee47() {
                         var i;
@@ -10016,7 +10029,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
           regeneratorRuntime.mark(function _callee49() {
-            var _this74 = this;
+            var _this75 = this;
 
             var _loop2, x;
 
@@ -10032,11 +10045,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                           switch (_context50.prev = _context50.next) {
                             case 0:
                               _context50.next = 2;
-                              return _this74.tituloDevedoreService.buscarDevedoresTitulo(_this74.titulos[x].idTitulo).then(function (data) {
+                              return _this75.tituloDevedoreService.buscarDevedoresTitulo(_this75.titulos[x].idTitulo).then(function (data) {
                                 for (var y = 0; y < data.size; y++) {
-                                  _this74.devedores[y] = data.docs[y].data();
-                                  _this74.devedores[y].idTituloDevedor = data.docs[y].id;
-                                  _this74.titulos[x].devedores[y] = _this74.devedores[y];
+                                  _this75.devedores[y] = data.docs[y].data();
+                                  _this75.devedores[y].idTituloDevedor = data.docs[y].id;
+                                  _this75.titulos[x].devedores[y] = _this75.devedores[y];
                                 }
                               });
 
@@ -11628,7 +11641,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
           regeneratorRuntime.mark(function _callee78() {
-            var _this75 = this;
+            var _this76 = this;
 
             return regeneratorRuntime.wrap(function _callee78$(_context80) {
               while (1) {
@@ -11637,14 +11650,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     _context80.next = 2;
                     return this.fireStore.collection('Empresa').doc(idUsuario).update(empresa).then(function () {
                       console.log('empresa salva!');
-                      _this75.usuario.administrador = 'SIM';
-                      _this75.usuario.cpf = empresa.documento;
-                      _this75.usuario.email = empresa.email;
-                      _this75.usuario.nome = empresa.nome;
-                      _this75.usuario.idUsuario = idUsuario;
-                      _this75.usuario.idEmpresa = empresa.idEmpresa;
+                      _this76.usuario.administrador = 'SIM';
+                      _this76.usuario.cpf = empresa.documento;
+                      _this76.usuario.email = empresa.email;
+                      _this76.usuario.nome = empresa.nome;
+                      _this76.usuario.idUsuario = idUsuario;
+                      _this76.usuario.idEmpresa = empresa.idEmpresa;
 
-                      _this75.usuarioService.updateUser(_this75.usuario, idUsuario).then(function () {
+                      _this76.usuarioService.updateUser(_this76.usuario, idUsuario).then(function () {
                         console.log('usuario salvo!');
                         return;
                       }).catch(function (error) {
@@ -11722,7 +11735,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
           regeneratorRuntime.mark(function _callee83() {
-            var _this76 = this;
+            var _this77 = this;
 
             return regeneratorRuntime.wrap(function _callee83$(_context85) {
               while (1) {
@@ -11731,10 +11744,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     _context85.prev = 0;
                     _context85.next = 3;
                     return this.fireAuth.auth.createUserWithEmailAndPassword(usuario.email, usuario.senha).then(function (usuario) {
-                      return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this76, void 0, void 0,
+                      return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this77, void 0, void 0,
                       /*#__PURE__*/
                       regeneratorRuntime.mark(function _callee82() {
-                        var _this77 = this;
+                        var _this78 = this;
 
                         return regeneratorRuntime.wrap(function _callee82$(_context84) {
                           while (1) {
@@ -11747,7 +11760,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                                 _login_service__WEBPACK_IMPORTED_MODULE_5__["LoginService"].idEmpresa = empresa.idEmpresa;
                                 _context84.next = 7;
                                 return this.fireStore.collection('Empresa').doc(empresa.idUsuario).set(empresa).then(function () {
-                                  return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this77, void 0, void 0,
+                                  return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this78, void 0, void 0,
                                   /*#__PURE__*/
                                   regeneratorRuntime.mark(function _callee81() {
                                     return regeneratorRuntime.wrap(function _callee81$(_context83) {
@@ -12013,10 +12026,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(LoginService, [{
         key: "login",
         value: function login(usuario) {
-          var _this78 = this;
+          var _this79 = this;
 
           return this.fireAuth.auth.signInWithEmailAndPassword(usuario.email, usuario.senha).then(function (res) {
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this78, void 0, void 0,
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this79, void 0, void 0,
             /*#__PURE__*/
             regeneratorRuntime.mark(function _callee84() {
               return regeneratorRuntime.wrap(function _callee84$(_context86) {
@@ -12084,7 +12097,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
           regeneratorRuntime.mark(function _callee86() {
-            var _this79 = this;
+            var _this80 = this;
 
             return regeneratorRuntime.wrap(function _callee86$(_context88) {
               while (1) {
@@ -12095,8 +12108,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     return this.fireAuth.auth.signInWithEmailAndPassword(email, senhaAtual).then(function () {
                       console.log('ok');
 
-                      _this79.fireAuth.auth.currentUser.updatePassword(senhaNova).then(function () {
-                        _this79.PasswordSuccess();
+                      _this80.fireAuth.auth.currentUser.updatePassword(senhaNova).then(function () {
+                        _this80.PasswordSuccess();
                       }).catch(function (error) {
                         console.log(error);
                       });
@@ -12129,7 +12142,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
           regeneratorRuntime.mark(function _callee88() {
-            var _this80 = this;
+            var _this81 = this;
 
             var user, credential;
             return regeneratorRuntime.wrap(function _callee88$(_context90) {
@@ -12141,10 +12154,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     credential = LoginService_1.credential;
                     _context90.next = 5;
                     return this.fireAuth.auth.createUserWithEmailAndPassword(usuario.email, usuario.senha).then(function (usuario) {
-                      return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this80, void 0, void 0,
+                      return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this81, void 0, void 0,
                       /*#__PURE__*/
                       regeneratorRuntime.mark(function _callee87() {
-                        var _this81 = this;
+                        var _this82 = this;
 
                         return regeneratorRuntime.wrap(function _callee87$(_context89) {
                           while (1) {
@@ -12157,7 +12170,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                                 return this.usuarioService.addUser(usuarioAdicional, usuarioAdicional.idUsuario).then(function () {
                                   console.log('usuario salvo!');
 
-                                  _this81.logout();
+                                  _this82.logout();
 
                                   console.log(credential);
                                   user.reauthenticateWithCredential(credential.user); // Now you can use that to reauthenticate                   
@@ -12906,7 +12919,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
           regeneratorRuntime.mark(function _callee109() {
-            var _this82 = this;
+            var _this83 = this;
 
             var titulo;
             return regeneratorRuntime.wrap(function _callee109$(_context111) {
@@ -12915,10 +12928,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                   case 0:
                     _context111.next = 2;
                     return this.fireStore.firestore.collection('Titulo').doc(idTitulo).get().then(function (dataTitulo) {
-                      return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this82, void 0, void 0,
+                      return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this83, void 0, void 0,
                       /*#__PURE__*/
                       regeneratorRuntime.mark(function _callee108() {
-                        var _this83 = this;
+                        var _this84 = this;
 
                         return regeneratorRuntime.wrap(function _callee108$(_context110) {
                           while (1) {
@@ -12926,7 +12939,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                               case 0:
                                 _context110.next = 2;
                                 return this.fireStore.firestore.collection('TituloDevedor').where('idTitulo', '==', dataTitulo.id).get().then(function (dataDevedores) {
-                                  return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this83, void 0, void 0,
+                                  return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this84, void 0, void 0,
                                   /*#__PURE__*/
                                   regeneratorRuntime.mark(function _callee107() {
                                     var devedores, entregador, representante;
@@ -13718,7 +13731,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
           regeneratorRuntime.mark(function _callee121() {
-            var _this84 = this;
+            var _this85 = this;
 
             return regeneratorRuntime.wrap(function _callee121$(_context123) {
               while (1) {
@@ -13727,7 +13740,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     console.log('idEmpresa', _services_login_service__WEBPACK_IMPORTED_MODULE_7__["LoginService"].idEmpresa);
                     _context123.next = 3;
                     return this.empresaService.buscaEmpresa(_services_login_service__WEBPACK_IMPORTED_MODULE_7__["LoginService"].idEmpresa).then(function (empresa) {
-                      return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this84, void 0, void 0,
+                      return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this85, void 0, void 0,
                       /*#__PURE__*/
                       regeneratorRuntime.mark(function _callee120() {
                         return regeneratorRuntime.wrap(function _callee120$(_context122) {
@@ -13773,7 +13786,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "AbrirLote",
         value: function AbrirLote() {
-          var _this85 = this;
+          var _this86 = this;
 
           sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_10___default.a.fire({
             title: 'Confirma a abertura de um novo lote?',
@@ -13787,7 +13800,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             console.log(result);
 
             if (result.value) {
-              _this85.abrirLote();
+              _this86.abrirLote();
             }
           });
         }
@@ -13836,7 +13849,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
           regeneratorRuntime.mark(function _callee123() {
-            var _this86 = this;
+            var _this87 = this;
 
             var status;
             return regeneratorRuntime.wrap(function _callee123$(_context125) {
@@ -13856,15 +13869,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                       console.log(data.docs[0].data);
 
                       for (var i = 0; i < data.size; i++) {
-                        _this86.lotes.push(data.docs[i].data());
+                        _this87.lotes.push(data.docs[i].data());
 
-                        _this86.lotes[i].idLote = data.docs[i].id;
+                        _this87.lotes[i].idLote = data.docs[i].id;
                       }
                     }).catch(function (error) {
                       console.log('error na consulta buscar status lote', error);
                     }).finally(function () {
                       setTimeout(function () {
-                        _this86.spinner.hide();
+                        _this87.spinner.hide();
                       }, 1000);
                     });
 
@@ -13875,15 +13888,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                   case 7:
                     this.loteService.paginarLoteStatus(this.empresa.idEmpresa, status, this.lotes[this.lotes.length - 1].numeroLote).then(function (data) {
                       for (var i = 0; i < data.size; i++) {
-                        _this86.lotes.push(data.docs[i].data());
+                        _this87.lotes.push(data.docs[i].data());
 
-                        _this86.lotes[i].idLote = data.docs[i].id;
+                        _this87.lotes[i].idLote = data.docs[i].id;
                       }
                     }).catch(function (error) {
                       console.log(error);
                     }).finally(function () {
                       setTimeout(function () {
-                        _this86.spinner.hide();
+                        _this87.spinner.hide();
                       }, 1000);
                     });
 
@@ -13901,7 +13914,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
           regeneratorRuntime.mark(function _callee124() {
-            var _this87 = this;
+            var _this88 = this;
 
             return regeneratorRuntime.wrap(function _callee124$(_context126) {
               while (1) {
@@ -13916,15 +13929,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     _context126.next = 4;
                     return this.loteService.buscarLoteEmpresa(this.empresa.idEmpresa).then(function (data) {
                       for (var i = 0; i < data.size; i++) {
-                        _this87.lotes.push(data.docs[i].data());
+                        _this88.lotes.push(data.docs[i].data());
 
-                        _this87.lotes[i].idLote = data.docs[i].id;
+                        _this88.lotes[i].idLote = data.docs[i].id;
                       }
                     }).catch(function (error) {
                       console.log('error na consulta buscar status lote', error);
                     }).finally(function () {
                       setTimeout(function () {
-                        _this87.spinner.hide();
+                        _this88.spinner.hide();
                       }, 1000);
                     });
 
@@ -13936,15 +13949,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     this.spinner.show();
                     this.loteService.paginarLoteEmpresa(this.empresa.idEmpresa, this.lotes[this.lotes.length - 1].numeroLote).then(function (data) {
                       for (var i = 0; i < data.size; i++) {
-                        _this87.lotes.push(data.docs[i].data());
+                        _this88.lotes.push(data.docs[i].data());
 
-                        _this87.lotes[i].idLote = data.docs[i].id;
+                        _this88.lotes[i].idLote = data.docs[i].id;
                       }
                     }).catch(function (error) {
                       console.log(error);
                     }).finally(function () {
                       setTimeout(function () {
-                        _this87.spinner.hide();
+                        _this88.spinner.hide();
                       }, 1000);
                     });
 
@@ -13999,7 +14012,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
           regeneratorRuntime.mark(function _callee126() {
-            var _this88 = this;
+            var _this89 = this;
 
             return regeneratorRuntime.wrap(function _callee126$(_context128) {
               while (1) {
@@ -14008,9 +14021,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     this.iniciaNovoLote();
                     _context128.next = 3;
                     return this.loteService.criaLote(this.lote).then(function (docRef) {
-                      _this88.lote.idLote = docRef.id;
+                      _this89.lote.idLote = docRef.id;
 
-                      _this88.router.navigate(['/digitacao-titulos' + '/' + _this88.lote.idLote]);
+                      _this89.router.navigate(['/digitacao-titulos' + '/' + _this89.lote.idLote]);
                     });
 
                   case 3:

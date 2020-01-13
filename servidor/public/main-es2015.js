@@ -3437,14 +3437,21 @@ let DigitacaoTitulosComponent = class DigitacaoTitulosComponent {
                         const idDevedor = data.docs[0].id;
                         this.devedor = data.docs[0].data();
                         yield this.devedorService.buscarEnderecoDevedor(idDevedor).then(data => {
+                            // Encontrou mais de um endereço abre o modal para escolher um deles
                             if (data.size > 1) {
                                 for (let i = 0; i < data.size; i++) {
-                                    this.enderecos.push(data.docs[i].data());
+                                    let enderecoEncontrado = data.docs[0].data();
+                                    const endereco = enderecoEncontrado;
+                                    endereco.estado = enderecoEncontrado.uf;
+                                    endereco.cidade = enderecoEncontrado.localidade;
+                                    endereco.endereco = enderecoEncontrado.logradouro;
+                                    console.log(data.docs[i].data());
+                                    this.enderecos.push(endereco);
                                 }
                                 this.abrirModal();
                                 console.log(this.enderecos);
                             }
-                            else {
+                            else { // encontrou apenas um endereco passa o endereço para o endereço
                                 let enderecoEncontrado = data.docs[0].data();
                                 const endereco = enderecoEncontrado;
                                 endereco.estado = enderecoEncontrado.uf;
@@ -3481,7 +3488,6 @@ let DigitacaoTitulosComponent = class DigitacaoTitulosComponent {
         console.log(endereco.estado);
     }
     abrirModal() {
-        this.copiaPDevedor();
         const initialState = {
             devedor: this.devedor,
             enderecos: this.enderecos,
@@ -3886,7 +3892,9 @@ let DigitacaoSubFormularioComponent = class DigitacaoSubFormularioComponent {
         this.enderecos = new Array();
         this.endereco = {};
         this.invalido = 'is-invalid';
-        console.log(this.titulo);
+        setTimeout(() => {
+            console.log(this.devedor);
+        }, 100);
     }
     ngOnInit() {
     }

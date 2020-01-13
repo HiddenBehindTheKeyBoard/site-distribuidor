@@ -314,12 +314,11 @@ export class ProtestoSubFormularioComponent implements OnInit {
               console.log(this.representante);
             }).catch((error)=>{
               console.log(error);
+              console.log(' deu pau ao criar o representante!');
             });
           }
-
-          console.log('fecha');
-          this.bsModalRef.hide();
           this.router.navigate(['/impressao-formulario-protesto/' + docRef.id]);
+          
         });
       }
     }
