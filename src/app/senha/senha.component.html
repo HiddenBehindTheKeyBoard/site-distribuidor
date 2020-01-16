@@ -6,7 +6,7 @@
 
     <div class="form-group col-md-3 feedback-group">
       <label for="formGroupPassword">Senha Atual</label>
-      <input type="password" formControlName="senhaAtual" class="form-control" id="formGroupPassword" maxlength="8" placeholder="" required>
+      <input type="password"  formControlName="senhaAtual" class="form-control" id="formGroupPassword" maxlength="8" placeholder="" required>
       <div class="feedback">
             Por favor, informe a senha atual.
           </div>
@@ -14,13 +14,14 @@
 
     <div class="form-group col-md-3">
       <label for="formGroupPassword2">Nova Senha</label>
-      <input type="password" class="form-control" formControlName="senhaNova" id="formGroupPassword2" required maxlength="8" placeholder="">
+      <input type="password" class="form-control" (input)="verificarSenhaForte()" formControlName="senhaNova" id="formGroupPassword2" required placeholder="">
     </div>
 
     <div class="form-group col-md-3">
       <label for="formGroupPassword2">Repita a Nova Senha</label>
-      <input type="password" class="form-control" formControlName="senhaNova2" id="formGroupPassword2" required maxlength="8" placeholder="">
+      <input type="password" class="form-control" formControlName="senhaNova2" id="formGroupPassword2" required placeholder="">
     </div>
+
 
     <!-- <div>
       <ngx-recaptcha2 #captchaElement
@@ -42,6 +43,9 @@
       <button type="submit" [disabled]="!formGroupNovaSenha.valid" (click)="alterarSenha()" class="btn-password btn btn-primary shadow" popover="Alterar senha de acesso"
       triggers="mouseenter:mouseleave">Alterar Senha</button>
     </div>
+    <br/>
+    <br/>
+    <strong *ngIf="forcaSenha" class="form-group col-md-3">Força da senha: {{forcaSenha}}</strong>
   </fieldset>
 </form>
 

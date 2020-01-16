@@ -126,7 +126,7 @@ const routes: Routes = [
   {
     path: 'impressao-formulario-protesto/:idTitulo',
     component: ImpressaoFormularioProtestoComponent,
-   // resolve: { titulo: TituloService }
+    //resolve: { titulo: TituloService }
   },
   {
     path: '**',

@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { LoginService } from '../services/login.service';
+import { FuncoesService } from '../services/funcoes.service';
 
 @Component({
   selector: 'app-senha',
@@ -12,17 +13,21 @@ import { LoginService } from '../services/login.service';
 export class SenhaComponent implements OnInit {
   public formGroupNovaSenha:FormGroup;  
 
-  public senhaAtual:string;
-  public senhaNova:string;
-  public senhaNova2:string;
+  public senhaAtual: string;
+  public senhaNova: string;
+  public senhaNova2: string;
+
+  public forcaSenha: string;
 
   private email = this.fireAuth.auth.currentUser.email;
 
   constructor(
     private fireAuth:AngularFireAuth, 
     private loginService:LoginService, 
-    private formBuilder:FormBuilder
-  ) { 
+    private formBuilder:FormBuilder,
+    private funcService: FuncoesService,
+
+  ) {
     this.formGroupNovaSenha =this.formBuilder.group({
       'senhaNova':[this.senhaNova, Validators.compose([
         Validators.minLength(6),
@@ -60,6 +65,12 @@ export class SenhaComponent implements OnInit {
           console.log(error);
         });
     }
+  }
+
+
+  verificarSenhaForte() {
+    this.senhaAtual = this.formGroupNovaSenha.controls['senhaNova'].value;
+    this.forcaSenha = this.funcService.verificaSenhaForte(this.senhaAtual);
   }
 
 

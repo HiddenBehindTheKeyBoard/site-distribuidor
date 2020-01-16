@@ -190,7 +190,7 @@
           </div>
           <div class="form-group col-md-2">
             <label for="inputCpf">Senha</label>
-            <input type="password" formControlName="senha" class="lower-text" class="form-control" id="inputCpf" maxlength="50"
+            <input type="password" formControlName="senha" (input)="verificarSenhaForte()" class="lower-text" class="form-control" id="inputCpf" maxlength="50"
             [ngClass]="{ 'is-invalid': submitted && fUsuario.senha.errors }"> 
             <div *ngIf="submitted && fUsuario.senha.errors" class="invalid-feedback">
               <small *ngIf="fUsuario.senha.required">Senha é obrigatório</small>
@@ -207,6 +207,9 @@
             </div>
           </div>
         </div>
+        <br/>
+        <br/>
+        <strong *ngIf="forcaSenha" class="form-group col-md-2">Força da senha: {{forcaSenha}}</strong>
       </fieldset> 
     </form>
     <div class="btn-cadastro">

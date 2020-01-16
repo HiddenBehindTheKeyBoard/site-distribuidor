@@ -1032,9 +1032,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cadastro_cadastro_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./cadastro/cadastro.component */ "./src/app/cadastro/cadastro.component.ts");
 /* harmony import */ var _services_usuario_service__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./services/usuario.service */ "./src/app/services/usuario.service.ts");
 /* harmony import */ var _services_empresa_service__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./services/empresa.service */ "./src/app/services/empresa.service.ts");
-/* harmony import */ var _services_titulo_service__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./services/titulo.service */ "./src/app/services/titulo.service.ts");
-/* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
-
+/* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
 
 
 
@@ -1157,11 +1155,10 @@ const routes = [
     {
         path: 'impressao-formulario-protesto/:idTitulo',
         component: _protesto_sub_formulario_impressao_formulario_protesto_impressao_formulario_protesto_component__WEBPACK_IMPORTED_MODULE_19__["ImpressaoFormularioProtestoComponent"],
-        resolve: { titulo: _services_titulo_service__WEBPACK_IMPORTED_MODULE_26__["TituloService"] }
     },
     {
         path: '**',
-        component: _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_27__["PaginaNaoEncontradaComponent"],
+        component: _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_26__["PaginaNaoEncontradaComponent"],
     }
 ];
 const Routing = _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes);
@@ -6077,10 +6074,9 @@ let ProtestoSubFormularioComponent = class ProtestoSubFormularioComponent {
                                 console.log(this.representante);
                             }).catch((error) => {
                                 console.log(error);
+                                console.log(' deu pau ao criar o representante!');
                             });
                         }
-                        console.log('fecha');
-                        this.bsModalRef.hide();
                         this.router.navigate(['/impressao-formulario-protesto/' + docRef.id]);
                     }));
                 }

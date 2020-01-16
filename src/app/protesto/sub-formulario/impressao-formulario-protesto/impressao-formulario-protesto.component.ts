@@ -39,8 +39,11 @@ export class ImpressaoFormularioProtestoComponent implements OnInit {
     private tituloService: TituloService,
     private route: ActivatedRoute
   ) {    
-    this.getTitulo();
-   }
+
+    setTimeout(() => {
+      this.getTitulo();
+    }, 5000);
+  }
 
   ngOnInit() {        
   }

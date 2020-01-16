@@ -58,4 +58,45 @@ export class FuncoesService {
     page.focus();
   }
 
+  verificaSenhaForte(senha: string): string  {
+    let forcaSenha: number=0;
+
+
+    if(senha.length >= 6) {
+      forcaSenha += 25;  
+    }
+
+    if(senha.length >= 8 ) {
+      forcaSenha += 15;
+    }
+
+    if(senha.match(/[a-z]+/)) {
+      forcaSenha += 15;
+    }
+
+    if(senha.match(/[A-Z]+/)) {
+      forcaSenha += 15;
+    }
+    
+    if(senha.match(/[!@#$%¨&*())-.,/\|{}[]+-^´`| <>:?"]/)) {
+      forcaSenha+= 15;
+    }
+
+    if(senha.match(/[1234567890]/)) {
+      forcaSenha += 15;
+    }
+    // verificando força da sneha e retornando o nome;
+    if(forcaSenha < 50) {
+      return 'Fraca';
+    }
+
+    if(forcaSenha >= 50 && forcaSenha <= 75) {
+      return 'Média';
+    }
+
+    if(forcaSenha > 75) {
+      return 'Forte';
+    }
+
+  }
 }

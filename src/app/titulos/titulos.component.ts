@@ -215,6 +215,7 @@ export class TitulosComponent implements OnInit {
   }
   
   editarLote(idLote){
+    this.lotes =[];
     this.router.navigate(['/digitacao-titulos'+'/'+idLote]);
   }
 }

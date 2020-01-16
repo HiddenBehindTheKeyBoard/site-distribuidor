@@ -267,8 +267,10 @@ export class ProtestoSubFormularioComponent implements OnInit {
   }
 
   async criarDados() {
+    let idTitulo: string;
     this.submitted = true;
     // this.fGroupEntregador.patchValue(this.entregador);
+    console.log(this.titulo);
     this.entregador = this.fGroupEntregador.value;
     console.log(this.entregador);
     this.fGroupRepresentante.patchValue(this.representante);
@@ -277,47 +279,55 @@ export class ProtestoSubFormularioComponent implements OnInit {
     console.log(this.submitted)
     if(this.fGroupEntregador.valid){
       if(this.fGroupRepresentante.valid && this.titulo.tipo == 'CNPJ' || this.titulo.tipo == 'CPF'){
-        await this.tituloService.criaTitulo(this.titulo).then(async (docRef)=>{
-          console.log(this.titulo);
-          console.log(docRef.id);
 
+
+        await this.tituloService.criaTitulo(this.titulo).then(async (docRef)=>{
+          idTitulo = docRef.id;
+          console.log('O salvamento do título está OK');
           TituloService.staticTitulo = this.titulo;
 
           for(let i = 0; i < this.devedores.length; i++){
             this.devedores[i].idTitulo = docRef.id;
             
-            await this.tituloDevedorService.criarTituloDevedor(this.devedores[i]).then(()=>{
-              console.log('titulo devedor criado com sucesso!');
-
-              TituloDevedorService.staticDevedor.push(...this.devedores);          
-            });
+            await this.tituloDevedorService.criarTituloDevedor(this.devedores[i])
+              .then(()=>{
+                TituloDevedorService.staticDevedor.push(...this.devedores);          
+                console.log('O salvamento do Título devedor está ok');
+              }).catch((error)=> {
+                console.log(error);
+              });
           }
 
           this.entregador.idTitulo = docRef.id;
           this.entregador.tipo = 'ENTREGADOR';
 
-          await this.representanteService.criaRepresentante(this.entregador).then(()=>{
-            console.log('Entregador criado');
-            console.log(this.entregador);
-          }).catch((error)=>{
-            console.log(error);
-          });
+          await this.representanteService.criaRepresentante(this.entregador)
+            .then(()=>{
+              console.log(this.entregador);
+
+              console.log('Entregador criado com sucesso!');
+            }).catch((error)=>{
+              console.log(error);
+            });
 
           if(this.titulo.tipo == 'CNPJ'){
+
             this.representante = this.fGroupRepresentante.value;
 
             this.representante.idTitulo = docRef.id;
             this.representante.tipo = 'REPRESENTANTE';
 
             await this.representanteService.criaRepresentante(this.representante).then(()=>{
-              console.log('representante criado'); 
               console.log(this.representante);
+
+              console.log('Representante criado com sucesso!');
             }).catch((error)=>{
               console.log(error);
               console.log(' deu pau ao criar o representante!');
             });
           }
-          this.router.navigate(['/impressao-formulario-protesto/' + docRef.id]);
+          this.bsModalRef.hide();
+          this.router.navigate(['/impressao-formulario-protesto/' + idTitulo]);
           
         });
       }

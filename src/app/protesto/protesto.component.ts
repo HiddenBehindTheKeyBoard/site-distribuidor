@@ -684,8 +684,7 @@ export class ProtestoComponent implements OnInit {
 
   abrirModal() {
     this.copiaPTitulo();
-    console.log(this.titulo);
-    console.log(this.devedores);
+
     const initialState = {
       titulo: this.titulo,
       devedores: this.devedores,
@@ -718,7 +717,7 @@ export class ProtestoComponent implements OnInit {
 
   
 excluirDev(devedor) {
-console.log(devedor);
+  console.log(devedor);
   Swal.fire({
     title: 'Deseja realmente excluir este devedor?',
     icon: 'warning',

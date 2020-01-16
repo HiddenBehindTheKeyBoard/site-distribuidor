@@ -85,17 +85,19 @@ export class LoteService {
   async buscarLoteEmpresa(idEmpresa:string){
     return await this.fireStore.firestore.
       collection('Lote').
-        where('idEmpresa', '==', idEmpresa).
-          orderBy('numeroLote').
-            get();
+      where('idEmpresa', '==', idEmpresa).
+      orderBy('numeroLote').
+      limit(20).
+      get();
   }
 
   async paginarLoteEmpresa(idEmpresa:string, ultimoNumeroLote:number){
     return await this.fireStore.firestore.
       collection('Lote').
-        where('idEmpresa', '==', idEmpresa).
-          orderBy('numeroLote').
-            startAfter(ultimoNumeroLote).
-              get();
+      where('idEmpresa', '==', idEmpresa).
+      orderBy('numeroLote').
+      startAfter(ultimoNumeroLote).
+      limit(20).
+      get();
   }
 }

@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CepService } from '../services/cep.service';
 
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { FuncoesService } from '../services/funcoes.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -32,7 +33,8 @@ export class CadastroComponent implements OnInit, OnDestroy {
   public estados = new Array<string>();
   public bancos = new Array<string>();
 
-  public senha2:string;
+  public senha: string;
+  public forcaSenha: string;
 
   public usuario:Usuario = {};
 
@@ -55,6 +57,7 @@ export class CadastroComponent implements OnInit, OnDestroy {
     private empresaService:EmpresaService,
     private route: ActivatedRoute,
     private cepService: CepService,
+    private funcService:FuncoesService
   ) {
 
     this.subscription = this.route.queryParamMap.subscribe((params) =>{
@@ -182,7 +185,7 @@ export class CadastroComponent implements OnInit, OnDestroy {
         Validators.minLength(3),
         Validators.maxLength(50),
       ])],
-      'confirmaSenha':[this.senha2, Validators.compose([
+      'confirmaSenha':[this.senha, Validators.compose([
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(50),
@@ -211,14 +214,16 @@ export class CadastroComponent implements OnInit, OnDestroy {
     this.empresa = this.fGroupEmpresa.value;
     this.conta = this.fGroupEmpresaConta.value;
     this.representante = this.fGroupEmpresaRepresentante.value;
+
     let values:any = this.fGroupUsuario.value;
+
     this.usuario.senha = values.senha;
     this.usuario.email = values.email;
-    this.senha2 = values.confirmaSenha;
+
     this.copiaParaEmpresa();
     
 
-      if(this.usuario.senha == this.senha2){
+      if(this.usuario.senha == values.confirmaSenha){
           this.empresa = this.fGroupEmpresa.value;
         
           await this.empresaService.criaEmpresaUsuario(this.empresa, this.usuario).then(()=>{
@@ -290,5 +295,11 @@ export class CadastroComponent implements OnInit, OnDestroy {
       this.fGroupEmpresa.controls['estado'].setValue(res.uf);
     });    
   }
+
+  verificarSenhaForte() {
+    this.senha = this.fGroupUsuario.controls['senha'].value;
+    this.forcaSenha = this.funcService.verificaSenhaForte(this.senha);
+  }
+
 
 }

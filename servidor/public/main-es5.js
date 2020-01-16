@@ -1957,13 +1957,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _services_titulo_service__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(
-    /*! ./services/titulo.service */
-    "./src/app/services/titulo.service.ts");
-    /* harmony import */
-
-
-    var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(
+    var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(
     /*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */
     "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
 
@@ -2048,13 +2042,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_21__["AuthGuard"]]
     }, {
       path: 'impressao-formulario-protesto/:idTitulo',
-      component: _protesto_sub_formulario_impressao_formulario_protesto_impressao_formulario_protesto_component__WEBPACK_IMPORTED_MODULE_19__["ImpressaoFormularioProtestoComponent"],
-      resolve: {
-        titulo: _services_titulo_service__WEBPACK_IMPORTED_MODULE_26__["TituloService"]
-      }
+      component: _protesto_sub_formulario_impressao_formulario_protesto_impressao_formulario_protesto_component__WEBPACK_IMPORTED_MODULE_19__["ImpressaoFormularioProtestoComponent"]
     }, {
       path: '**',
-      component: _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_27__["PaginaNaoEncontradaComponent"]
+      component: _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_26__["PaginaNaoEncontradaComponent"]
     }];
 
     var Routing = _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes);
@@ -9699,14 +9690,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                                   console.log(_this70.representante);
                                 }).catch(function (error) {
                                   console.log(error);
+                                  console.log(' deu pau ao criar o representante!');
                                 });
 
                               case 21:
-                                console.log('fecha');
-                                this.bsModalRef.hide();
                                 this.router.navigate(['/impressao-formulario-protesto/' + docRef.id]);
 
-                              case 24:
+                              case 22:
                               case "end":
                                 return _context43.stop();
                             }
